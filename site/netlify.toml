@@ -1,0 +1,13 @@
+# Netlify settings for bloommodels.hu.
+# In Netlify: Site configuration → Build & deploy → Build settings → Base directory = site  (this file is read from there)
+#
+# There is no build step: the agent builds site/public and commits it, so Netlify only publishes files.
+# Netlify's free plan charges credits per production deploy, so Netlify only deploys when the built files in
+# site/public change. Commits to posts/, reports/ or even site/src alone never trigger a deploy (CI builds
+# site/public from site/src and commits it, and that commit deploys once). Pull request previews always build.
+# The rules are in netlify-ignore.sh.
+
+[build]
+  publish = "public"
+  command = "echo 'site/public is built by the Bloom agent; nothing to build here.'"
+  ignore = "bash ./netlify-ignore.sh"

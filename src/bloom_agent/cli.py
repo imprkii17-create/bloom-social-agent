@@ -198,7 +198,7 @@ def cmd_refresh_token(settings: Settings, args: argparse.Namespace) -> int:
     except (ConfigError, GraphError) as exc:
         summary(f"### ✖ Token refresh failed\n\n{exc}\n")
         notify(settings, "Bloom agent: Instagram token refresh failed",
-               f"{exc}\n\nIf the token has expired, generate a new one (SETUP.md step 4) and update IG_ACCESS_TOKEN.")
+               f"{exc}\n\nIf the token has expired, generate a new one (SETUP.md step 3) and update IG_ACCESS_TOKEN.")
         return 1
     if not (settings.github_admin_token and settings.github_repository):
         msg = ("The token could be renewed, but the agent can't save it: the GH_ADMIN_TOKEN secret is missing or "
@@ -292,6 +292,100 @@ def cmd_approve(settings: Settings, args: argparse.Namespace) -> int:
     return rc
 
 
+# ---- website, SEO and marketing ---------------------------------------------------------------------
+
+def cmd_site(settings: Settings, args: argparse.Namespace) -> int:
+    from .site.build import SiteBuildError, build_site
+
+    try:
+        result = build_site(settings.repo_root, check=args.check)
+    except (SiteBuildError, ValueError, OSError) as exc:
+        summary(f"### ✖ Website build failed\n\n{exc}\n")
+        return 1
+    for w in result.warnings:
+        print(f"! {w}")
+    if args.check:
+        if result.up_to_date:
+            summary("### ✅ site/public matches site/src\n")
+            return 0
+        summary("### ✖ site/public is out of date\n\nRun `bloom site build` (CI does this automatically on main).\n\n"
+                + "\n".join(f"- {x}" for x in result.changed + result.removed) + "\n")
+        return 1
+    print("Built site/public: " + (", ".join(result.changed + result.removed) if not result.up_to_date else "no changes"))
+    return 0
+
+
+def cmd_seo(settings: Settings, args: argparse.Namespace) -> int:
+    from .marketing.weekly import week_label
+    from .seo.run import critical_findings, render_markdown, run_seo, write_report
+
+    live = not args.offline
+    if args.quick:
+        report = run_seo(settings, live=live, speed=False, search=False, instagram=False)
+    else:
+        factory = (lambda: ig_client(settings)) if settings.ig_user_id and settings.ig_access_token else None
+        report = run_seo(settings, live=live, instagram_factory=factory)
+    md = render_markdown(report)
+    crit = critical_findings(report)
+    if args.quick:
+        lines = ["### Website health: " + ("✅ all good" if not crit else f"🔴 {len(crit)} problem(s)"), ""]
+        lines += [f"- **{f.title}** {f.page} — {f.fix}" for f in crit]
+        summary("\n".join(lines) + "\n")
+        if crit and live:
+            body = "\n".join(f"- **{f.title}** {f.page}\n  - {f.detail}\n  - Fix: {f.fix}" for f in crit)
+            notify(settings, "Bloom agent: the website has a problem", body)
+        return 1 if crit else 0
+    path = write_report(settings, report, name=week_label(datetime.now(settings.timezone).date()))
+    summary(md)
+    print(f"\nSaved {path.relative_to(settings.repo_root)}")
+    return 0
+
+
+def cmd_marketing(settings: Settings, args: argparse.Namespace) -> int:
+    from .marketing.weekly import run_weekly
+
+    factory = (lambda: ig_client(settings)) if settings.ig_user_id and settings.ig_access_token else None
+    in_actions = os.environ.get("GITHUB_ACTIONS") == "true"
+    result = run_weekly(
+        settings,
+        use_ai=not args.no_ai,
+        open_prs=in_actions and not args.no_pr,
+        seo_live=not args.offline,
+        ig_factory=factory,
+    )
+    lines = [f"### Marketing plan for {result.week} ({'Claude' if result.mode == 'claude' else 'library'})", ""]
+    lines.append(str(result.plan.get("summary", "")))
+    lines.append("")
+    lines.append(f"- Posts drafted: {len(result.posts)}" + (f" → {result.posts_pr}" if result.posts_pr else ""))
+    if result.site_applied:
+        lines.append(f"- Website changes: {len(result.site_applied)}" + (f" → {result.site_pr}" if result.site_pr else ""))
+    for d in result.dropped:
+        lines.append(f"- Dropped: {d}")
+    for n in result.notes:
+        lines.append(f"- Note: {n}")
+    if result.spend_lines:
+        lines.append(f"- Claude cost: ${result.spend_usd:.2f}")
+    lines.append(f"- Brief: {result.brief_path}")
+    summary("\n".join(lines) + "\n")
+    return 0
+
+
+def cmd_graphic(settings: Settings, args: argparse.Namespace) -> int:
+    """Draw one graphic from the command line (to try a layout or make a one-off post image)."""
+    from .marketing.graphics import GraphicError, GraphicSpec, render
+
+    spec = GraphicSpec(args.template, args.headline, args.eyebrow or "", args.accent or "", args.body or "",
+                       args.item or [], args.footnote or "", args.photo or "")
+    try:
+        data = render(spec, args.lang, settings.repo_root)
+    except GraphicError as exc:
+        print(f"✖ {exc}", file=sys.stderr)
+        return 1
+    Path(args.out).write_bytes(data)
+    print(f"Saved {args.out}")
+    return 0
+
+
 # ---- entry point ------------------------------------------------------------------------------------
 
 def cmd_merge_state(settings: Settings, args: argparse.Namespace) -> int:
@@ -350,14 +444,44 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--media", nargs="*")
     s.set_defaults(func=cmd_new)
 
-    s = sub.add_parser("merge-state", help=argparse.SUPPRESS)
+    s = sub.add_parser("merge-state")
     s.add_argument("ours")
     s.add_argument("target")
     s.set_defaults(func=cmd_merge_state)
+    sub._choices_actions = [a for a in sub._choices_actions if a.dest != "merge-state"]  # internal command: hide it
 
     s = sub.add_parser("approve", help="mark posts as approved")
     s.add_argument("ids", nargs="+")
     s.set_defaults(func=cmd_approve)
+
+    s = sub.add_parser("site", help="build the website (site/src → site/public)")
+    s.add_argument("action", choices=["build"], nargs="?", default="build")
+    s.add_argument("--check", action="store_true", help="only report whether site/public is up to date")
+    s.set_defaults(func=cmd_site)
+
+    s = sub.add_parser("seo", help="SEO report: website, speed, Google, Instagram search, AI search")
+    s.add_argument("--quick", action="store_true", help="fast website health check only (daily)")
+    s.add_argument("--offline", action="store_true", help="check the built files instead of the live site")
+    s.set_defaults(func=cmd_seo)
+
+    s = sub.add_parser("marketing", help="weekly plan: brief, next week's posts, website improvements")
+    s.add_argument("--no-ai", action="store_true", help="don't use Claude even if a key is set")
+    s.add_argument("--no-pr", action="store_true", help="leave drafts in the working tree instead of a pull request")
+    s.add_argument("--offline", action="store_true", help="don't fetch the live site / PageSpeed")
+    s.set_defaults(func=cmd_marketing)
+
+    s = sub.add_parser("graphic", help="draw one branded post graphic")
+    s.add_argument("--template", choices=["statement", "list", "photo", "light"], default="statement")
+    s.add_argument("--headline", required=True)
+    s.add_argument("--eyebrow")
+    s.add_argument("--accent")
+    s.add_argument("--body")
+    s.add_argument("--item", action="append", help="list item (repeat)")
+    s.add_argument("--footnote")
+    s.add_argument("--photo", help="file name in brand/photos")
+    s.add_argument("--lang", choices=["hu", "en"], default="hu")
+    s.add_argument("--out", default="graphic.jpg")
+    s.set_defaults(func=cmd_graphic)
     return p
 
 

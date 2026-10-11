@@ -1,0 +1,6 @@
+# Everyone may crawl the whole site, including AI search assistants
+# (OAI-SearchBot, Claude-SearchBot, PerplexityBot…), so they can find and recommend Bloom Models.
+User-agent: *
+Allow: /
+
+Sitemap: https://bloommodels.hu/sitemap.xml

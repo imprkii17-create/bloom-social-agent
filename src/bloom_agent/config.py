@@ -65,6 +65,9 @@ class Settings:
     github_token: str | None
     github_admin_token: str | None
     github_repository: str | None
+    gsc_service_account_json: str | None = None
+    gsc_property: str = "sc-domain:bloommodels.hu"
+    pagespeed_api_key: str | None = None
     banned_words: tuple[str, ...] = field(default_factory=tuple)
 
     @property
@@ -79,7 +82,7 @@ class Settings:
         if not self.ig_user_id or not self.ig_access_token:
             raise ConfigError(
                 "Instagram is not configured. Set the IG_USER_ID and IG_ACCESS_TOKEN secrets "
-                "(see SETUP.md, step 4)."
+                "(see SETUP.md, step 5)."
             )
         return self.ig_user_id, self.ig_access_token
 
@@ -136,5 +139,8 @@ def load_settings(repo_root: Path | None = None) -> Settings:
         github_token=_env("GITHUB_TOKEN"),
         github_admin_token=_env("GH_ADMIN_TOKEN"),
         github_repository=repo,
+        gsc_service_account_json=_env("GSC_SERVICE_ACCOUNT_JSON"),
+        gsc_property=_env("GSC_PROPERTY", "sc-domain:bloommodels.hu") or "sc-domain:bloommodels.hu",
+        pagespeed_api_key=_env("PAGESPEED_API_KEY"),
         banned_words=DEFAULT_BANNED_WORDS + extra_banned,
     )

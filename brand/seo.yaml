@@ -1,0 +1,54 @@
+# What we want to be found for. Used by the SEO checks and by the marketing agent.
+#
+# These keyword lists are starting hypotheses (no keyword tool has volume data for small Hungarian queries).
+# Once Google Search Console is connected, the weekly report shows the searches people REALLY use to find the
+# site, and the agent proposes changes here based on that data.
+
+site:
+  primary_keyword:
+    hu: online modell munka
+    en: online modeling jobs
+  keywords:
+    hu:
+      - online modell munka
+      - streaming modell
+      - online modell állás
+      - modell munka budapest
+      - modellügynökség budapest
+      - otthonról végezhető munka
+      - rugalmas munkaidő magas kereset
+    en:
+      - online modeling jobs
+      - streaming model
+      - online model agency budapest
+      - modeling jobs budapest
+      - work from home budapest
+
+  # Your decision: the searches with the most intent are probably the explicit ones (e.g. "webkamerás modell munka").
+  # Using them on the website brings more of exactly the right applicants and is honest about the job, but it
+  # changes how the brand reads. The agent only measures these; it never adds them to the site on its own.
+  undecided:
+    - webkamerás modell munka
+    - webcam modell állás
+
+instagram:
+  # Instagram search reads the Name field, username, bio, captions, alt text and hashtags.
+  name_field: "Bloom Models | Online Modeling"
+  keywords:
+    hu: [online modell, modellügynökség, budapest, rugalmas munka, streaming]
+    en: [online modeling, model agency, budapest, flexible work, streaming]
+  # Hashtags we rotate through (max 5 per post). Keep them specific; giant generic tags bring the wrong audience.
+  hashtag_pool:
+    - "#bloommodels"
+    - "#onlinemodell"
+    - "#modellmunka"
+    - "#budapestmunka"
+    - "#rugalmasmunka"
+    - "#otthonimunka"
+    - "#budapest"
+    - "#onlinemodeling"
+    - "#modelagency"
+    - "#budapestjobs"
+
+# Other Budapest agencies recruiting for the same work. The agent watches their visibility (with Claude switched on).
+competitors: []

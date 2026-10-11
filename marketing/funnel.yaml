@@ -1,0 +1,18 @@
+# Your weekly numbers. Add one entry every Monday (takes a minute, works in the GitHub app).
+# The agent uses them to find the bottleneck: is it reach, interest, the profile, or the application itself?
+#
+# applications: form submissions that week (Formspree dashboard)
+# replied_24h:  how many of them got an answer within 24 hours
+# interviews:   first conversations held
+# started:      people who started working
+# top_referrer: most common answer to "Who referred you?" (optional)
+
+# Copy the example below (remove the # signs), one block per week, newest last.
+weeks:
+#  - week: 2026-W43
+#    applications: 4
+#    replied_24h: 3
+#    interviews: 2
+#    started: 1
+#    top_referrer: ""
+#    notes: ""

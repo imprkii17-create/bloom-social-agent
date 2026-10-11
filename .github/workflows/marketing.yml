@@ -1,0 +1,52 @@
+name: Weekly marketing plan
+
+# The head-of-marketing run: SEO report, weekly brief, next week's posts (pull request — merging approves them)
+# and data-backed website improvements (pull request with a Netlify preview).
+on:
+  schedule:
+    - cron: "37 7 * * 5"   # Fridays 07:37 UTC (08:37/09:37 Budapest), so you have the weekend to review
+  workflow_dispatch:
+    inputs:
+      use_claude:
+        description: "Use Claude (needs the ANTHROPIC_API_KEY secret)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: marketing
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install --require-hashes -r requirements.lock && pip install --no-deps .
+      - name: Plan the week
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
+          MARKETING_MAX_COST_USD: ${{ vars.MARKETING_MAX_COST_USD }}
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          GSC_PROPERTY: ${{ vars.GSC_PROPERTY }}
+          PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NO_AI: ${{ github.event_name == 'workflow_dispatch' && !inputs.use_claude && '--no-ai' || '' }}
+        run: bloom marketing $NO_AI
+      - name: Save the brief and reports
+        if: always()
+        run: 'scripts/commit-back.sh "bloom-agent: weekly marketing brief" reports state marketing'

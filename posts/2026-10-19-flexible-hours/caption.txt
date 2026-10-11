@@ -3,7 +3,7 @@ Kép / Image: 1-monday-hu.png (magyar) vagy / or 1-monday-en.png (English)
 
 ----- CAPTION (copy from here) -----
 
-Hétfő reggel 8-kor ébresztő? Nálunk ez nem kötelező. ⏰
+Hétfő reggel 8-kor ébresztő? Az online modell munkánál ez nem kötelező. ⏰
 
 A Bloom Modelsnél te döntöd el, mikor dolgozol: heti nagyjából 20 óra, 5 órás blokkokban — reggel, délután, este vagy éjszaka. A beosztást veled együtt tervezzük, nem felülről kapod.
 

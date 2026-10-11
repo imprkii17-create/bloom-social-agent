@@ -1,0 +1,48 @@
+# Settings for the bloommodels.hu website build (`bloom site build`).
+# The marketing agent may propose changes to the `pages` titles/descriptions and to the FAQ text in i18n/*.json,
+# always as a pull request you approve. Everything else here is yours to change.
+
+base_url: https://bloommodels.hu
+default_lang: hu          # served at /
+x_default: en             # what Google shows people whose language is neither Hungarian nor English
+
+# Fill in once the Instagram account is public, e.g. https://www.instagram.com/bloommodels/
+# It links the website and the Instagram profile together for Google and AI search ("sameAs").
+instagram_url: ""
+contact_email: bloommodelsapply@gmail.com
+
+pages:
+  hu:
+    path: /
+    locale: hu_HU
+    title: Online modell munka Budapesten | Bloom Models
+    description: >-
+      Streaming modell munka Budapesten: ingyenes betanítás, saját stúdió, rugalmas beosztás, havi 2000 € felett
+      reális cél. Jelentkezz 2 perc alatt, 18+.
+    og_title: Bloom Models — online modellügynökség Budapesten
+    og_image_alt: Bloom Models — online modellügynökség, Budapest
+  en:
+    path: /en/
+    locale: en_US
+    title: Online Modeling Jobs in Budapest | Bloom Models
+    description: >-
+      Streaming model work in Budapest: free training, a private studio, flexible hours and €2,000+ a month as a
+      realistic goal. Apply in 2 minutes, 18+ only.
+    og_title: Bloom Models — online modeling agency in Budapest
+    og_image_alt: Bloom Models — online modeling agency, Budapest
+
+# Google for Jobs listing (JobPosting structured data). The agent warns you 30 days before valid_through.
+job_posting:
+  enabled: true
+  date_posted: 2026-09-14
+  valid_through: 2026-12-31
+  employment_type: [CONTRACTOR, PART_TIME]
+  title:
+    hu: Streaming modell (online modell)
+    en: Streaming model (online model)
+
+# The social card picture (1200×630) is made from this photo at build time.
+og_image_source: images/hero-2.jpg
+
+# Responsive image widths generated for every photo (WebP).
+image_widths: [480, 960, 1440]

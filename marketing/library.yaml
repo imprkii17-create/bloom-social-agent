@@ -1,0 +1,343 @@
+# Ready-made, evergreen posts. Without a Claude API key, the weekly marketing run drafts next week's posts from
+# here (least recently used first) and draws their graphics. With a key, Claude writes fresh posts instead and
+# uses these as examples of the voice.
+#
+# Every entry follows brand/rules.md and brand/facts.yaml. Captions: Hungarian first, then English.
+
+posts:
+  - id: first-week
+    pillar: how-it-works
+    graphic:
+      template: list
+      hu:
+        eyebrow: Online modell munka · Budapest
+        headline: Így néz ki az első heted
+        items: [Rövid beszélgetés és kérdések, Ingyenes betanítás a stúdióban, Az első streamed — a csapat ott van, "Saját beosztás, heti kb. 20 óra"]
+      en:
+        eyebrow: Online modeling jobs · Budapest
+        headline: What your first week looks like
+        items: [A short chat and your questions, Free training at the studio, Your first stream — the team is there, "Your own schedule, about 20 hours a week"]
+    caption_hu: |
+      Online modell munka, lépésről lépésre: így néz ki az első heted nálunk. 🌸
+
+      Nincs meglepetés, nincs nyomás. Először beszélgetünk, mindent megkérdezhetsz. Utána betanítunk a stúdióban: technika, fények, tempó. Az első streamednél a csapat ott van melletted, a beosztásodat pedig veled együtt tervezzük.
+
+      Jelentkezés 2 perc: link a bióban.
+    caption_en: |
+      Online modeling, step by step: your first week with us.
+
+      No surprises, no pressure. We talk first and you ask anything. Then free training at the studio, and the team is right there for your first stream. Your schedule is planned with you.
+
+      Applying takes 2 minutes: link in bio.
+    hashtags: ["#bloommodels", "#onlinemodell", "#modellmunka", "#budapestmunka", "#onlinemodeling"]
+
+  - id: honest-earnings
+    pillar: earnings
+    graphic:
+      template: photo
+      photo: doorway.jpg
+      hu:
+        eyebrow: Kereset — őszintén
+        headline: Havi 2000 € felett
+        accent: reális cél.
+        body: A bevételed akár 80%-a a tiéd. Havonta fizetünk.
+        footnote: "*A kereset az óraszámtól és az aktivitástól függ, nem garantált."
+      en:
+        eyebrow: Earnings — honestly
+        headline: €2,000+ a month
+        accent: is a realistic goal.
+        body: You keep up to 80% of what you bring in. Paid monthly.
+        footnote: "*Earnings depend on your hours and activity and aren't guaranteed."
+    caption_hu: |
+      Mennyit lehet keresni online modellként? Őszinte válasz. 💸
+
+      Havi 2000 € felett reális cél, és a bevételed akár 80%-a a tiéd. Havonta fizetünk, és mindig pontosan látod, mennyit kerestél. A kereset az óraszámtól és az aktivitástól függ, ezért nem garantált — de az átláthatóság igen.
+
+      Kérdésed van? Írd meg a jelentkezésben: link a bióban.
+    caption_en: |
+      How much can you earn as an online model? The honest answer.
+
+      €2,000+ a month is a realistic goal, and you keep up to 80% of what you bring in. Paid monthly, always transparent. Earnings vary with your hours and activity and aren't guaranteed.
+
+      Questions? Ask in your application: link in bio.
+    hashtags: ["#bloommodels", "#onlinemodell", "#rugalmasmunka", "#budapest", "#onlinemodeling"]
+
+  - id: your-hours
+    pillar: flexibility
+    graphic:
+      template: statement
+      hu:
+        eyebrow: Rugalmas beosztás
+        headline: Reggel, délután, este vagy éjjel.
+        accent: Te választasz.
+        body: Átlagosan heti kb. 20 óra, 5 órás blokkokban. A beosztást veled együtt tervezzük meg.
+      en:
+        eyebrow: Flexible hours
+        headline: Morning, afternoon, evening or night.
+        accent: You choose.
+        body: About 20 hours a week on average, in 5-hour blocks. We plan the schedule together with you.
+    caption_hu: |
+      Rugalmas online modell munka: a beosztásod igazodik hozzád, nem fordítva. ⏰
+
+      Egyetem, család, másik munka? Átlagosan heti kb. 20 órát dolgozol, 5 órás blokkokban — reggel, délután, este vagy éjjel, ahogy neked jó. A beosztást közösen tervezzük meg.
+
+      Jelentkezz 2 perc alatt: link a bióban.
+    caption_en: |
+      Flexible online modeling work: your schedule fits your life, not the other way round.
+
+      About 20 hours a week on average, in 5-hour blocks — morning, afternoon, evening or night. We plan it together.
+
+      Apply in 2 minutes: link in bio.
+    hashtags: ["#bloommodels", "#rugalmasmunka", "#onlinemodell", "#diákmunka", "#budapestjobs"]
+
+  - id: privacy-first
+    pillar: discretion
+    graphic:
+      template: statement
+      hu:
+        eyebrow: Diszkréció
+        headline: Te döntöd el, mi látható.
+        accent: És azt is, hogy kinek.
+        body: A személyes adataid nálunk maradnak. Ha a tartalmaid illetéktelen helyen bukkannak fel, segítünk eltávolíttatni őket.
+      en:
+        eyebrow: Discretion
+        headline: You decide what's visible.
+        accent: And to whom.
+        body: Your personal details stay private. If your content turns up where it shouldn't, we help get it taken down.
+    caption_hu: |
+      Online modell munka diszkréten: a magánéleted a tiéd marad. 🔒
+
+      Te döntöd el, mi látható és kinek. A személyes adataid nálunk maradnak, és ha a tartalmaid olyan helyen bukkannak fel, ahol nem kellene, segítünk eltávolíttatni őket.
+
+      Kérdésed van a diszkrécióról? Írd meg a jelentkezésben: link a bióban.
+    caption_en: |
+      Online modeling, discreetly: your private life stays yours.
+
+      You decide what's visible and to whom. Your details stay private, and we help with takedowns if your content shows up where it shouldn't.
+
+      Questions about privacy? Ask in your application: link in bio.
+    hashtags: ["#bloommodels", "#onlinemodell", "#diszkréció", "#budapest", "#onlinemodeling"]
+
+  - id: no-experience
+    pillar: training
+    graphic:
+      template: light
+      hu:
+        eyebrow: Nem kell tapasztalat
+        headline: Még sosem álltál kamera elé?
+        accent: Pont jó.
+        body: Az első streamtől betanítunk — technika, fények, tempó. Csak magabiztosságot és lelkesedést hozz.
+      en:
+        eyebrow: No experience needed
+        headline: Never been on camera?
+        accent: Perfect.
+        body: We train you from your first stream — setup, lighting, pacing. Just bring confidence and enthusiasm.
+    caption_hu: |
+      Online modell munka tapasztalat nélkül? Igen, nálunk így indul mindenki. 🎥
+
+      Nem kell modellmúlt és portfólió sem. Megtanítjuk a technikát, a fényeket, a tempót, és azt is, hogyan építs olyan közönséget, amely visszatér hozzád. A technikai oldalt a csapat intézi.
+
+      Jelentkezés 2 perc: link a bióban.
+    caption_en: |
+      Online modeling with no experience? That's how everyone starts here.
+
+      No modeling history or portfolio needed. We teach setup, lighting and pacing, and how to build an audience that comes back.
+
+      Applying takes 2 minutes: link in bio.
+    hashtags: ["#bloommodels", "#onlinemodell", "#modellmunka", "#budapestmunka", "#onlinemodeling"]
+
+  - id: studio-tour
+    pillar: studio
+    graphic:
+      template: photo
+      photo: studio.jpg
+      hu:
+        eyebrow: A stúdió · V. kerület
+        headline: Profi fények, profi technika.
+        accent: Neked csak jönnöd kell.
+        body: Pár lépésre a Szent István-bazilikától.
+      en:
+        eyebrow: The studio · District V
+        headline: Pro lighting, pro equipment.
+        accent: You just show up.
+        body: A few steps from St. Stephen's Basilica.
+    caption_hu: |
+      Online modell munka egy igazi stúdióban, Budapest belvárosában. 💡
+
+      Profi fények, megbízható technika és egy csapat, amely mindent működésben tart — pár lépésre a Szent István-bazilikától. Az operátoraink éjjel-nappal elérhetők, így egy technikai hiba sem viszi el a streamedet.
+
+      Jelentkezz: link a bióban.
+    caption_en: |
+      Online modeling in a real studio in central Budapest.
+
+      Pro lighting, reliable equipment and a team that keeps everything running — a few steps from St. Stephen's Basilica. Operators are online around the clock.
+
+      Apply: link in bio.
+    hashtags: ["#bloommodels", "#budapest", "#onlinemodell", "#stúdió", "#onlinemodeling"]
+
+  - id: not-from-budapest
+    pillar: remote
+    graphic:
+      template: light
+      hu:
+        eyebrow: GYIK
+        headline: Nem budapesti vagy?
+        accent: Megoldjuk.
+        body: Segítünk az utazásban és a szállásban. Vagy dolgozz otthonról — kialakítjuk veled az otthoni stúdiódat.
+      en:
+        eyebrow: FAQ
+        headline: Not from Budapest?
+        accent: We've got you.
+        body: We help with travel and accommodation. Or work from home — we help you set up a home studio.
+    caption_hu: |
+      Online modell munka akkor is, ha nem Budapesten élsz. 🏡
+
+      Ha a stúdióban dolgoznál, segítünk az utazásban és a szállásban, rövid vagy hosszabb távra. Ha inkább otthonról, kialakítjuk veled az otthoni stúdiódat, és onnan indulhat a show.
+
+      Jelentkezés 2 perc: link a bióban.
+    caption_en: |
+      Online modeling even if you don't live in Budapest.
+
+      Working at the studio? We help with travel and accommodation. Prefer home? We help you set up a home studio.
+
+      Applying takes 2 minutes: link in bio.
+    hashtags: ["#bloommodels", "#otthonimunka", "#onlinemodell", "#budapestmunka", "#onlinemodeling"]
+
+  - id: three-myths
+    pillar: how-it-works
+    graphic:
+      template: list
+      hu:
+        eyebrow: Tévhit vs. valóság
+        headline: 3 tévhit az online modell munkáról
+        items: [Nem kell modellmúlt — betanítunk., Nem kell mindent megmutatnod — te döntesz., Nincs kötött munkaidő — te választasz.]
+      en:
+        eyebrow: Myth vs. reality
+        headline: 3 myths about online modeling
+        items: [You don't need modeling experience — we train you., You don't have to show everything — you decide., No fixed hours — you choose your shifts.]
+    caption_hu: |
+      3 tévhit az online modell munkáról, ami miatt sokan el sem kezdik. 🙅‍♀️
+
+      Nem kell modellmúlt. Nem kell mindent megmutatnod: hogy mit és mikor, mindig a te döntésed. És nincs kötött munkaidő: a műszakjaidat te választod.
+
+      Melyik tévhitet hallottad te is? Kérdezz bátran a jelentkezésben: link a bióban.
+    caption_en: |
+      3 myths about online modeling that stop people from starting.
+
+      No modeling experience needed. You never have to show anything you don't want to. And no fixed hours: you pick your shifts.
+
+      Ask us anything in your application: link in bio.
+    hashtags: ["#bloommodels", "#onlinemodell", "#modellmunka", "#tévhitek", "#onlinemodeling"]
+
+  - id: team-behind-you
+    pillar: support
+    graphic:
+      template: photo
+      photo: hero-1.jpg
+      hu:
+        eyebrow: Csapat, nyomás nélkül
+        headline: Nem egyedül csinálod.
+        accent: Ott vagyunk mögötted.
+        body: Dedikált menedzser, barátságos kollégák, éjjel-nappal elérhető operátorok.
+      en:
+        eyebrow: A team, zero pressure
+        headline: You're not doing this alone.
+        accent: We're right behind you.
+        body: A dedicated manager, friendly colleagues, operators online around the clock.
+    caption_hu: |
+      Online modell munka egy barátságos, fiatal csapattal. 🌸
+
+      Dedikált menedzser, támogató kollégák és operátorok, akik éjjel-nappal elérhetők. Minden mérföldkövet együtt ünneplünk, és soha senki nem siettet.
+
+      Jelentkezz: link a bióban.
+    caption_en: |
+      Online modeling with a friendly, young team.
+
+      A dedicated manager, supportive colleagues and operators online around the clock. We celebrate every milestone with you, and nobody rushes you.
+
+      Apply: link in bio.
+    hashtags: ["#bloommodels", "#onlinemodell", "#csapat", "#budapest", "#onlinemodeling"]
+
+  - id: how-to-apply
+    pillar: apply
+    graphic:
+      template: statement
+      hu:
+        eyebrow: Jelentkezés
+        headline: 2 perc. 1 fotó.
+        accent: Általában 72 órán belül válaszolunk.
+        body: Rövid űrlap, őszinte válaszok. Minden, amit megosztasz, bizalmasan kezeljük.
+      en:
+        eyebrow: Apply
+        headline: 2 minutes. 1 photo.
+        accent: We usually reply within 72 hours.
+        body: A short form and an honest answer or two. Everything you share stays confidential.
+    caption_hu: |
+      Online modell munkára jelentkezni ennyi: 2 perc és 1 fotó. ✍️
+
+      Rövid űrlap, egy friss, tiszta fotó, és pár őszinte válasz. Minden jelentkezést mi magunk olvasunk el, és általában 72 órán belül válaszolunk — akkor is, ha most nem a mi utunk.
+
+      Link a bióban.
+    caption_en: |
+      Applying for online modeling work takes 2 minutes and 1 photo.
+
+      A short form, a recent clear photo and an honest answer or two. We read every application ourselves and usually reply within 72 hours.
+
+      Link in bio.
+    hashtags: ["#bloommodels", "#onlinemodell", "#jelentkezz", "#budapestjobs", "#onlinemodeling"]
+
+  - id: home-studio
+    pillar: remote
+    graphic:
+      template: statement
+      hu:
+        eyebrow: Otthonról is
+        headline: A show indulhat a saját szobádból.
+        accent: Segítünk berendezni.
+        body: Ha inkább otthon dolgoznál, segítünk kialakítani az otthoni stúdiódat és elindulni online.
+      en:
+        eyebrow: From home, too
+        headline: The show can start from your own room.
+        accent: We'll help you set it up.
+        body: Prefer working from home? We help you set up a home studio and get online.
+    caption_hu: |
+      Online modell munka otthonról — ha a saját tered jobban szereted. 🏠
+
+      Nem kell bejárnod: segítünk kialakítani az otthoni stúdiódat (fények, kamera, beállítások), és elindulni online. A betanítás és a csapat támogatása ugyanúgy jár.
+
+      Jelentkezés 2 perc: link a bióban.
+    caption_en: |
+      Online modeling from home, if you prefer your own space.
+
+      We help you set up a home studio (lighting, camera, settings) and get online — with the same training and team support.
+
+      Applying takes 2 minutes: link in bio.
+    hashtags: ["#bloommodels", "#otthonimunka", "#onlinemodell", "#rugalmasmunka", "#onlinemodeling"]
+
+  - id: what-you-do
+    pillar: how-it-works
+    graphic:
+      template: light
+      hu:
+        eyebrow: Mit csinál egy streaming modell?
+        headline: Élő közvetítések, a te stílusodban.
+        accent: Te alakítod a hangulatot.
+        body: Beszélgetsz a közönségeddel, és te döntöd el, mit mutatsz és mikor — glamour, divat, lifestyle vagy más.
+      en:
+        eyebrow: What does a streaming model do?
+        headline: Live streams, in your style.
+        accent: You set the mood.
+        body: You chat with your audience and decide what you show and when — glamour, fashion, lifestyle or something else.
+    caption_hu: |
+      Mit csinál pontosan egy online modell? Röviden elmagyarázzuk. 🎙️
+
+      Élő, online videós közvetítéseket tartasz a stúdióban vagy otthonról. Beszélgetsz a közönségeddel, te alakítod a hangulatot, és te választod ki a stílusodat. Hogy mit mutatsz és mikor, az mindig a te döntésed.
+
+      Minden kérdésedre válaszolunk: link a bióban.
+    caption_en: |
+      What does an online model actually do? A quick explainer.
+
+      You host live online video streams, from the studio or from home. You chat with your audience, set the mood and choose your style. What you show, and when, is always your call.
+
+      We'll answer every question: link in bio.
+    hashtags: ["#bloommodels", "#onlinemodell", "#streaming", "#modellmunka", "#onlinemodeling"]

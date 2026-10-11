@@ -51,6 +51,15 @@ class InstagramClient:
     def me(self) -> dict[str, Any]:
         return self.g.get("me", {"fields": "user_id,username,account_type,followers_count,media_count"})
 
+    def profile(self) -> dict[str, Any]:
+        """Profile fields used by the Instagram SEO checks. Falls back to the basic fields if Meta refuses some."""
+        try:
+            fields = "user_id,username,name,biography,website,account_type,followers_count,media_count"
+            return self.g.get("me", {"fields": fields})
+        except GraphError as exc:
+            log.info("extended profile fields unavailable (%s); using basic fields", exc)
+            return self.me()
+
     def publishing_quota(self) -> tuple[int, int] | None:
         """Returns (used, total) for the rolling 24h window, or None if Meta doesn't say."""
         try:

@@ -21,7 +21,10 @@ ENV_KEYS = [
     "IG_USER_ID", "IG_ACCESS_TOKEN", "FB_PAGE_ID", "FB_PAGE_ACCESS_TOKEN", "MEDIA_BASE_URL", "GITHUB_REPOSITORY",
     "GITHUB_SHA", "GITHUB_TOKEN", "GH_ADMIN_TOKEN", "ANTHROPIC_API_KEY", "TIMEZONE", "MAX_LATENESS_MINUTES",
     "MAX_ATTEMPTS", "BANNED_WORDS", "GITHUB_STEP_SUMMARY", "BLOOM_REPO_ROOT", "GRAPH_API_VERSION",
+    "GSC_SERVICE_ACCOUNT_JSON", "GSC_PROPERTY", "PAGESPEED_API_KEY", "MARKETING_MAX_COST_USD", "MARKETING_RESEARCH",
+    "CLAUDE_MODEL", "GITHUB_ACTIONS",
 ]
+REAL_ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.fixture(autouse=True)
@@ -119,3 +122,13 @@ def ig_factory(settings: Settings) -> Callable[[], InstagramClient]:
         return InstagramClient(graph, IG_ID, sleep=lambda s: None)
 
     return _factory
+
+
+@pytest.fixture
+def full_repo(repo: Path) -> Path:
+    """The test repo plus the real brand/, site/ (with built public/, so images aren't re-converted) and marketing/."""
+    import shutil
+
+    for name in ("brand", "site", "marketing"):
+        shutil.copytree(REAL_ROOT / name, repo / name)
+    return repo

@@ -51,6 +51,31 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: 'scripts/commit-back.sh "bloom-agent: prepare media" posts'
 
+  website:
+    name: Build & check the website
+    needs: code
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install --require-hashes -r requirements.lock && pip install --no-deps .
+      - name: Pull request — is site/public up to date?
+        if: github.event_name == 'pull_request'
+        run: bloom site build --check
+      - name: Main — build site/public from site/src
+        if: github.event_name != 'pull_request'
+        run: bloom site build
+      - name: SEO check of the built pages (fails on critical problems)
+        run: bloom seo --quick --offline
+      - name: Save the built website (Netlify deploys this commit)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: 'scripts/commit-back.sh "bloom-agent: build website" site/public'
+
   review:
     name: Claude review of draft posts (optional)
     needs: content

@@ -1,0 +1,39 @@
+# Photo library for post graphics (AI characters created for Bloom Models).
+# instagram_ok: false keeps a photo off Instagram graphics (too close to "suggestive" for Meta's rules); it can
+# still be used on the website. focus_y: where the face is, 0 = top, 1 = bottom (used when cropping).
+photos:
+  hero-1.jpg:
+    alt_en: A smiling young woman with a colourful headscarf and sunglasses on her head, playfully winking at the camera
+    alt_hu: Mosolygó fiatal nő színes fejkendőben, napszemüveggel a fején, kacsint a kamerába
+    instagram_ok: true
+    focus_y: 0.3
+  hero-2.jpg:
+    alt_en: A young woman with slicked-back dark hair in a white racing jacket, looking straight into the camera
+    alt_hu: Hátrafésült sötét hajú fiatal nő fehér versenydzsekiben, egyenesen a kamerába néz
+    instagram_ok: true
+    focus_y: 0.35
+  doorway.jpg:
+    alt_en: A young woman in a cream halter top leaning in a sunlit wooden doorway
+    alt_hu: Fiatal nő krémszínű nyakpántos felsőben egy napfényes faajtóban
+    instagram_ok: true
+    focus_y: 0.3
+  studio.jpg:
+    alt_en: A streaming desk with a laptop, a professional camera and warm studio lights
+    alt_hu: Streamelő asztal laptoppal, profi kamerával és meleg stúdiófényekkel
+    instagram_ok: true
+    focus_y: 0.5
+  green-sofa.jpg:
+    alt_en: A young woman in a black lace top relaxing on a green velvet sofa
+    alt_hu: Fiatal nő fekete csipkés felsőben egy zöld bársonykanapén
+    instagram_ok: false
+    focus_y: 0.3
+  hero-3.jpg:
+    alt_en: "A fashion shoot of a young woman in black, sitting on a blue platform against a pale background"
+    alt_hu: "Divatfotó — feketébe öltözött fiatal nő egy kék emelvényen ül, világos háttér előtt"
+    instagram_ok: false
+    focus_y: 0.3
+  benefits.jpg:
+    alt_en: "A fashion shoot of a young woman in black lying on a white floor with tiny dancer figurines around her"
+    alt_hu: "Divatfotó — feketébe öltözött fiatal nő fekszik fehér padlón, körülötte apró táncosfigurák"
+    instagram_ok: false
+    focus_y: 0.5

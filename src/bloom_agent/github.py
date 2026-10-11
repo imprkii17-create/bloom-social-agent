@@ -85,3 +85,37 @@ def set_actions_secret(
         resp = gh.put(f"/repos/{repo}/actions/secrets/{name}", json=payload)
         if resp.status_code not in (201, 204):
             raise GitHubError(f"GitHub update secret failed: HTTP {resp.status_code} {resp.text[:300]}")
+
+
+class PullRequestsNotAllowed(GitHubError):
+    """The repository doesn't let GitHub Actions open pull requests (a checkbox in Settings → Actions)."""
+
+
+def create_or_update_pr(
+    repo: str, token: str, *, head: str, base: str, title: str, body: str,
+    transport: httpx.BaseTransport | None = None,
+) -> str:
+    """Opens a pull request from `head`, or updates the title/body of the open one. Returns its URL."""
+    owner = repo.split("/", 1)[0]
+    with _client(token, transport) as gh:
+        existing = _check(
+            gh.get(f"/repos/{repo}/pulls", params={"head": f"{owner}:{head}", "state": "open"}), "list pull requests"
+        )
+        if existing:
+            number = existing[0]["number"]
+            _check(gh.patch(f"/repos/{repo}/pulls/{number}", json={"title": title, "body": body}), "update pull request")
+            return str(existing[0]["html_url"])
+        resp = gh.post(
+            f"/repos/{repo}/pulls",
+            json={"title": title, "body": body, "head": head, "base": base, "maintainer_can_modify": True},
+        )
+        if resp.status_code == 403:
+            raise PullRequestsNotAllowed(
+                "GitHub Actions may not open pull requests in this repository. Turn on Settings → Actions → General → "
+                "'Allow GitHub Actions to create and approve pull requests'."
+            )
+        return str(_check(resp, "create pull request")["html_url"])
+
+
+def compare_url(repo: str, base: str, head: str) -> str:
+    return f"https://github.com/{repo}/compare/{base}...{head}?expand=1"

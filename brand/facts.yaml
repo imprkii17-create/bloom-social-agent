@@ -1,0 +1,74 @@
+# The single source of truth for every promise and number Bloom Models makes in public.
+#
+# The agent checks captions, website text and its own drafts against this list:
+# - a number that isn't listed here (an earnings figure, a percentage…) is flagged, so nothing exaggerated slips out;
+#   numbers are matched with their unit: 2000€ (money), 80% (percent), 72h / 2min / 12mo (time), 18 (plain);
+# - claims marked needs_disclaimer must appear together with the disclaimer;
+# - "guaranteed income" in any wording is always flagged.
+# Change a fact here first, then on the website and in posts. The agent reports anything that disagrees.
+
+claims:
+  - id: earnings
+    en: "€2,000+ a month is a realistic goal"
+    hu: "Havi 2000 € felett reális cél"
+    numbers: ["2000€"]
+    needs_disclaimer: true
+  - id: revenue_share
+    en: "keep up to 80% of what you bring in"
+    hu: "a bevétel akár 80%-a a tiéd"
+    numbers: ["80%"]
+    needs_disclaimer: false
+  - id: age
+    en: "18 or older only"
+    hu: "csak 18 év felett"
+    numbers: ["18"]
+    needs_disclaimer: false
+  - id: hours
+    en: "about 20 hours a week, in 5-hour blocks"
+    hu: "átlagosan heti kb. 20 óra, 5 órás blokkokban"
+    numbers: ["20h", "5h"]
+    needs_disclaimer: false
+  - id: reply_time
+    en: "we usually reply within 72 hours"
+    hu: "általában 72 órán belül válaszolunk"
+    numbers: ["72h"]
+    needs_disclaimer: false
+  - id: application
+    en: "applying takes two minutes and one photo"
+    hu: "a jelentkezés két perc, egy fotóval"
+    numbers: ["2min"]
+    needs_disclaimer: false
+  - id: data_retention
+    en: "unsuccessful applications are deleted within 12 months"
+    hu: "a sikertelen jelentkezéseket 12 hónapon belül töröljük"
+    numbers: ["12mo"]
+    needs_disclaimer: false
+  - id: location
+    en: "studio in Budapest's 5th district, near St. Stephen's Basilica; or work from home"
+    hu: "stúdió Budapest V. kerületében, a Szent István-bazilika közelében; vagy otthonról"
+    numbers: []
+    needs_disclaimer: false
+  - id: payouts
+    en: "monthly payouts"
+    hu: "havi kifizetés"
+    numbers: []
+    needs_disclaimer: false
+  - id: training
+    en: "free training, no experience needed"
+    hu: "ingyenes betanítás, nem kell tapasztalat"
+    numbers: []
+    needs_disclaimer: false
+
+disclaimer:
+  en: "Earnings vary and aren't guaranteed."
+  hu: "A kereset változó, nem garantált."
+  # Text counts as carrying the disclaimer when one of these (regular expressions) matches.
+  patterns:
+    - "nem garantált"
+    - "(not|n't|never)\\s+(be\\s+)?guaranteed"
+    - "\\bváltoz(ó|hat)\\b"
+    - "\\bvar(y|ies)\\b"
+    - "\\bfügg\\b"
+
+# Always fine.
+always_ok: ["0", "100%"]

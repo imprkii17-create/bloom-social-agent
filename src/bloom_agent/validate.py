@@ -10,6 +10,7 @@ from pathlib import Path
 from PIL import Image
 
 from .config import Settings
+from .facts import Facts, check_text, load_facts
 from .models import Platform, Post, PostType, Status
 from .queue import LoadError
 
@@ -52,7 +53,9 @@ def find_banned(caption: str, banned: tuple[str, ...]) -> list[str]:
     return hits
 
 
-def validate_post(post: Post, settings: Settings, now: datetime | None = None) -> list[Issue]:
+def validate_post(
+    post: Post, settings: Settings, now: datetime | None = None, facts: Facts | None = None
+) -> list[Issue]:
     issues: list[Issue] = []
 
     def err(msg: str) -> None:
@@ -118,6 +121,11 @@ def validate_post(post: Post, settings: Settings, now: datetime | None = None) -
         banned = find_banned(caption + " " + (post.alt_text or ""), settings.banned_words)
         if banned:
             err("caption/alt text contains words that risk account restrictions: " + ", ".join(sorted(set(banned))))
+        if caption and "18" not in caption:
+            warn("caption doesn't say 18+ (brand rule: every post is clearly for adults)")
+        if facts is not None:
+            for fact_issue in check_text(caption, facts):
+                warn(fact_issue.message)
     elif caption:
         warn("stories don't show captions; the caption will be ignored")
 
@@ -188,11 +196,18 @@ def validate_all(
     posts: list[Post], load_errors: list[LoadError], settings: Settings, now: datetime | None = None
 ) -> list[Issue]:
     issues = [Issue("error", e.path.parent.name, f"post.yaml: {e.message}") for e in load_errors]
+    facts = load_facts(settings.repo_root) if (settings.repo_root / "brand" / "facts.yaml").is_file() else None
     seen: dict[str, str] = {}
+    days: dict[str, str] = {}
     for post in posts:
-        issues.extend(validate_post(post, settings, now))
+        issues.extend(validate_post(post, settings, now, facts))
         if post.status in (Status.APPROVED, Status.DRAFT):
             if post.scheduled_at in seen:
                 issues.append(Issue("warning", post.id, f"same time as {seen[post.scheduled_at]}"))
             seen.setdefault(post.scheduled_at, post.id)
+            day = post.scheduled_at[:10]
+            if post.type != PostType.STORY:
+                if day in days and post.status == Status.APPROVED:
+                    issues.append(Issue("warning", post.id, f"second feed post on {day} (also {days[day]})"))
+                days.setdefault(day, post.id)
     return issues
