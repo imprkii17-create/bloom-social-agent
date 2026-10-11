@@ -1,0 +1,12 @@
+id: 2026-10-29-faq
+status: draft
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-10-29 18:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: Pink graphic titled "Your 4 most common questions", with four question-and-answer cards about
+  experience, time, payment and minimum age.
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg].

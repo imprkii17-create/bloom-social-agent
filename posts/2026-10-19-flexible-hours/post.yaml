@@ -1,0 +1,12 @@
+id: 2026-10-19-flexible-hours
+status: draft
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-10-19 18:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'A smiling young woman relaxing on a green velvet sofa, next to the headline "Monday morning?
+  Only if you want it." and four shift options: morning, afternoon, evening, night.'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg].

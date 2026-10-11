@@ -1,0 +1,12 @@
+id: 2026-10-30-not-from-budapest
+status: draft
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-10-30 18:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: A woman with long dark hair sitting on a blue platform, with the headline "Come to Budapest.
+  We'll sort the rest." and three travel and housing promises.
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg].

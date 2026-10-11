@@ -1,0 +1,12 @@
+id: 2026-10-23-apply-now
+status: draft
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-10-23 18:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: A young woman in a headscarf smiling and winking at the camera, with the headline "Two minutes
+  to apply. A whole new week ahead." and an "Apply — link in bio" button.
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
