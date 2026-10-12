@@ -8,7 +8,7 @@ x_default: en             # what Google shows people whose language is neither H
 
 # Fill in once the Instagram account is public, e.g. https://www.instagram.com/bloommodels/
 # It links the website and the Instagram profile together for Google and AI search ("sameAs").
-instagram_url: ""
+instagram_url: "https://www.instagram.com/bloommodelsagency/"
 contact_email: bloommodelsapply@gmail.com
 
 pages:
