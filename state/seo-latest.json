@@ -1,23 +1,14 @@
 {
- "created": "2026-10-12T21:26+02:00",
+ "created": "2026-10-12T22:32+02:00",
  "live": true,
  "scores": {
   "Website": 100,
-  "Speed": 98,
+  "Speed": 88,
   "Google Search": 93,
   "Instagram": 99,
-  "AI search": 94
+  "AI search": 100
  },
  "findings": [
-  {
-   "area": "AI search",
-   "severity": "warning",
-   "code": "same-as",
-   "title": "The website doesn't link itself to the Instagram profile (sameAs)",
-   "detail": "",
-   "fix": "Set instagram_url in site/src/site.yaml; it tells Google and AI tools both belong to Bloom Models.",
-   "page": ""
-  },
   {
    "area": "Google Search",
    "severity": "warning",
@@ -25,6 +16,24 @@
    "title": "Google hasn't indexed this page: URL is unknown to Google",
    "detail": "last crawl: never",
    "fix": "In Search Console use URL inspection → Request indexing. New sites take days to weeks.",
+   "page": "https://bloommodels.hu/en/"
+  },
+  {
+   "area": "Speed",
+   "severity": "warning",
+   "code": "lcp",
+   "title": "Main content appears after 2.8s on mobile (test run)",
+   "detail": "",
+   "fix": "Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files.",
+   "page": "https://bloommodels.hu/"
+  },
+  {
+   "area": "Speed",
+   "severity": "warning",
+   "code": "lcp",
+   "title": "Main content appears after 3.0s on mobile (test run)",
+   "detail": "",
+   "fix": "Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files.",
    "page": "https://bloommodels.hu/en/"
   },
   {
@@ -44,24 +53,6 @@
    "detail": "",
    "fix": "Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week.",
    "page": ""
-  },
-  {
-   "area": "Speed",
-   "severity": "info",
-   "code": "psi-error",
-   "title": "Couldn't measure speed for mobile (https://bloommodels.hu/)",
-   "detail": "PageSpeed answered 429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'.",
-   "fix": "",
-   "page": "https://bloommodels.hu/"
-  },
-  {
-   "area": "Speed",
-   "severity": "info",
-   "code": "psi-error",
-   "title": "Couldn't measure speed for desktop (https://bloommodels.hu/)",
-   "detail": "PageSpeed answered 429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'.",
-   "fix": "",
-   "page": "https://bloommodels.hu/"
   }
  ],
  "pages": {
@@ -84,7 +75,9 @@
     "WebPage",
     "WebSite"
    ],
-   "same_as": [],
+   "same_as": [
+    "https://www.instagram.com/bloommodelsagency/"
+   ],
    "word_count": 1639,
    "faq_count": 7,
    "job_valid_through": "2026-12-31T23:59:59+01:00"
@@ -108,7 +101,9 @@
     "WebPage",
     "WebSite"
    ],
-   "same_as": [],
+   "same_as": [
+    "https://www.instagram.com/bloommodelsagency/"
+   ],
    "word_count": 1846,
    "faq_count": 7,
    "job_valid_through": "2026-12-31T23:59:59+01:00"
@@ -118,20 +113,58 @@
   {
    "url": "https://bloommodels.hu/",
    "strategy": "mobile",
-   "score": null,
-   "lab": {},
+   "score": 96,
+   "lab": {
+    "lcp_ms": 2821.0,
+    "cls": 0.002787361000544036,
+    "tbt_ms": 0.0,
+    "fcp_ms": 1051.0
+   },
    "field_data": {},
    "opportunities": [],
-   "error": "PageSpeed answered 429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+   "error": ""
   },
   {
    "url": "https://bloommodels.hu/",
    "strategy": "desktop",
-   "score": null,
-   "lab": {},
+   "score": 100,
+   "lab": {
+    "lcp_ms": 681.0,
+    "cls": 0.009970694361119914,
+    "tbt_ms": 0.0,
+    "fcp_ms": 481.0
+   },
    "field_data": {},
    "opportunities": [],
-   "error": "PageSpeed answered 429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+   "error": ""
+  },
+  {
+   "url": "https://bloommodels.hu/en/",
+   "strategy": "mobile",
+   "score": 91,
+   "lab": {
+    "lcp_ms": 2989.0,
+    "cls": 0.0,
+    "tbt_ms": 0.0,
+    "fcp_ms": 1662.0
+   },
+   "field_data": {},
+   "opportunities": [],
+   "error": ""
+  },
+  {
+   "url": "https://bloommodels.hu/en/",
+   "strategy": "desktop",
+   "score": 100,
+   "lab": {
+    "lcp_ms": 698.5,
+    "cls": 0.0001428002231253486,
+    "tbt_ms": 0.0,
+    "fcp_ms": 365.0
+   },
+   "field_data": {},
+   "opportunities": [],
+   "error": ""
   }
  ],
  "search": {
