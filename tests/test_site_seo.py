@@ -89,11 +89,14 @@ def test_facts_units_guarantees_and_disclaimers(full_repo: Path, text: str, kind
 # ---- site build -------------------------------------------------------------------------------------------------------
 
 
-def test_site_build_is_deterministic_and_up_to_date(full_repo: Path) -> None:
+def test_site_build_is_deterministic(full_repo: Path) -> None:
+    # Only checks that building twice gives the same files. Whether the committed site/public matches site/src is
+    # NOT a test: after you edit site/src on GitHub it's out of date until CI on main rebuilds it, and that rebuild
+    # only happens when the tests pass. (Pull requests check it separately with `bloom site build --check`.)
     build_site(full_repo, today=TODAY)
     second = build_site(full_repo, today=date(2026, 12, 1), check=True)
     assert second.up_to_date, second.changed
-   
+
 
 def test_site_pages_are_static_per_language(full_repo: Path) -> None:
     build_site(full_repo, today=TODAY)
