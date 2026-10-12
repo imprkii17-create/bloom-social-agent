@@ -1,0 +1,61 @@
+{
+ "week": "2026-W43",
+ "mode": "library",
+ "plan": {
+  "summary": "Rule-based plan (no Claude API key): next week's posts come from the ready-made library, and the recommendations below come straight from the SEO and Instagram checks.",
+  "bottleneck": "unknown",
+  "bottleneck_reason": "No Instagram numbers yet.",
+  "wins": [],
+  "problems": [],
+  "decisions_for_you": [
+   "Log last week's applications in marketing/funnel.yaml — it's how the agent knows what works.",
+   "AI search: The website doesn't link itself to the Instagram profile (sameAs) — Set instagram_url in site/src/site.yaml; it tells Google and AI tools both belong to Bloom Models."
+  ],
+  "posts": [],
+  "reel_ideas": [
+   {
+    "title": "Myth vs. reality (5 seconds each)",
+    "hook": "„Ezt mindenki hiszi az online modell munkáról…”",
+    "shots": [
+     "Text on screen: myth 1 → reality",
+     "Studio detail shots between myths",
+     "End card: link a bióban · 18+"
+    ],
+    "caption_idea": "3 tévhit, amit minden héten hallunk."
+   },
+   {
+    "title": "Studio walk-through",
+    "hook": "„Így néz ki egy profi streamelő stúdió Budapesten”",
+    "shots": [
+     "Door opens to the studio",
+     "Lights switching on",
+     "Camera + laptop setup",
+     "Window view toward the Basilica"
+    ],
+    "caption_idea": "Profi fények, profi technika — neked csak jönnöd kell."
+   }
+  ],
+  "story_ideas": [
+   "Poll: „Mi tartana vissza attól, hogy kipróbáld?” (tapasztalat / diszkréció / idő / más)",
+   "Behind the scenes: 10 seconds of the studio lights going on",
+   "Question box: „Kérdezz bármit az online modell munkáról” — answer 3 in Stories, best one becomes a FAQ entry",
+   "Repost today's feed post with a „link a bióban” sticker"
+  ],
+  "experiments": [],
+  "experiment_updates": [],
+  "site_changes": [],
+  "seo_actions": [
+   "AI search: The website doesn't link itself to the Instagram profile (sameAs) — Set instagram_url in site/src/site.yaml; it tells Google and AI tools both belong to Bloom Models.",
+   "Google Search: Google hasn't indexed this page: URL is unknown to Google — In Search Console use URL inspection → Request indexing. New sites take days to weeks.",
+   "Google Search: No Google search impressions yet — Normal for a new site: it takes a few weeks. Keep the sitemap submitted.",
+   "Instagram: No Reels planned — Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week.",
+   "Speed: Couldn't measure speed for mobile (https://bloommodels.hu/)",
+   "Speed: Couldn't measure speed for desktop (https://bloommodels.hu/)"
+  ]
+ },
+ "posts": [],
+ "dropped": [],
+ "posts_pr": "",
+ "site_pr": "",
+ "spend_usd": 0.0
+}

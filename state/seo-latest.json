@@ -1,0 +1,162 @@
+{
+ "created": "2026-10-12T21:26+02:00",
+ "live": true,
+ "scores": {
+  "Website": 100,
+  "Speed": 98,
+  "Google Search": 93,
+  "Instagram": 99,
+  "AI search": 94
+ },
+ "findings": [
+  {
+   "area": "AI search",
+   "severity": "warning",
+   "code": "same-as",
+   "title": "The website doesn't link itself to the Instagram profile (sameAs)",
+   "detail": "",
+   "fix": "Set instagram_url in site/src/site.yaml; it tells Google and AI tools both belong to Bloom Models.",
+   "page": ""
+  },
+  {
+   "area": "Google Search",
+   "severity": "warning",
+   "code": "not-indexed",
+   "title": "Google hasn't indexed this page: URL is unknown to Google",
+   "detail": "last crawl: never",
+   "fix": "In Search Console use URL inspection → Request indexing. New sites take days to weeks.",
+   "page": "https://bloommodels.hu/en/"
+  },
+  {
+   "area": "Google Search",
+   "severity": "info",
+   "code": "gsc-no-data",
+   "title": "No Google search impressions yet",
+   "detail": "2026-09-12 – 2026-10-09",
+   "fix": "Normal for a new site: it takes a few weeks. Keep the sitemap submitted.",
+   "page": ""
+  },
+  {
+   "area": "Instagram",
+   "severity": "info",
+   "code": "ig-no-reels",
+   "title": "No Reels planned",
+   "detail": "",
+   "fix": "Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week.",
+   "page": ""
+  },
+  {
+   "area": "Speed",
+   "severity": "info",
+   "code": "psi-error",
+   "title": "Couldn't measure speed for mobile (https://bloommodels.hu/)",
+   "detail": "PageSpeed answered 429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'.",
+   "fix": "",
+   "page": "https://bloommodels.hu/"
+  },
+  {
+   "area": "Speed",
+   "severity": "info",
+   "code": "psi-error",
+   "title": "Couldn't measure speed for desktop (https://bloommodels.hu/)",
+   "detail": "PageSpeed answered 429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'.",
+   "fix": "",
+   "page": "https://bloommodels.hu/"
+  }
+ ],
+ "pages": {
+  "hu": {
+   "url": "https://bloommodels.hu/",
+   "title": "Online modell munka Budapesten | Bloom Models",
+   "description": "Streaming modell munka Budapesten: ingyenes betanítás, saját stúdió, rugalmas beosztás, havi 2000 € felett reális cél. Jelentkezz 2 perc alatt, 18+.",
+   "h1": "Lépj a reflektorfénybe, a többit bízd ránk.",
+   "lang": "hu",
+   "canonical": "https://bloommodels.hu/",
+   "hreflang": {
+    "hu": "https://bloommodels.hu/",
+    "en": "https://bloommodels.hu/en/",
+    "x-default": "https://bloommodels.hu/en/"
+   },
+   "schema_types": [
+    "FAQPage",
+    "JobPosting",
+    "Organization",
+    "WebPage",
+    "WebSite"
+   ],
+   "same_as": [],
+   "word_count": 1639,
+   "faq_count": 7,
+   "job_valid_through": "2026-12-31T23:59:59+01:00"
+  },
+  "en": {
+   "url": "https://bloommodels.hu/en/",
+   "title": "Online Modeling Jobs in Budapest | Bloom Models",
+   "description": "Streaming model work in Budapest: free training, a private studio, flexible hours and €2,000+ a month as a realistic goal. Apply in 2 minutes, 18+ only.",
+   "h1": "Step into the spotlight, we'll handle the rest.",
+   "lang": "en",
+   "canonical": "https://bloommodels.hu/en/",
+   "hreflang": {
+    "hu": "https://bloommodels.hu/",
+    "en": "https://bloommodels.hu/en/",
+    "x-default": "https://bloommodels.hu/en/"
+   },
+   "schema_types": [
+    "FAQPage",
+    "JobPosting",
+    "Organization",
+    "WebPage",
+    "WebSite"
+   ],
+   "same_as": [],
+   "word_count": 1846,
+   "faq_count": 7,
+   "job_valid_through": "2026-12-31T23:59:59+01:00"
+  }
+ },
+ "speed": [
+  {
+   "url": "https://bloommodels.hu/",
+   "strategy": "mobile",
+   "score": null,
+   "lab": {},
+   "field_data": {},
+   "opportunities": [],
+   "error": "PageSpeed answered 429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+  },
+  {
+   "url": "https://bloommodels.hu/",
+   "strategy": "desktop",
+   "score": null,
+   "lab": {},
+   "field_data": {},
+   "opportunities": [],
+   "error": "PageSpeed answered 429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+  }
+ ],
+ "search": {
+  "start": "2026-09-12",
+  "end": "2026-10-09",
+  "clicks": 0,
+  "impressions": 0,
+  "ctr": 0,
+  "position": 0,
+  "prev_clicks": 0,
+  "prev_impressions": 0,
+  "queries": [],
+  "pages": [],
+  "countries": [],
+  "striking_distance": [],
+  "low_ctr": [],
+  "new_queries": []
+ },
+ "profile": {
+  "username": "bloommodelsagency",
+  "name": "Bloom Models Agency",
+  "biography": "🌸 Online modellügynökség · Budapest\n⏰ Rugalmas beosztás · 💸\n🔒 Diszkrét · nem kell tapasztalat\n🇭🇺 🇬🇧 HU/EN · Jelentkezz 👇 · 18+",
+  "website": "https://bloommodels.hu",
+  "followers_count": 2,
+  "media_count": 0
+ },
+ "skipped": []
+}
