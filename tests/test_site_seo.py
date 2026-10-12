@@ -90,11 +90,10 @@ def test_facts_units_guarantees_and_disclaimers(full_repo: Path, text: str, kind
 
 
 def test_site_build_is_deterministic_and_up_to_date(full_repo: Path) -> None:
-     build_site(full_repo, today=TODAY)
+    build_site(full_repo, today=TODAY)
     second = build_site(full_repo, today=date(2026, 12, 1), check=True)
     assert second.up_to_date, second.changed
    
-
 
 def test_site_pages_are_static_per_language(full_repo: Path) -> None:
     build_site(full_repo, today=TODAY)
