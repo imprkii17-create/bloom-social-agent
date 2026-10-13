@@ -178,15 +178,56 @@ It then runs by itself every Friday morning, so you have the weekend to review.
 
 ---
 
+# Part 3 — dashboard, Telegram bot and Claude
+
+## 14. The dashboard (one page for everything)
+
+1. **Actions → Dashboard → Run workflow.** Wait for the green tick (about a minute). This creates a branch called
+   `gh-pages` that holds the dashboard.
+2. **Settings → Pages** → *Build and deployment* → **Source: Deploy from a branch** → Branch **gh-pages**, folder
+   **/ (root)** → **Save**.
+3. After a minute or two the page is live at `https://<your-github-name>.github.io/bloom-social-agent/`
+   (Settings → Pages shows the exact address). Bookmark it on your phone and laptop.
+
+It refreshes itself after every publish run and at least hourly; workflow runs, alerts and pull requests are live.
+The address isn't advertised and search engines are told not to index it, but anyone with the link can open it:
+it shows the same information that's already in the public repository.
+
+## 15. Telegram bot (the agent talks to you)
+
+1. In Telegram, open **@BotFather** (blue tick) → `/newbot` → give it a name (e.g. *Bloom HQ*) and a username ending
+   in `bot` (e.g. `bloomhq_agent_bot`). BotFather replies with a **token** (`123456789:AA…`). Don't share it.
+2. GitHub → **Settings → Secrets and variables → Actions → New repository secret** → name **`TELEGRAM_BOT_TOKEN`**,
+   value: the token → **Add secret**.
+3. In Telegram, open your new bot (BotFather's message has the link) and send **`/start` plus a code you make up**,
+   e.g. `/start bloom-4821`.
+4. GitHub → **Actions → Connect Telegram → Run workflow** → type the same code (`bloom-4821`) → **Run workflow**.
+   The bot writes "Connected ✅" in Telegram, and the chat is saved as the secret `TELEGRAM_CHAT_ID`.
+
+From now on the bot tells you when a post goes live, when something breaks, when the website has a problem, and
+when the weekly plan and report are ready. Write `/help` to see the commands. It checks for messages every 5
+minutes, so answers can take a few minutes. Only your chat is answered; anyone else who finds the bot is ignored.
+
+## 16. Claude (fresh posts, research, and a bot you can talk to)
+
+1. Go to <https://console.anthropic.com> → sign up / log in.
+2. **Billing** → add a payment method and buy credits (start with $10).
+3. **Limits** (or *Spend limits*) → set a **monthly limit**, e.g. $15. Claude can never spend more than this.
+4. **API keys → Create key** → name `bloom-agent` → copy the key (starts with `sk-ant-…`; it's shown only once).
+5. GitHub → **Settings → Secrets and variables → Actions → New repository secret** → name **`ANTHROPIC_API_KEY`**,
+   value: the key → **Add secret**.
+
+That switches on Claude everywhere: the Friday plan writes fresh posts in your voice and researches the week,
+drafts get a review, and the Telegram bot answers questions like *how did last week go?* or *write a caption about
+flexible hours*. Typical cost: $2–6 a month. Caps: $2 per weekly plan (`MARKETING_MAX_COST_USD`) and $0.50 per bot
+run (`BOT_MAX_USD_PER_RUN`), both repository variables you can change.
+
+---
+
 ## Optional extras
 
-**Claude as the head of marketing:** create a key at <https://console.anthropic.com> (pay-as-you-go) and add it as
-the secret `ANTHROPIC_API_KEY`. With it the agent researches the week (web search), reads all the numbers, writes
-fresh posts in your voice, proposes experiments and data-backed website changes, and reviews draft posts in pull
-requests. Typical cost: $1–3 a month on the default model; the agent stops itself at $2 per weekly run (change with
-the repository variable `MARKETING_MAX_COST_USD`). For sharper strategy, set the variable `CLAUDE_MODEL` to
-`claude-opus-5-5` (about twice the cost). Without a key, everything else still works and posts come from
-`marketing/library.yaml`.
+**Sharper strategy:** set the repository variable `CLAUDE_MODEL` to `claude-opus-5-5` (about twice the cost of the
+default). Without any Claude key, everything else still works and posts come from `marketing/library.yaml`.
 
 **PageSpeed key (optional):** speed tests work without a key; a free key from Google Cloud (*PageSpeed Insights
 API*) as the secret `PAGESPEED_API_KEY` lifts the rate limit and also tests the English page.
@@ -211,4 +252,6 @@ You'll get a GitHub issue titled *Bloom agent: …* with the reason. Common ones
 | *GitHub Actions may not open pull requests* | Step 9. Until then the issue contains a one-click link to open it yourself. |
 | *No access to sc-domain:bloommodels.hu* | Step 11 b 5: add the service account email as a **Full** user. |
 | *Netlify has paused the website* | Netlify → Usage. Credits reset monthly; avoid manual redeploys. |
+| Dashboard shows a 404 | Run *Actions → Dashboard* once, then step 14.2 (Pages source = gh-pages). |
+| Bot doesn't answer | *Actions → Telegram bot*: is it running every few minutes? Secrets `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` set? Re-run *Connect Telegram* if you changed phones/accounts. |
 | *site/public is out of date* (CI on a pull request) | Run `bloom site build` locally, or merge: CI on `main` rebuilds it. |

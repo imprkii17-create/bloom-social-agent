@@ -44,6 +44,9 @@ jobs:
           MEDIA_BASE_URL: ${{ vars.MEDIA_BASE_URL }}
           TIMEZONE: ${{ vars.TIMEZONE }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
           EVENT: ${{ github.event_name }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |

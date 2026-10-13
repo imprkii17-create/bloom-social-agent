@@ -9,6 +9,9 @@ Your head of marketing, running for free on GitHub Actions:
   (as a pull request: merging approves them), Reels and Stories ideas, experiments, and data-backed website
   improvements (as a pull request with a Netlify preview).
 - **Watches**: daily website health, weekly Instagram report, token renewal, alerts as GitHub issues.
+- **Reports to you in one place**: a live **dashboard** (GitHub Pages) and a **Telegram bot** that messages you
+  when posts go live or something breaks, takes commands (`/status`, `/queue`, `/approve`) and, with Claude,
+  answers questions.
 
 ```
 Friday   ─► SEO report + brief + next week's posts (PR) + website ideas (PR)    you: review, merge
@@ -32,6 +35,9 @@ Monday   ─► Instagram report, token renewal
 | **Refresh Instagram token** | Mondays | Renews the 60-day token so it never expires. |
 | **CI** | every push / PR | Tests, converts images, validates posts, builds and SEO-checks the website. |
 | **Check connection** | by hand | Confirms the Instagram account, quota and settings. |
+| **Dashboard** | after each publish run, hourly | Refreshes the dashboard page (branch `gh-pages`). |
+| **Telegram bot** | every 5 min | Answers your Telegram messages; saves approvals made there. |
+| **Connect Telegram** | by hand, once | Links your Telegram chat to the bot. |
 
 ## Safety built in
 
@@ -126,7 +132,8 @@ Need a graphic? `bloom graphic --template statement --eyebrow "GYIK" --headline 
 | GitHub (public repository, Actions) | $0 |
 | Netlify free plan | $0 (deploys only when the built site changes; about 1–5 deploys a month) |
 | Google Search Console, PageSpeed | $0 |
-| Claude (optional) | about $1–3 a month on `claude-sonnet-5-5`; capped at $2 per weekly run |
+| GitHub Pages (dashboard), Telegram | $0 |
+| Claude (optional) | about $2–6 a month on `claude-sonnet-5-5` incl. the bot; capped per run |
 
 ## Commands (for running locally)
 
@@ -142,8 +149,10 @@ bloom seo                   # full SEO report (--quick: health only, --offline: 
 bloom marketing --no-pr     # weekly plan; drafts stay in posts/ as drafts
 bloom graphic --headline …  # draw one branded graphic
 bloom check                 # test the Instagram connection (needs .env)
+bloom dashboard --offline   # write the dashboard data to state/dashboard.json
+bloom bot test              # send yourself a Telegram test message (needs .env)
 bloom report                # weekly Instagram report (needs .env)
-pytest                      # 113 tests, all offline (Meta, Google, GitHub and Claude are mocked)
+pytest                      # 130 tests, all offline (Meta, Google, GitHub and Claude are mocked)
 ```
 
 ## Project layout

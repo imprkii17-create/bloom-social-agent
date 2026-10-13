@@ -10,6 +10,7 @@ import sys
 from collections.abc import Callable
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 from . import __version__
 from .config import ConfigError, Settings, load_settings
@@ -37,15 +38,38 @@ def summary(markdown: str) -> None:
 
 
 def notify(settings: Settings, title: str, body: str) -> None:
-    if not (settings.github_token and settings.github_repository):
-        return
-    from .github import GitHubError, open_or_update_issue
+    """Alert the owner: a GitHub issue (deduplicated) and, if set up, a Telegram message for anything new."""
+    url: str | None = None
+    new = True
+    if settings.github_token and settings.github_repository:
+        from .github import GitHubError, report_issue
 
-    try:
-        url = open_or_update_issue(settings.github_repository, settings.github_token, title, body)
-        print(f"Alert issue: {url}")
-    except GitHubError as exc:
-        log.error("Could not open alert issue: %s", exc)
+        try:
+            url, new = report_issue(settings.github_repository, settings.github_token, title, body)
+            print(f"Alert issue: {url}")
+        except GitHubError as exc:
+            log.error("Could not open alert issue: %s", exc)
+    if new:
+        tell(settings, alert_message(title, body, url))
+
+
+def alert_message(title: str, body: str, url: str | None) -> str:
+    from .telegram import esc
+
+    clean = title.removeprefix("Bloom agent: ")
+    text = body if len(body) <= 1500 else body[:1500] + "…"
+    msg = f"🔴 <b>{esc(clean[:1].upper() + clean[1:])}</b>\n\n{esc(text)}"
+    if url:
+        msg += f'\n\n<a href="{esc(url)}">Details on GitHub</a>'
+    return msg
+
+
+def tell(settings: Settings, html: str) -> None:
+    """Send the owner a Telegram message, if the bot is set up. Never fails the command."""
+    from .telegram import send_to_owner
+
+    if send_to_owner(settings, html):
+        print("Telegram: message sent")
 
 
 def ig_client(settings: Settings) -> InstagramClient:
@@ -107,6 +131,14 @@ def cmd_publish(settings: Settings, args: argparse.Namespace) -> int:
         notify(settings, "Bloom agent: configuration problem", str(exc))
         return 1
     _publish_summary(report, now, args.dry_run)
+    if not args.dry_run:
+        from .telegram import esc
+
+        for o in report.outcomes:
+            if o.status == "published":
+                link = o.detail if o.detail.startswith("http") else ""
+                tell(settings, f"📸 <b>Posted</b> <code>{esc(o.post_id)}</code> on {esc(o.platform)}"
+                     + (f'\n<a href="{esc(link)}">Open the post</a>' if link else ""))
     if report.failures and not args.dry_run:
         body = "\n".join(f"- `{o.post_id}` ({o.platform}): **{o.status}** — {o.detail}" for o in report.failures)
         body += "\n\nFix the post (or the setting) and set `status: approved` again to retry. "
@@ -227,7 +259,30 @@ def cmd_report(settings: Settings, args: argparse.Namespace) -> int:
         return 1
     summary(md)
     print(f"\nSaved {rel}")
+    _tell_report(settings)
     return 0
+
+
+def _tell_report(settings: Settings) -> None:
+    import json
+
+    from .telegram import esc
+
+    try:
+        data = json.loads((settings.repo_root / "state" / "instagram-latest.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return
+    acc = data.get("account") or {}
+    lines = [f"📊 <b>Weekly Instagram report</b> (last {data.get('days', 7)} days)", ""]
+    if data.get("followers") is not None:
+        lines.append(f"Followers: <b>{data['followers']}</b>")
+    lines += [f"{esc(k)}: {v}" for k, v in acc.items()]
+    if data.get("best"):
+        lines.append(f"Best post: <code>{esc(data['best'])}</code>")
+    if settings.github_repository and data.get("report"):
+        lines.append(f'\n<a href="https://github.com/{settings.github_repository}/blob/main/{esc(data["report"])}">'
+                     "Full report</a>")
+    tell(settings, "\n".join(lines))
 
 
 def cmd_review(settings: Settings, args: argparse.Namespace) -> int:
@@ -367,6 +422,77 @@ def cmd_marketing(settings: Settings, args: argparse.Namespace) -> int:
         lines.append(f"- Claude cost: ${result.spend_usd:.2f}")
     lines.append(f"- Brief: {result.brief_path}")
     summary("\n".join(lines) + "\n")
+    _tell_plan(settings, result)
+    return 0
+
+
+def _tell_plan(settings: Settings, result: Any) -> None:
+    from .telegram import esc
+
+    plan = result.plan or {}
+    lines = [f"🗓 <b>Weekly plan {esc(result.week)} is ready</b>", ""]
+    if plan.get("summary"):
+        lines += [esc(plan["summary"]), ""]
+    decisions = plan.get("decisions_for_you") or []
+    if decisions:
+        lines += ["<b>Needs you</b>"] + [f"• {esc(d)}" for d in decisions[:6]] + [""]
+    if result.posts_pr:
+        lines.append(f'📝 <a href="{esc(result.posts_pr)}">Next week\'s posts</a>: merging approves them')
+    if result.site_pr:
+        lines.append(f'🌐 <a href="{esc(result.site_pr)}">Website improvements</a>')
+    if settings.github_repository and result.brief_path:
+        lines.append(f'📄 <a href="https://github.com/{settings.github_repository}/blob/main/{esc(result.brief_path)}">'
+                     "Full brief</a>")
+    tell(settings, "\n".join(lines))
+
+
+# ---- dashboard and Telegram ----------------------------------------------------------------------------------------
+
+def cmd_dashboard(settings: Settings, args: argparse.Namespace) -> int:
+    from .bot import _live_snapshot
+    from .dashboard import build_snapshot, write_snapshot
+
+    now = datetime.now(settings.timezone)
+    snap = build_snapshot(settings, now=now) if args.offline else _live_snapshot(settings, now)
+    path = write_snapshot(snap, Path(args.out))
+    crit = [a for a in snap.get("attention", []) if a.get("level") == "critical"]
+    summary(f"### Dashboard data written ({path})\n\n"
+            + ("\n".join(f"- 🔴 {a['text']}" for a in crit) if crit else "No critical problems.") + "\n")
+    return 0
+
+
+def cmd_bot(settings: Settings, args: argparse.Namespace) -> int:
+    from .telegram import TelegramClient, TelegramError
+
+    if not settings.telegram_bot_token:
+        summary("### Telegram isn't set up\n\nAdd the TELEGRAM_BOT_TOKEN secret (SETUP.md, step 15).\n")
+        return 0 if args.action == "poll" else 1
+    try:
+        with TelegramClient(settings.telegram_bot_token) as tg:
+            if args.action == "connect":
+                from .bot import connect
+
+                res = connect(settings, tg, args.code or "")
+                summary(("### ✅ " if res.ok else "### ✖ ") + res.message + "\n")
+                return 0 if res.ok else 1
+            if args.action == "test":
+                me = tg.me()
+                if not settings.telegram_chat_id:
+                    summary(f"### Bot @{me.get('username')} works, but no chat is connected yet\n")
+                    return 1
+                tg.send(settings.telegram_chat_id, "👋 Test message from your Bloom agent. Everything is connected.")
+                summary(f"### ✅ Sent a test message via @{me.get('username')}\n")
+                return 0
+            from .bot import poll
+
+            result = poll(settings, tg)
+    except TelegramError as exc:
+        summary(f"### ✖ Telegram problem\n\n{exc}\n")
+        return 0 if args.action == "poll" else 1  # a Telegram hiccup must not mark every 5-minute run red
+    print(f"handled {result.handled}, ignored {result.ignored}, AI replies {result.ai_replies} "
+          f"(${result.spend_usd:.3f}), changed posts: {', '.join(result.changed_posts) or 'none'}")
+    for note in result.notes:
+        print(f"note: {note}")
     return 0
 
 
@@ -482,6 +608,16 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--lang", choices=["hu", "en"], default="hu")
     s.add_argument("--out", default="graphic.jpg")
     s.set_defaults(func=cmd_graphic)
+
+    s = sub.add_parser("dashboard", help="write the dashboard data (state for the web dashboard)")
+    s.add_argument("--out", default="state/dashboard.json")
+    s.add_argument("--offline", action="store_true", help="don't check the live site or Instagram")
+    s.set_defaults(func=cmd_dashboard)
+
+    s = sub.add_parser("bot", help="Telegram bot: answer new messages (poll), connect your chat, or send a test")
+    s.add_argument("action", choices=["poll", "connect", "test"], nargs="?", default="poll")
+    s.add_argument("--code", help="connect: the code you sent the bot as /start <code>")
+    s.set_defaults(func=cmd_bot)
     return p
 
 

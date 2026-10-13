@@ -1,0 +1,30 @@
+name: Connect Telegram
+
+# Run once after creating your bot (SETUP.md, step 15): send your bot "/start <code>", then run this with the same code.
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: "The code you sent your bot, e.g. bloom-4821 (you sent: /start bloom-4821)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install --require-hashes -r requirements.lock && pip install --no-deps .
+      - name: Connect your chat
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
+          CODE: ${{ inputs.code }}
+        run: bloom bot connect --code "$CODE"

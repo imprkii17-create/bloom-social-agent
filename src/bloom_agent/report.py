@@ -148,4 +148,36 @@ def build_report(settings: Settings, ig: InstagramClient, days: int = 7) -> tupl
     path = settings.repo_root / rel
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(md, encoding="utf-8")
+    write_state(settings, stats, account, followers, days=days, now=now, report=rel)
     return rel, md
+
+
+def write_state(
+    settings: Settings, stats: list[PostStats], account: dict[str, int], followers: int | None, *,
+    days: int, now: datetime, report: str,
+) -> None:
+    """The same numbers as machine-readable JSON, for the dashboard and the Telegram bot."""
+    import json
+
+    best = max(stats, key=lambda x: x.score) if stats else None
+    data = {
+        "generated_at": now.isoformat(timespec="minutes"),
+        "days": days,
+        "report": report,
+        "followers": followers,
+        "account": {LABELS.get(k, k): v for k, v in account.items()},
+        "posts": [
+            {
+                "id": s.post.id,
+                "type": s.post.type.value,
+                "permalink": s.post.result.instagram.permalink if s.post.result.instagram else None,
+                "metrics": {LABELS.get(k, k): v for k, v in s.metrics.items()},
+                "score": s.score,
+            }
+            for s in sorted(stats, key=lambda x: x.score, reverse=True)
+        ],
+        "best": best.post.id if best else None,
+    }
+    path = settings.repo_root / "state" / "instagram-latest.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

@@ -32,8 +32,12 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DAYS: ${{ inputs.days || '7' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
         run: bloom report --days "$DAYS"
       - name: Save report
         if: always()
-        run: 'scripts/commit-back.sh "bloom-agent: weekly report" reports'
+        run: 'scripts/commit-back.sh "bloom-agent: weekly report" reports state'

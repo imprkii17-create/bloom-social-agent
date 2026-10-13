@@ -1,0 +1,49 @@
+name: Dashboard
+
+# Refreshes the web dashboard (GitHub Pages, branch gh-pages): after every publish run and the other agent runs,
+# and at least once an hour. The page itself also reads workflow runs, alerts and pull requests live from GitHub.
+on:
+  schedule:
+    - cron: "41 * * * *"
+  workflow_run:
+    workflows: ["Publish", "CI", "Weekly marketing plan", "Weekly report", "Refresh Instagram token", "Website health"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dashboard
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install --require-hashes -r requirements.lock && pip install --no-deps .
+      - name: Collect the dashboard data
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          # Only checked for "is it set"; never written anywhere.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TIMEZONE: ${{ vars.TIMEZONE }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+        run: bloom dashboard --out _site/dashboard.json
+      - name: Publish to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/publish-dashboard.sh _site

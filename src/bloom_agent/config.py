@@ -69,6 +69,10 @@ class Settings:
     gsc_property: str = "sc-domain:bloommodels.hu"
     pagespeed_api_key: str | None = None
     banned_words: tuple[str, ...] = field(default_factory=tuple)
+    telegram_bot_token: str | None = None
+    telegram_chat_id: str | None = None
+    dashboard_url: str | None = None
+    bot_max_usd_per_run: float = 0.5
 
     @property
     def ig_base(self) -> str:
@@ -121,6 +125,15 @@ def load_settings(repo_root: Path | None = None) -> Settings:
 
     extra_banned = tuple(w.strip().lower() for w in (_env("BANNED_WORDS", "") or "").split(",") if w.strip())
 
+    dashboard = _env("DASHBOARD_URL")
+    if dashboard is None and repo and "/" in repo:
+        owner, name = repo.split("/", 1)
+        dashboard = f"https://{owner.lower()}.github.io/{name}/"
+    try:
+        bot_max = float(_env("BOT_MAX_USD_PER_RUN", "0.5") or 0.5)
+    except ValueError:
+        bot_max = 0.5
+
     return Settings(
         repo_root=root,
         posts_dir=root / "posts",
@@ -143,4 +156,8 @@ def load_settings(repo_root: Path | None = None) -> Settings:
         gsc_property=_env("GSC_PROPERTY", "sc-domain:bloommodels.hu") or "sc-domain:bloommodels.hu",
         pagespeed_api_key=_env("PAGESPEED_API_KEY"),
         banned_words=DEFAULT_BANNED_WORDS + extra_banned,
+        telegram_bot_token=_env("TELEGRAM_BOT_TOKEN"),
+        telegram_chat_id=_env("TELEGRAM_CHAT_ID"),
+        dashboard_url=dashboard,
+        bot_max_usd_per_run=bot_max,
     )

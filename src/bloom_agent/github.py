@@ -42,6 +42,14 @@ def open_or_update_issue(
     transport: httpx.BaseTransport | None = None,
 ) -> str:
     """Opens an issue (GitHub emails/notifies the owner). If an open one with the same title exists, comments on it."""
+    return report_issue(repo, token, title, body, label=label, transport=transport)[0]
+
+
+def report_issue(
+    repo: str, token: str, title: str, body: str, *, label: str = "bloom-agent",
+    transport: httpx.BaseTransport | None = None,
+) -> tuple[str, bool]:
+    """Like open_or_update_issue, and also says whether anything new was written (False = same alert as before)."""
     with _client(token, transport) as gh:
         existing = _check(
             gh.get(f"/repos/{repo}/issues", params={"state": "open", "labels": label, "per_page": 50}),
@@ -51,12 +59,13 @@ def open_or_update_issue(
             if issue.get("title") == title and "pull_request" not in issue:
                 if _latest_text(gh, repo, issue) != body:  # the same alert every 15 minutes would be spam
                     _check(gh.post(f"/repos/{repo}/issues/{issue['number']}/comments", json={"body": body}), "comment")
-                return str(issue["html_url"])
+                    return str(issue["html_url"]), True
+                return str(issue["html_url"]), False
         created = _check(
             gh.post(f"/repos/{repo}/issues", json={"title": title, "body": body, "labels": [label]}),
             "create issue",
         )
-        return str(created["html_url"])
+        return str(created["html_url"]), True
 
 
 def _latest_text(gh: httpx.Client, repo: str, issue: dict[str, Any]) -> str:
