@@ -909,6 +909,16 @@
   .faq-item p { padding: 0 22px 20px; max-width: 70ch; }
   @media (prefers-reduced-motion: reduce) { .faq-item summary::after { transition: none; } }
 
+  /* guides (link cards to the guide pages) */
+  .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 16px; }
+  .guide-card { display: grid; gap: 8px; align-content: start; padding: 24px; border: 1px solid var(--border);
+                border-radius: 22px; background: var(--surface); text-decoration: none;
+                transition: border-color 0.2s ease, transform 0.2s ease; }
+  .guide-card:hover { border-color: var(--rose); transform: translateY(-2px); }
+  .guide-card-title { font-family: "Fraunces", "Plus Jakarta Sans", serif; font-weight: 600; font-size: 1.2rem; line-height: 1.25; color: var(--ink); }
+  .guide-card-text { color: var(--muted); font-size: 0.94rem; line-height: 1.55; font-weight: 500; }
+  .guide-card-more { color: var(--rose-text); font-weight: 700; font-size: 0.9rem; margin-top: 4px; }
+
   .notfound { min-height: 70vh; display: grid; place-content: center; text-align: center; gap: 18px; padding-block: 60px; }
   .notfound p { max-width: 46ch; margin-inline: auto; }
 </style>
@@ -1275,6 +1285,21 @@
 </section>
 
 
+<section id="guides">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="label eyebrow" data-i18n="guides.eyebrow"></span>
+        <h2 style="margin-top:10px;" data-i18n="guides.h2"></h2>
+      </div>
+      <p data-i18n="guides.p"></p>
+    </div>
+    <div class="guide-grid">
+      <!-- bloom:guides (a link card for every guide in site/src/guides; the build fills them in) -->
+    </div>
+  </div>
+</section>
+
 <section id="faq">
   <div class="wrap">
     <div class="section-head reveal">
@@ -1336,6 +1361,7 @@
       <div class="field">
         <label for="referrer"><span data-i18n="form.referrerLabel">Who referred you?</span> <span class="hint" data-i18n="form.referrerHint">— optional</span></label>
         <input type="text" id="referrer" name="referrer" data-i18n-placeholder="form.referrerPlaceholder" placeholder="Name of the person who told you about us">
+        <input type="hidden" id="source" name="source" value="">
       </div>
 
       <div class="field">
@@ -1544,6 +1570,35 @@
       reader.readAsDataURL(file);
       uploadLabel.textContent = file.name;
     });
+
+    // ---- where the visitor came from (shown with each application in Formspree) ----
+    // Campaign links carry ?utm_source=…&utm_campaign=… or ?ref=<referral code>. Kept for this visit only.
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var parts = [];
+      ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) {
+        var v = params.get(k);
+        if (v) parts.push(v.slice(0, 40));
+      });
+      if (params.get("gclid")) parts.push("google-ads");
+      if (params.get("fbclid") && !parts.length) parts.push("facebook-instagram");
+      var ref = (params.get("ref") || "").slice(0, 40);
+      if (ref) parts.push("ref:" + ref);
+      if (!parts.length && document.referrer && document.referrer.indexOf(window.location.host) === -1) {
+        try { parts.push("from:" + new URL(document.referrer).hostname); } catch (e) {}
+      }
+      var source = parts.join(" / ");
+      try {
+        if (source) sessionStorage.setItem("bloomSource", source);
+        else source = sessionStorage.getItem("bloomSource") || "";
+        if (ref) sessionStorage.setItem("bloomRef", ref);
+        else ref = sessionStorage.getItem("bloomRef") || "";
+      } catch (e) {}
+      var field = document.getElementById("source");
+      if (field) { field.value = source || "direct"; field.defaultValue = field.value; }
+      var who = document.getElementById("referrer");
+      if (who && ref && !who.value) { who.value = ref; who.defaultValue = ref; }
+    })();
 
     // ---- form submit ----
     // Create a free endpoint at https://formspree.io, then replace the id below.

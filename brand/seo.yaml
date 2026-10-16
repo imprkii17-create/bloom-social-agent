@@ -11,6 +11,9 @@ site:
   keywords:
     hu:
       - online modell munka
+      - webkamerás modell munka
+      - webcam modell munka
+      - streamelő modell munka
       - streaming modell
       - online modell állás
       - modell munka budapest
@@ -19,17 +22,16 @@ site:
       - rugalmas munkaidő magas kereset
     en:
       - online modeling jobs
+      - webcam model jobs budapest
       - streaming model
       - online model agency budapest
       - modeling jobs budapest
       - work from home budapest
 
-  # Your decision: the searches with the most intent are probably the explicit ones (e.g. "webkamerás modell munka").
-  # Using them on the website brings more of exactly the right applicants and is honest about the job, but it
-  # changes how the brand reads. The agent only measures these; it never adds them to the site on its own.
-  undecided:
-    - webkamerás modell munka
-    - webcam modell állás
+  # Decided 2026-10-13 (owner): "webkamerás / webcam" is used on the WEBSITE (the guide pages in site/src/guides and
+  # one FAQ answer), because that is what people search for. It stays OFF Instagram, ads and post images
+  # (brand/rules.md). Each guide page lists its own target keywords in its front matter.
+  undecided: []
 
 instagram:
   # Instagram search reads the Name field, username, bio, captions, alt text and hashtags.

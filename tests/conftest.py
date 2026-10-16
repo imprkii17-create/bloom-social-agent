@@ -131,4 +131,6 @@ def full_repo(repo: Path) -> Path:
 
     for name in ("brand", "site", "marketing"):
         shutil.copytree(REAL_ROOT / name, repo / name)
+    # Tests start without the live campaigns/experiments you're running, so they don't depend on them.
+    (repo / "marketing" / "experiments.yaml").write_text("experiments: []\n", encoding="utf-8")
     return repo

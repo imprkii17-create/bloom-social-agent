@@ -3,7 +3,7 @@ status: approved
 type: image
 platforms:
 - instagram
-scheduled_at: 2026-10-27 18:30
+scheduled_at: 2026-10-21 18:30
 media:
 - image.jpg
 caption_file: caption.txt

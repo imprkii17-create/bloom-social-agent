@@ -303,3 +303,29 @@ def test_alerts_reach_telegram_once_per_new_alert(tg_settings: Settings, monkeyp
     assert sent.call_count == 1
     text = json.loads(sent.calls[0].request.content)["text"]
     assert "A post needs attention" in text and "https://github.com/x/3" in text
+
+
+class SequenceClaude(FakeClaude):
+    def __init__(self, answers: list[str], stop: str = "refusal") -> None:
+        super().__init__("")
+        self.answers, self.stop = answers, stop
+
+    def create(self, **kwargs: Any) -> Any:
+        resp = super().create(**kwargs)
+        text = self.answers.pop(0)
+        resp.content = [SimpleNamespace(type="text", text=text)] if text else []
+        resp.stop_reason = "end_turn" if text else self.stop
+        return resp
+
+
+def test_empty_claude_answer_is_retried_then_explained(tg_settings: Settings, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test")
+    settings = load_settings(tg_settings.repo_root)
+    retry_ok = SequenceClaude(["", "Rugalmas beosztás, 18+"])
+    tg, res = run_poll(settings, [msg("caption please")], brain=lambda: bot.Brain(settings, client=retry_ok))
+    assert tg.sent[0][1] == "Rugalmas beosztás, 18+" and res.ai_replies == 1
+    assert "playbook" not in retry_ok.calls[1]["system"][0]["text"].lower()  # the retry uses the short rules only
+    never = SequenceClaude(["", ""])
+    tg, res = run_poll(settings, [msg("caption please")], brain=lambda: bot.Brain(settings, client=never))
+    assert "didn't give me an answer" in tg.sent[0][1] and "stop_reason=refusal" in tg.sent[0][1]
+    assert res.ai_replies == 0

@@ -28,8 +28,8 @@ from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup, Comment, Tag
 
-from . import images
-from .config import LANGS, SiteConfig, faq_pairs, load_site_config, load_strings, site_dir
+from . import images, markdown
+from .config import LANGS, Guide, SiteConfig, faq_pairs, load_guides, load_site_config, load_strings, site_dir
 
 MANIFEST = ".build-manifest.json"
 OG_IMAGE = "images/og-image.jpg"
@@ -129,9 +129,14 @@ def build_site(repo_root: Path, *, check: bool = False, today: date | None = Non
             "in site/src/site.yaml if you are still hiring."
         )
 
-    for lang in LANGS:
-        page = _render_page(template, cfg, strings, lang, photos, fonts_css, include_job=not job_expired)
-        rel = _page_file(cfg.pages[lang].path)
+    guides = load_guides(repo_root)
+    home_paths = {cfg.pages[lang].path for lang in LANGS}
+    for gid, by_lang in guides.items():
+        for g in by_lang.values():
+            if g.meta.path in home_paths:
+                raise SiteBuildError(f"guide '{gid}' uses the path {g.meta.path}, which is a home page")
+
+    def add_page(rel: str, page: str) -> None:
         data = page.encode("utf-8")
         out[rel] = data
         sha = hashlib.sha256(data).hexdigest()
@@ -139,10 +144,25 @@ def build_site(repo_root: Path, *, check: bool = False, today: date | None = Non
         lastmod = prev_page.get("lastmod") if prev_page.get("sha") == sha else today.isoformat()
         new_manifest["pages"][rel] = {"sha": sha, "lastmod": lastmod}
 
+    for lang in LANGS:
+        page = _render_page(template, cfg, strings, lang, photos, fonts_css, include_job=not job_expired, guides=guides)
+        add_page(_page_file(cfg.pages[lang].path), page)
+
+    if guides:
+        guide_template_path = src / "guide.html"
+        if not guide_template_path.is_file():
+            raise SiteBuildError("site/src/guide.html (the guide page template) is missing")
+        guide_template = guide_template_path.read_text(encoding="utf-8")
+        _check_strings(guide_template, strings)
+        for gid in guides:
+            for lang in LANGS:
+                page = _render_guide(guide_template, cfg, strings, guides, gid, lang, fonts_css)
+                add_page(_page_file(guides[gid][lang].meta.path), page)
+
     out["404.html"] = _render_404(cfg, strings, fonts_css).encode("utf-8")
-    out["sitemap.xml"] = _sitemap(cfg, new_manifest["pages"]).encode("utf-8")
+    out["sitemap.xml"] = _sitemap(cfg, new_manifest["pages"], guides).encode("utf-8")
     out["robots.txt"] = _robots(cfg).encode("utf-8")
-    out["llms.txt"] = _llms(cfg, strings).encode("utf-8")
+    out["llms.txt"] = _llms(cfg, strings, guides).encode("utf-8")
     out["_headers"] = HEADERS.encode("utf-8")
     out[MANIFEST] = (json.dumps(new_manifest, indent=1, sort_keys=True) + "\n").encode("utf-8")
 
@@ -195,10 +215,35 @@ def _render_page(
     fonts_css: str,
     *,
     include_job: bool,
+    guides: dict[str, dict[str, Guide]] | None = None,
 ) -> str:
     t = strings[lang]
     soup = BeautifulSoup(template, "html.parser")
     _expand_faq(soup, len(faq_pairs(t)))
+    if soup.find(string=lambda s: isinstance(s, Comment) and s.strip().startswith("bloom:guides")):
+        _replace_marker(soup, "bloom:guides", _guide_cards(guides or {}, lang, t))
+    _apply_i18n(soup, t, lang)
+
+    for a in soup.select("a.lang-btn"):
+        target_lang = str(a.get("data-lang"))
+        if target_lang in cfg.pages:
+            a["href"] = cfg.pages[target_lang].path
+        classes = [c for c in a.get_attribute_list("class") if c and c != "active"]
+        if target_lang == lang:
+            classes.append("active")
+            a["aria-current"] = "page"
+        a["class"] = " ".join(classes)
+        del a["data-lang"]
+
+    _responsive_images(soup, photos)
+    _script_strings(soup, template, t)
+    _replace_marker(soup, "bloom:seo", _head_tags(cfg, lang))
+    _replace_marker(soup, "bloom:fonts", fonts_css)
+    _replace_marker(soup, "bloom:structured-data", _structured_data(cfg, strings, lang, include_job=include_job))
+    return str(soup)
+
+
+def _apply_i18n(soup: BeautifulSoup, t: dict[str, str], lang: str) -> None:
     html_el = soup.find("html")
     if not isinstance(html_el, Tag):
         raise SiteBuildError("template has no <html> element")
@@ -223,20 +268,9 @@ def _render_page(
         for el in soup.select(f"[{attr}]"):
             del el[attr]
 
-    for a in soup.select("a.lang-btn"):
-        target_lang = str(a.get("data-lang"))
-        if target_lang in cfg.pages:
-            a["href"] = cfg.pages[target_lang].path
-        classes = [c for c in a.get_attribute_list("class") if c and c != "active"]
-        if target_lang == lang:
-            classes.append("active")
-            a["aria-current"] = "page"
-        a["class"] = " ".join(classes)
-        del a["data-lang"]
 
-    _responsive_images(soup, photos)
-
-    # strings the page script needs at runtime (form messages), in this language only
+def _script_strings(soup: BeautifulSoup, template: str, t: dict[str, str]) -> None:
+    """The strings the page script needs at runtime (form messages), in this language only."""
     script_keys = sorted(set(STRINGS_RE.findall(template)))
     payload = json.dumps({k: t[k] for k in script_keys}, ensure_ascii=False, sort_keys=True).replace("</", "<\\/")
     data_tag = soup.new_tag("script", attrs={"type": "application/json", "id": "bloom-strings"})
@@ -247,11 +281,6 @@ def _render_page(
         first_script.insert_before(data_tag)
     elif isinstance(body, Tag):
         body.append(data_tag)
-
-    _replace_marker(soup, "bloom:seo", _head_tags(cfg, lang))
-    _replace_marker(soup, "bloom:fonts", fonts_css)
-    _replace_marker(soup, "bloom:structured-data", _structured_data(cfg, strings, lang, include_job=include_job))
-    return str(soup)
 
 
 def _expand_faq(soup: BeautifulSoup, count: int) -> None:
@@ -318,26 +347,51 @@ def _responsive_images(soup: BeautifulSoup, photos: dict[str, images.PhotoOutput
 
 def _head_tags(cfg: SiteConfig, lang: str) -> str:
     meta = cfg.pages[lang]
-    url = cfg.url(lang)
+    alternates = {other: cfg.url(other) for other in LANGS}
+    return _head(
+        cfg,
+        lang,
+        title=meta.title,
+        description=meta.description,
+        og_title=meta.og_title,
+        og_image_alt=meta.og_image_alt,
+        url=cfg.url(lang),
+        alternates=alternates,
+        og_type="website",
+    )
+
+
+def _head(
+    cfg: SiteConfig,
+    lang: str,
+    *,
+    title: str,
+    description: str,
+    og_title: str,
+    og_image_alt: str,
+    url: str,
+    alternates: dict[str, str],
+    og_type: str,
+) -> str:
     og_url = f"{cfg.base_url}/{OG_IMAGE}"
     e = html.escape
     lines = [
-        f"<title>{e(meta.title)}</title>",
-        f'<meta name="description" content="{e(meta.description)}">',
+        f"<title>{e(title)}</title>",
+        f'<meta name="description" content="{e(description)}">',
         '<meta name="robots" content="index, follow, max-image-preview:large">',
         f'<link rel="canonical" href="{e(url)}">',
     ]
     for other in LANGS:
-        lines.append(f'<link rel="alternate" hreflang="{other}" href="{e(cfg.url(other))}">')
-    lines.append(f'<link rel="alternate" hreflang="x-default" href="{e(cfg.url(cfg.x_default))}">')
+        lines.append(f'<link rel="alternate" hreflang="{other}" href="{e(alternates[other])}">')
+    lines.append(f'<link rel="alternate" hreflang="x-default" href="{e(alternates[cfg.x_default])}">')
     lines += [
         '<meta name="theme-color" content="#d1607f">',
-        '<meta property="og:type" content="website">',
+        f'<meta property="og:type" content="{og_type}">',
         '<meta property="og:site_name" content="Bloom Models">',
-        f'<meta property="og:title" content="{e(meta.og_title)}">',
-        f'<meta property="og:description" content="{e(meta.description)}">',
+        f'<meta property="og:title" content="{e(og_title)}">',
+        f'<meta property="og:description" content="{e(description)}">',
         f'<meta property="og:url" content="{e(url)}">',
-        f'<meta property="og:locale" content="{e(meta.locale)}">',
+        f'<meta property="og:locale" content="{e(cfg.pages[lang].locale)}">',
     ]
     for other in LANGS:
         if other != lang:
@@ -346,10 +400,10 @@ def _head_tags(cfg: SiteConfig, lang: str) -> str:
         f'<meta property="og:image" content="{e(og_url)}">',
         f'<meta property="og:image:width" content="{images.OG_SIZE[0]}">',
         f'<meta property="og:image:height" content="{images.OG_SIZE[1]}">',
-        f'<meta property="og:image:alt" content="{e(meta.og_image_alt)}">',
+        f'<meta property="og:image:alt" content="{e(og_image_alt)}">',
         '<meta name="twitter:card" content="summary_large_image">',
-        f'<meta name="twitter:title" content="{e(meta.og_title)}">',
-        f'<meta name="twitter:description" content="{e(meta.description)}">',
+        f'<meta name="twitter:title" content="{e(og_title)}">',
+        f'<meta name="twitter:description" content="{e(description)}">',
         f'<meta name="twitter:image" content="{e(og_url)}">',
     ]
     return "\n".join(lines) + "\n"
@@ -466,23 +520,228 @@ def _structured_data(cfg: SiteConfig, strings: dict[str, dict[str, str]], lang: 
     return '<script type="application/ld+json">\n' + payload.replace("</", "<\\/") + "\n</script>\n"
 
 
+# ---- guide pages ---------------------------------------------------------------------------------------------
+
+MONTHS = {
+    "hu": ("január", "február", "március", "április", "május", "június", "július", "augusztus", "szeptember",
+           "október", "november", "december"),
+    "en": ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+           "November", "December"),
+}
+
+
+def _month_year(d: date, lang: str) -> str:
+    month = MONTHS[lang][d.month - 1]
+    return f"{d.year}. {month}" if lang == "hu" else f"{month} {d.year}"
+
+
+def _guide_cards(guides: dict[str, dict[str, Guide]], lang: str, t: dict[str, str]) -> str:
+    """Link cards to every guide, for the home page (internal links are how Google finds and weighs the guides)."""
+    e = html.escape
+    cards = []
+    for by_lang in guides.values():
+        m = by_lang[lang].meta
+        cards.append(
+            f'<a class="guide-card" href="{e(m.path)}"><span class="guide-card-title">{e(m.h1)}</span>'
+            f'<span class="guide-card-text">{e(m.card or m.description)}</span>'
+            f'<span class="guide-card-more">{e(t["guides.read"])} →</span></a>'
+        )
+    return "\n".join(cards)
+
+
+def _render_guide(
+    template: str,
+    cfg: SiteConfig,
+    strings: dict[str, dict[str, str]],
+    guides: dict[str, dict[str, Guide]],
+    gid: str,
+    lang: str,
+    fonts_css: str,
+) -> str:
+    t = strings[lang]
+    guide = guides[gid][lang]
+    m = guide.meta
+    e = html.escape
+    url = cfg.base_url + m.path
+    home = cfg.pages[lang].path
+    alternates = {other: cfg.base_url + guides[gid][other].meta.path for other in LANGS}
+
+    soup = BeautifulSoup(template, "html.parser")
+    _apply_i18n(soup, t, lang)
+    for a in soup.select("a.lang-btn"):
+        target_lang = str(a.get("data-lang"))
+        if target_lang in guides[gid]:
+            a["href"] = guides[gid][target_lang].meta.path
+        classes = [c for c in a.get_attribute_list("class") if c and c != "active"]
+        if target_lang == lang:
+            classes.append("active")
+            a["aria-current"] = "page"
+        a["class"] = " ".join(classes)
+        del a["data-lang"]
+    for a in soup.select("[data-home]"):
+        anchor = str(a["data-home"])
+        a["href"] = home + (f"#{anchor}" if anchor else "")
+        del a["data-home"]
+
+    body_html, toc = markdown.render(guide.body)
+    faq_id = "gyik" if lang == "hu" else "faq"
+    if m.faq:
+        toc.append((faq_id, t["guide.faq"]))
+    toc_html = "".join(f'<li><a href="#{hid}">{markdown.inline(text)}</a></li>' for hid, text in toc)
+    faq_html = ""
+    if m.faq:
+        items = "".join(
+            f'<details class="faq-item"><summary>{e(f.q)}</summary><p>{e(f.a)}</p></details>' for f in m.faq
+        )
+        faq_html = f'<section class="guide-faq" aria-labelledby="{faq_id}"><h2 id="{faq_id}">{e(t["guide.faq"])}</h2>' \
+            f'<div class="faq-list">{items}</div></section>'
+    updated = f'<time datetime="{m.updated.isoformat()}">{e(_month_year(m.updated, lang))}</time>'
+    article = f"""<nav class="crumbs" aria-label="{e(t['guide.crumbs'])}"><a href="{e(home)}">{e(t['guide.home'])}</a>
+<span aria-hidden="true">›</span> <span aria-current="page">{e(m.h1)}</span></nav>
+<header class="guide-head">
+<h1>{e(m.h1)}</h1>
+<p class="lede">{e(m.lede)}</p>
+<p class="guide-meta">Bloom Models · {e(t['guide.updated'])}: {updated}</p>
+</header>
+<div class="guide-layout">
+<nav class="toc" aria-label="{e(t['guide.toc'])}"><p class="label">{e(t['guide.toc'])}</p><ol>{toc_html}</ol></nav>
+<div class="prose">
+{body_html}
+{faq_html}
+<div class="guide-cta"><p class="cta-title">{e(t['guide.cta.h'])}</p><p>{e(t['guide.cta.p'])}</p>
+<a class="btn btn-primary" href="{e(home)}#apply">{e(t['guide.cta.btn'])}</a></div>
+</div>
+</div>
+"""
+    related = [g[lang].meta for other_id, g in guides.items() if other_id != gid]
+    related_html = ""
+    if related:
+        links = "".join(
+            f'<a class="guide-card" href="{e(r.path)}"><span class="guide-card-title">{e(r.h1)}</span>'
+            f'<span class="guide-card-text">{e(r.card or r.description)}</span>'
+            f'<span class="guide-card-more">{e(t["guides.read"])} →</span></a>'
+            for r in related
+        )
+        related_html = f'<p class="label related-label">{e(t["guide.related"])}</p><div class="guide-grid">{links}</div>'
+
+    _replace_marker(soup, "bloom:article", article)
+    _replace_marker(soup, "bloom:related", related_html)
+    _replace_marker(
+        soup,
+        "bloom:seo",
+        _head(
+            cfg,
+            lang,
+            title=m.title,
+            description=m.description,
+            og_title=m.h1,
+            og_image_alt=cfg.pages[lang].og_image_alt,
+            url=url,
+            alternates=alternates,
+            og_type="article",
+        ),
+    )
+    _replace_marker(soup, "bloom:fonts", fonts_css)
+    _replace_marker(soup, "bloom:structured-data", _guide_structured_data(cfg, strings, guide, url))
+    return str(soup)
+
+
+def _guide_structured_data(cfg: SiteConfig, strings: dict[str, dict[str, str]], guide: Guide, url: str) -> str:
+    m = guide.meta
+    t = strings[m.lang]
+    org_id = f"{cfg.base_url}/#organization"
+    site_id = f"{cfg.base_url}/#website"
+    org: dict[str, Any] = {
+        "@type": "Organization",
+        "@id": org_id,
+        "name": "Bloom Models",
+        "url": cfg.base_url + "/",
+        "logo": f"{cfg.base_url}/images/favicon-512.png",
+    }
+    if cfg.instagram_url:
+        org["sameAs"] = [cfg.instagram_url]
+    graph: list[dict[str, Any]] = [
+        org,
+        {
+            "@type": "WebSite",
+            "@id": site_id,
+            "url": cfg.base_url + "/",
+            "name": "Bloom Models",
+            "inLanguage": list(LANGS),
+            "publisher": {"@id": org_id},
+        },
+        {
+            "@type": "WebPage",
+            "@id": url + "#webpage",
+            "url": url,
+            "name": m.title,
+            "description": m.description,
+            "inLanguage": m.lang,
+            "isPartOf": {"@id": site_id},
+            "breadcrumb": {"@id": url + "#breadcrumb"},
+            "primaryImageOfPage": f"{cfg.base_url}/{OG_IMAGE}",
+        },
+        {
+            "@type": "Article",
+            "@id": url + "#article",
+            "headline": m.h1,
+            "description": m.description,
+            "inLanguage": m.lang,
+            "datePublished": m.updated.isoformat(),
+            "dateModified": m.updated.isoformat(),
+            "author": {"@id": org_id},
+            "publisher": {"@id": org_id},
+            "mainEntityOfPage": {"@id": url + "#webpage"},
+            "image": f"{cfg.base_url}/{OG_IMAGE}",
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": url + "#breadcrumb",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": t["guide.home"], "item": cfg.url(m.lang)},
+                {"@type": "ListItem", "position": 2, "name": m.h1, "item": url},
+            ],
+        },
+    ]
+    if m.faq:
+        graph.append(
+            {
+                "@type": "FAQPage",
+                "@id": url + "#faq",
+                "inLanguage": m.lang,
+                "mainEntity": [
+                    {"@type": "Question", "name": f.q, "acceptedAnswer": {"@type": "Answer", "text": f.a}}
+                    for f in m.faq
+                ],
+            }
+        )
+    payload = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
+    return '<script type="application/ld+json">\n' + payload.replace("</", "<\\/") + "\n</script>\n"
+
+
 # ---- other files -------------------------------------------------------------------------------------------
 
 
-def _sitemap(cfg: SiteConfig, pages: dict[str, dict[str, str]]) -> str:
+def _sitemap(cfg: SiteConfig, pages: dict[str, dict[str, str]], guides: dict[str, dict[str, Guide]] | None = None) -> str:
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     ]
-    for lang in LANGS:
-        rel = _page_file(cfg.pages[lang].path)
-        lines.append("  <url>")
-        lines.append(f"    <loc>{html.escape(cfg.url(lang))}</loc>")
-        lines.append(f"    <lastmod>{pages[rel]['lastmod']}</lastmod>")
-        for other in LANGS:
-            lines.append(f'    <xhtml:link rel="alternate" hreflang="{other}" href="{html.escape(cfg.url(other))}"/>')
-        lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{html.escape(cfg.url(cfg.x_default))}"/>')
-        lines.append("  </url>")
+    groups: list[dict[str, str]] = [{lang: cfg.pages[lang].path for lang in LANGS}]
+    for by_lang in (guides or {}).values():
+        groups.append({lang: by_lang[lang].meta.path for lang in LANGS})
+    for group in groups:
+        for lang in LANGS:
+            rel = _page_file(group[lang])
+            lines.append("  <url>")
+            lines.append(f"    <loc>{html.escape(cfg.base_url + group[lang])}</loc>")
+            lines.append(f"    <lastmod>{pages[rel]['lastmod']}</lastmod>")
+            for other in LANGS:
+                href = html.escape(cfg.base_url + group[other])
+                lines.append(f'    <xhtml:link rel="alternate" hreflang="{other}" href="{href}"/>')
+            x_default = html.escape(cfg.base_url + group[cfg.x_default])
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{x_default}"/>')
+            lines.append("  </url>")
     lines.append("</urlset>")
     return "\n".join(lines) + "\n"
 
@@ -497,7 +756,7 @@ def _robots(cfg: SiteConfig) -> str:
     )
 
 
-def _llms(cfg: SiteConfig, strings: dict[str, dict[str, str]]) -> str:
+def _llms(cfg: SiteConfig, strings: dict[str, dict[str, str]], guides: dict[str, dict[str, Guide]] | None = None) -> str:
     en, hu = strings["en"], strings["hu"]
     lines = [
         "# Bloom Models",
@@ -513,6 +772,15 @@ def _llms(cfg: SiteConfig, strings: dict[str, dict[str, str]]) -> str:
         f"- [Bloom Models (English)]({cfg.url('en')}): {cfg.pages['en'].description}",
         f"- [Apply]({cfg.url('en')}#apply): two-minute application form with one photo.",
         "",
+    ]
+    if guides:
+        lines += ["## Guides", ""]
+        for by_lang in guides.values():
+            for lang in LANGS:
+                gm = by_lang[lang].meta
+                lines.append(f"- [{gm.h1}]({cfg.base_url}{gm.path}) ({lang}): {gm.description}")
+        lines.append("")
+    lines += [
         "## Frequently asked questions",
         "",
     ]

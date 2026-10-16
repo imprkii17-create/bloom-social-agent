@@ -35,7 +35,7 @@ from bloom_agent.seo.search_console import (
 )
 from bloom_agent.seo.sitecheck import Fetched, check_site
 from bloom_agent.site.build import SiteBuildError, build_site
-from bloom_agent.site.config import load_site_config
+from bloom_agent.site.config import load_guides, load_site_config
 
 TODAY = date(2026, 10, 11)
 
@@ -122,7 +122,7 @@ def test_site_pages_are_static_per_language(full_repo: Path) -> None:
         assert hero is not None and hero["src"].endswith(".webp") and hero["fetchpriority"] == "high"
         assert hero["width"] and hero["height"] and "srcset" in hero.attrs
     sitemap = (public / "sitemap.xml").read_text(encoding="utf-8")
-    assert sitemap.count("<url>") == 2 and 'hreflang="x-default"' in sitemap
+    assert sitemap.count("<url>") == 2 + 2 * len(load_guides(full_repo)) and 'hreflang="x-default"' in sitemap
     assert "Sitemap: https://bloommodels.hu/sitemap.xml" in (public / "robots.txt").read_text(encoding="utf-8")
     assert "## Frequently asked questions" in (public / "llms.txt").read_text(encoding="utf-8")
 
@@ -229,7 +229,8 @@ def test_built_site_passes_offline_seo_check(full_repo: Path) -> None:
     build_site(full_repo, today=TODAY)
     report = check_site(full_repo, live=False, today=TODAY)
     assert not report.findings.by_severity("critical"), report.findings.problems()
-    assert set(report.pages) == {"hu", "en"}
+    guide_keys = {f"{lang}:{gid}" for gid in load_guides(full_repo) for lang in ("hu", "en")}
+    assert set(report.pages) == {"hu", "en"} | guide_keys
     assert report.findings.score("Website") >= 90
 
 

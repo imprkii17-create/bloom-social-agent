@@ -932,6 +932,16 @@
   .faq-item p { padding: 0 22px 20px; max-width: 70ch; }
   @media (prefers-reduced-motion: reduce) { .faq-item summary::after { transition: none; } }
 
+  /* guides (link cards to the guide pages) */
+  .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 16px; }
+  .guide-card { display: grid; gap: 8px; align-content: start; padding: 24px; border: 1px solid var(--border);
+                border-radius: 22px; background: var(--surface); text-decoration: none;
+                transition: border-color 0.2s ease, transform 0.2s ease; }
+  .guide-card:hover { border-color: var(--rose); transform: translateY(-2px); }
+  .guide-card-title { font-family: "Fraunces", "Plus Jakarta Sans", serif; font-weight: 600; font-size: 1.2rem; line-height: 1.25; color: var(--ink); }
+  .guide-card-text { color: var(--muted); font-size: 0.94rem; line-height: 1.55; font-weight: 500; }
+  .guide-card-more { color: var(--rose-text); font-weight: 700; font-size: 0.9rem; margin-top: 4px; }
+
   .notfound { min-height: 70vh; display: grid; place-content: center; text-align: center; gap: 18px; padding-block: 60px; }
   .notfound p { max-width: 46ch; margin-inline: auto; }
 </style>
@@ -1015,7 +1025,7 @@
      "name": "Mit csinál pontosan egy streaming modell?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Élő, online videós közvetítéseket tartasz a stúdiónkban vagy otthonról. Beszélgetsz a közönségeddel, te alakítod a hangulatot, és te választod ki a stílust — glamour, fehérnemű, lifestyle vagy valami egészen más. Hogy mit mutatsz és mikor, az mindig a te döntésed."
+      "text": "Élő, online videós közvetítéseket tartasz a stúdiónkban vagy otthonról; ezt a munkát webkamerás modell munkának vagy online modellkedésnek is hívják. Beszélgetsz a közönségeddel, te alakítod a hangulatot, és te választod ki a stílust — glamour, fehérnemű, lifestyle vagy valami egészen más. Hogy mit mutatsz és mikor, az mindig a te döntésed."
      }
     },
     {
@@ -1071,7 +1081,7 @@
   {
    "@type": "JobPosting",
    "title": "Streaming modell (online modell)",
-   "description": "<p>A Bloom Models egy online modellügynökség streamelő tehetségek számára. Saját stúdiót, teljes körű betanítást és egy dedikált csapatot adunk melléd a kamera mögött — hogy valódi bevételt építhess a saját beosztásodban, teljes diszkrécióval.<\/p><p>Élő, online videós közvetítéseket tartasz a stúdiónkban vagy otthonról. Beszélgetsz a közönségeddel, te alakítod a hangulatot, és te választod ki a stílust — glamour, fehérnemű, lifestyle vagy valami egészen más. Hogy mit mutatsz és mikor, az mindig a te döntésed.<\/p><p>Nem. Az első streamtől betanítunk: technika, fények, tempó, és hogyan építs olyan közönséget, amely visszatér hozzád. Csak magabiztosságot és lelkesedést hozz.<\/p><p>Havi 2000 € felett reális cél, és a bevételed akár 80%-a a tiéd. A kereset a ledolgozott óráktól, az aktivitástól és más tényezőktől függ, ezért nem garantált. Havonta fizetünk, és mindig pontosan látod, mennyit kerestél.<\/p><p>Átlagosan heti kb. 20 órát, 5 órás blokkokban. Reggeli, délutáni, esti vagy éjszakai műszak — a beosztást veled együtt tervezzük meg.<\/p><p>A stúdiónkban Budapest V. kerületében, pár lépésre a Szent István-bazilikától, vagy otthonról — segítünk kialakítani az otthoni stúdiódat. Ha nem budapesti vagy, segítünk az utazásban és a szállásban.<\/p>",
+   "description": "<p>A Bloom Models egy online modellügynökség streamelő tehetségek számára. Saját stúdiót, teljes körű betanítást és egy dedikált csapatot adunk melléd a kamera mögött — hogy valódi bevételt építhess a saját beosztásodban, teljes diszkrécióval.<\/p><p>Élő, online videós közvetítéseket tartasz a stúdiónkban vagy otthonról; ezt a munkát webkamerás modell munkának vagy online modellkedésnek is hívják. Beszélgetsz a közönségeddel, te alakítod a hangulatot, és te választod ki a stílust — glamour, fehérnemű, lifestyle vagy valami egészen más. Hogy mit mutatsz és mikor, az mindig a te döntésed.<\/p><p>Nem. Az első streamtől betanítunk: technika, fények, tempó, és hogyan építs olyan közönséget, amely visszatér hozzád. Csak magabiztosságot és lelkesedést hozz.<\/p><p>Havi 2000 € felett reális cél, és a bevételed akár 80%-a a tiéd. A kereset a ledolgozott óráktól, az aktivitástól és más tényezőktől függ, ezért nem garantált. Havonta fizetünk, és mindig pontosan látod, mennyit kerestél.<\/p><p>Átlagosan heti kb. 20 órát, 5 órás blokkokban. Reggeli, délutáni, esti vagy éjszakai műszak — a beosztást veled együtt tervezzük meg.<\/p><p>A stúdiónkban Budapest V. kerületében, pár lépésre a Szent István-bazilikától, vagy otthonról — segítünk kialakítani az otthoni stúdiódat. Ha nem budapesti vagy, segítünk az utazásban és a szállásban.<\/p>",
    "datePosted": "2026-09-14",
    "employmentType": [
     "CONTRACTOR",
@@ -1437,6 +1447,22 @@
 </div>
 </div>
 </section>
+<section id="guides">
+<div class="wrap">
+<div class="section-head reveal">
+<div>
+<span class="label eyebrow">Útmutatók</span>
+<h2 style="margin-top:10px;">Mielőtt jelentkezel: minden, amit a munkáról tudni érdemes.</h2>
+</div>
+<p>Őszinte, részletes válaszok a leggyakoribb kérdésekre a webkamerás és online modell munkáról.</p>
+</div>
+<div class="guide-grid">
+<a class="guide-card" href="/webkameras-modell-munka/"><span class="guide-card-title">Webkamerás modell munka Budapesten: őszinte útmutató</span><span class="guide-card-text">Mi ez a munka, hogyan néz ki egy műszak, és hogyan ismered fel a megbízható stúdiót.</span><span class="guide-card-more">Elolvasom →</span></a>
+<a class="guide-card" href="/online-modell-munka-otthonrol/"><span class="guide-card-title">Online modell munka otthonról vagy stúdióban?</span><span class="guide-card-text">Mi kell az otthoni streameléshez, mit ad egy profi stúdió, és melyik illik hozzád.</span><span class="guide-card-more">Elolvasom →</span></a>
+<a class="guide-card" href="/streamelo-modell-kereset/"><span class="guide-card-title">Mennyit keres egy streamelő modell? Őszinte válasz</span><span class="guide-card-text">Mitől függ a kereset, mit jelent a bevétel-megosztás, és mikor gyanús egy ígéret.</span><span class="guide-card-more">Elolvasom →</span></a>
+</div>
+</div>
+</section>
 <section id="faq">
 <div class="wrap">
 <div class="section-head reveal">
@@ -1450,7 +1476,7 @@
 
 
 
-      <details class="faq-item reveal"><summary>Mit csinál pontosan egy streaming modell?</summary><p>Élő, online videós közvetítéseket tartasz a stúdiónkban vagy otthonról. Beszélgetsz a közönségeddel, te alakítod a hangulatot, és te választod ki a stílust — glamour, fehérnemű, lifestyle vagy valami egészen más. Hogy mit mutatsz és mikor, az mindig a te döntésed.</p></details>
+      <details class="faq-item reveal"><summary>Mit csinál pontosan egy streaming modell?</summary><p>Élő, online videós közvetítéseket tartasz a stúdiónkban vagy otthonról; ezt a munkát webkamerás modell munkának vagy online modellkedésnek is hívják. Beszélgetsz a közönségeddel, te alakítod a hangulatot, és te választod ki a stílust — glamour, fehérnemű, lifestyle vagy valami egészen más. Hogy mit mutatsz és mikor, az mindig a te döntésed.</p></details>
       <details class="faq-item reveal"><summary>Kell hozzá tapasztalat?</summary><p>Nem. Az első streamtől betanítunk: technika, fények, tempó, és hogyan építs olyan közönséget, amely visszatér hozzád. Csak magabiztosságot és lelkesedést hozz.</p></details>
       <details class="faq-item reveal"><summary>Mennyit lehet keresni?</summary><p>Havi 2000 € felett reális cél, és a bevételed akár 80%-a a tiéd. A kereset a ledolgozott óráktól, az aktivitástól és más tényezőktől függ, ezért nem garantált. Havonta fizetünk, és mindig pontosan látod, mennyit kerestél.</p></details>
       <details class="faq-item reveal"><summary>Hány órát kell dolgoznom?</summary><p>Átlagosan heti kb. 20 órát, 5 órás blokkokban. Reggeli, délutáni, esti vagy éjszakai műszak — a beosztást veled együtt tervezzük meg.</p></details>
@@ -1500,6 +1526,7 @@
 <div class="field">
 <label for="referrer"><span>Ki ajánlott téged?</span> <span class="hint">— nem kötelező</span></label>
 <input id="referrer" name="referrer" placeholder="Annak a neve, aki mesélt neked rólunk" type="text"/>
+<input id="source" name="source" type="hidden" value=""/>
 </div>
 <div class="field">
 <label for="photo"><span>Egész alakos fotó</span> <span class="hint">— egy friss, jól látható fotó rólad, JPG/PNG, max 5MB</span></label>
@@ -1683,6 +1710,35 @@
       reader.readAsDataURL(file);
       uploadLabel.textContent = file.name;
     });
+
+    // ---- where the visitor came from (shown with each application in Formspree) ----
+    // Campaign links carry ?utm_source=…&utm_campaign=… or ?ref=<referral code>. Kept for this visit only.
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var parts = [];
+      ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) {
+        var v = params.get(k);
+        if (v) parts.push(v.slice(0, 40));
+      });
+      if (params.get("gclid")) parts.push("google-ads");
+      if (params.get("fbclid") && !parts.length) parts.push("facebook-instagram");
+      var ref = (params.get("ref") || "").slice(0, 40);
+      if (ref) parts.push("ref:" + ref);
+      if (!parts.length && document.referrer && document.referrer.indexOf(window.location.host) === -1) {
+        try { parts.push("from:" + new URL(document.referrer).hostname); } catch (e) {}
+      }
+      var source = parts.join(" / ");
+      try {
+        if (source) sessionStorage.setItem("bloomSource", source);
+        else source = sessionStorage.getItem("bloomSource") || "";
+        if (ref) sessionStorage.setItem("bloomRef", ref);
+        else ref = sessionStorage.getItem("bloomRef") || "";
+      } catch (e) {}
+      var field = document.getElementById("source");
+      if (field) { field.value = source || "direct"; field.defaultValue = field.value; }
+      var who = document.getElementById("referrer");
+      if (who && ref && !who.value) { who.value = ref; who.defaultValue = ref; }
+    })();
 
     // ---- form submit ----
     // Create a free endpoint at https://formspree.io, then replace the id below.

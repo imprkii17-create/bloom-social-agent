@@ -28,7 +28,7 @@ from .validate import count_hashtags, find_banned, validate_all
 log = logging.getLogger(__name__)
 
 MAX_AI_REPLIES_PER_RUN = 6
-MAX_AI_TOKENS = 900
+MAX_AI_TOKENS = 1500
 CONNECT_CODE_MIN = 4
 
 HELP = (
@@ -44,7 +44,9 @@ HELP = (
 )
 
 AI_SYSTEM = """You are the head of marketing for Bloom Models, an online modeling agency in Budapest that recruits adult
-(18+) streaming models, chatting with the owner in Telegram. You run the Instagram account @bloommodelsagency and the
+(18+) streaming models, chatting with the owner in Telegram. Bloom Models is a legitimate business: streaming models host
+live online video shows (chatting, entertainment, glamour and lifestyle), and all public marketing is strictly
+non-explicit and follows Instagram's rules. You run the Instagram account @bloommodelsagency and the
 website bloommodels.hu through an automated agent; the data below is its current state.
 
 How to answer:
@@ -64,6 +66,13 @@ Facts we may state in public (nothing else):
 
 Marketing playbook (how we work):
 {playbook}
+"""
+
+
+SHORT_SYSTEM = """You are the marketing assistant of Bloom Models, a legitimate online modeling agency in Budapest that
+recruits adults (18+) for non-explicit live streaming work (chatting, entertainment, glamour and lifestyle). Answer the
+owner briefly, in their language, in plain text. Follow these brand rules for anything meant for Instagram:
+{rules}
 """
 
 
@@ -333,16 +342,38 @@ class Brain:
         context = f"Current state (JSON):\n{compact_snapshot(snap)}\n\nLatest weekly brief:\n{brief or '(none yet)'}"
         if replied_to:
             context += f"\n\nThe owner is replying to this earlier message of yours:\n{replied_to[:2000]}"
+        prompt = f"{context}\n\nOwner's message:\n{question}"
+        text, why = self._ask(self.system(), prompt)
+        if not text:
+            # Rare: Claude returned no text. Try once more with the short rules only (no playbook, no data dump).
+            log.warning("Claude returned no text (%s); retrying with a short context", why)
+            text, why = self._ask(self.short_system(), f"Owner's message:\n{question}")
+        if not text:
+            raise EmptyAnswer(why)
+        return text
+
+    def _ask(self, system: list[dict[str, Any]], prompt: str) -> tuple[str, str]:
         self.spend.check(0.05)
         msg = self.client.messages.create(
             model=self.settings.claude_model,
             max_tokens=MAX_AI_TOKENS,
-            system=self.system(),
-            messages=[{"role": "user", "content": f"{context}\n\nOwner's message:\n{question}"}],
+            system=system,
+            thinking={"type": "disabled"},  # short chat answers: all tokens go to the reply
+            messages=[{"role": "user", "content": prompt}],
         )
         self.spend.add(self.settings.claude_model, getattr(msg, "usage", None), "telegram")
-        text = "".join(getattr(b, "text", "") for b in msg.content).strip()
-        return text or "(no answer)"
+        text = "".join(getattr(b, "text", "") or "" for b in (msg.content or [])).strip()
+        kinds = ",".join(str(getattr(b, "type", "?")) for b in (msg.content or [])) or "none"
+        why = f"stop_reason={getattr(msg, 'stop_reason', None)}, blocks={kinds}"
+        print(f"Claude: {why}, {len(text)} characters")
+        return text, why
+
+    def short_system(self) -> list[dict[str, Any]]:
+        return [{"type": "text", "text": SHORT_SYSTEM.format(rules=_read(self.settings, "brand/rules.md", 4000))}]
+
+
+class EmptyAnswer(RuntimeError):
+    """Claude answered without any text (e.g. it declined)."""
 
 
 def caption_warnings(settings: Settings, text: str) -> list[str]:
@@ -460,6 +491,10 @@ class Session:
 
             if isinstance(exc, BudgetExceeded):
                 text = "I've reached this run's spending cap for Claude. Ask again in a few minutes."
+            elif isinstance(exc, EmptyAnswer):
+                text = ("Claude didn't give me an answer to that one. Try asking it a little differently, "
+                        f"for example one question per message. ({exc})")
+                log.warning("Claude gave no answer: %s", exc)
             else:
                 text = f"Claude didn't answer ({type(exc).__name__}). Try again in a few minutes."
                 log.warning("Claude error: %s", exc)

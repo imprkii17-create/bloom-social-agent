@@ -3,10 +3,11 @@ status: approved
 type: image
 platforms:
 - instagram
-scheduled_at: 2026-10-28 18:30
+scheduled_at: 2026-10-22 18:30
 media:
 - image.jpg
 caption_file: caption.txt
-alt_text: 'A woman lying on a white studio floor in a black outfit, above a list of six perks: free training,
-  pro equipment, own manager, tech support around the clock, monthly payouts, travel and housing help.'
+alt_text: 'A dark plum graphic headed "What you get from us" with six numbered perks: free training, professional
+  equipment, your own manager, tech support day and night, reliable monthly payouts, help with travel
+  and housing.'
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].

@@ -932,6 +932,16 @@
   .faq-item p { padding: 0 22px 20px; max-width: 70ch; }
   @media (prefers-reduced-motion: reduce) { .faq-item summary::after { transition: none; } }
 
+  /* guides (link cards to the guide pages) */
+  .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 16px; }
+  .guide-card { display: grid; gap: 8px; align-content: start; padding: 24px; border: 1px solid var(--border);
+                border-radius: 22px; background: var(--surface); text-decoration: none;
+                transition: border-color 0.2s ease, transform 0.2s ease; }
+  .guide-card:hover { border-color: var(--rose); transform: translateY(-2px); }
+  .guide-card-title { font-family: "Fraunces", "Plus Jakarta Sans", serif; font-weight: 600; font-size: 1.2rem; line-height: 1.25; color: var(--ink); }
+  .guide-card-text { color: var(--muted); font-size: 0.94rem; line-height: 1.55; font-weight: 500; }
+  .guide-card-more { color: var(--rose-text); font-weight: 700; font-size: 0.9rem; margin-top: 4px; }
+
   .notfound { min-height: 70vh; display: grid; place-content: center; text-align: center; gap: 18px; padding-block: 60px; }
   .notfound p { max-width: 46ch; margin-inline: auto; }
 </style>
@@ -1015,7 +1025,7 @@
      "name": "What does a streaming model actually do?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "You host live online video streams, from our studio or from home. You chat with your audience and set the mood, and you choose the style — glamour, lingerie, lifestyle or something else. What you show, and when, is always your decision."
+      "text": "You host live online video streams, from our studio or from home; the work is also called webcam modeling or online modeling. You chat with your audience and set the mood, and you choose the style — glamour, lingerie, lifestyle or something else. What you show, and when, is always your decision."
      }
     },
     {
@@ -1071,7 +1081,7 @@
   {
    "@type": "JobPosting",
    "title": "Streaming model (online model)",
-   "description": "<p>Bloom Models is an online modeling agency for streaming talent. We give you a private studio, full training, and a dedicated team behind the camera — so you can build a real income on your own schedule, with complete discretion.<\/p><p>You host live online video streams, from our studio or from home. You chat with your audience and set the mood, and you choose the style — glamour, lingerie, lifestyle or something else. What you show, and when, is always your decision.<\/p><p>No. We train you from your very first stream: setup, lighting, pacing and building an audience that comes back. All you need to bring is confidence and enthusiasm.<\/p><p>€2,000+ a month is a realistic goal, and you keep up to 80% of what you bring in. Earnings depend on your hours, engagement and other factors, so they are never guaranteed. Payouts are monthly, and you always see exactly what you earned.<\/p><p>About 20 hours a week on average, in 5-hour blocks. Morning, afternoon, evening or night shifts — we plan the schedule together with you.<\/p><p>In our studio in Budapest&#x27;s 5th district, a few steps from St. Stephen&#x27;s Basilica, or from home — we help you set up a home studio. If you&#x27;re not from Budapest, we help arrange travel and accommodation.<\/p>",
+   "description": "<p>Bloom Models is an online modeling agency for streaming talent. We give you a private studio, full training, and a dedicated team behind the camera — so you can build a real income on your own schedule, with complete discretion.<\/p><p>You host live online video streams, from our studio or from home; the work is also called webcam modeling or online modeling. You chat with your audience and set the mood, and you choose the style — glamour, lingerie, lifestyle or something else. What you show, and when, is always your decision.<\/p><p>No. We train you from your very first stream: setup, lighting, pacing and building an audience that comes back. All you need to bring is confidence and enthusiasm.<\/p><p>€2,000+ a month is a realistic goal, and you keep up to 80% of what you bring in. Earnings depend on your hours, engagement and other factors, so they are never guaranteed. Payouts are monthly, and you always see exactly what you earned.<\/p><p>About 20 hours a week on average, in 5-hour blocks. Morning, afternoon, evening or night shifts — we plan the schedule together with you.<\/p><p>In our studio in Budapest&#x27;s 5th district, a few steps from St. Stephen&#x27;s Basilica, or from home — we help you set up a home studio. If you&#x27;re not from Budapest, we help arrange travel and accommodation.<\/p>",
    "datePosted": "2026-09-14",
    "employmentType": [
     "CONTRACTOR",
@@ -1437,6 +1447,22 @@
 </div>
 </div>
 </section>
+<section id="guides">
+<div class="wrap">
+<div class="section-head reveal">
+<div>
+<span class="label eyebrow">Guides</span>
+<h2 style="margin-top:10px;">Before you apply: everything worth knowing about the work.</h2>
+</div>
+<p>Honest, detailed answers to the questions people ask most about webcam and online modeling.</p>
+</div>
+<div class="guide-grid">
+<a class="guide-card" href="/en/webcam-model-jobs-budapest/"><span class="guide-card-title">Webcam model jobs in Budapest: a straight guide</span><span class="guide-card-text">What the work is, what a shift looks like, and how to spot a studio you can trust.</span><span class="guide-card-more">Read the guide →</span></a>
+<a class="guide-card" href="/en/online-modeling-from-home/"><span class="guide-card-title">Online modeling from home or in a studio?</span><span class="guide-card-text">What you need to stream from home, what a studio adds, and which one suits you.</span><span class="guide-card-more">Read the guide →</span></a>
+<a class="guide-card" href="/en/streaming-model-earnings/"><span class="guide-card-title">How much does a streaming model earn? An honest answer</span><span class="guide-card-text">What earnings depend on, how revenue share works, and when a promise is a red flag.</span><span class="guide-card-more">Read the guide →</span></a>
+</div>
+</div>
+</section>
 <section id="faq">
 <div class="wrap">
 <div class="section-head reveal">
@@ -1450,7 +1476,7 @@
 
 
 
-      <details class="faq-item reveal"><summary>What does a streaming model actually do?</summary><p>You host live online video streams, from our studio or from home. You chat with your audience and set the mood, and you choose the style — glamour, lingerie, lifestyle or something else. What you show, and when, is always your decision.</p></details>
+      <details class="faq-item reveal"><summary>What does a streaming model actually do?</summary><p>You host live online video streams, from our studio or from home; the work is also called webcam modeling or online modeling. You chat with your audience and set the mood, and you choose the style — glamour, lingerie, lifestyle or something else. What you show, and when, is always your decision.</p></details>
       <details class="faq-item reveal"><summary>Do I need any experience?</summary><p>No. We train you from your very first stream: setup, lighting, pacing and building an audience that comes back. All you need to bring is confidence and enthusiasm.</p></details>
       <details class="faq-item reveal"><summary>How much can I earn?</summary><p>€2,000+ a month is a realistic goal, and you keep up to 80% of what you bring in. Earnings depend on your hours, engagement and other factors, so they are never guaranteed. Payouts are monthly, and you always see exactly what you earned.</p></details>
       <details class="faq-item reveal"><summary>How many hours do I need to work?</summary><p>About 20 hours a week on average, in 5-hour blocks. Morning, afternoon, evening or night shifts — we plan the schedule together with you.</p></details>
@@ -1500,6 +1526,7 @@
 <div class="field">
 <label for="referrer"><span>Who referred you?</span> <span class="hint">— optional</span></label>
 <input id="referrer" name="referrer" placeholder="Name of the person who told you about us" type="text"/>
+<input id="source" name="source" type="hidden" value=""/>
 </div>
 <div class="field">
 <label for="photo"><span>Full-length photo</span> <span class="hint">— a recent, clear photo of you, JPG/PNG, up to 5MB</span></label>
@@ -1683,6 +1710,35 @@
       reader.readAsDataURL(file);
       uploadLabel.textContent = file.name;
     });
+
+    // ---- where the visitor came from (shown with each application in Formspree) ----
+    // Campaign links carry ?utm_source=…&utm_campaign=… or ?ref=<referral code>. Kept for this visit only.
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var parts = [];
+      ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) {
+        var v = params.get(k);
+        if (v) parts.push(v.slice(0, 40));
+      });
+      if (params.get("gclid")) parts.push("google-ads");
+      if (params.get("fbclid") && !parts.length) parts.push("facebook-instagram");
+      var ref = (params.get("ref") || "").slice(0, 40);
+      if (ref) parts.push("ref:" + ref);
+      if (!parts.length && document.referrer && document.referrer.indexOf(window.location.host) === -1) {
+        try { parts.push("from:" + new URL(document.referrer).hostname); } catch (e) {}
+      }
+      var source = parts.join(" / ");
+      try {
+        if (source) sessionStorage.setItem("bloomSource", source);
+        else source = sessionStorage.getItem("bloomSource") || "";
+        if (ref) sessionStorage.setItem("bloomRef", ref);
+        else ref = sessionStorage.getItem("bloomRef") || "";
+      } catch (e) {}
+      var field = document.getElementById("source");
+      if (field) { field.value = source || "direct"; field.defaultValue = field.value; }
+      var who = document.getElementById("referrer");
+      if (who && ref && !who.value) { who.value = ref; who.defaultValue = ref; }
+    })();
 
     // ---- form submit ----
     // Create a free endpoint at https://formspree.io, then replace the id below.

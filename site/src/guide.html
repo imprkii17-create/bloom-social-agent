@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- bloom:seo (title, description, canonical, hreflang, social cards) -->
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-180.png">
+<link rel="icon" href="/favicon.ico">
+<!-- Template for the guide pages (site/src/guides/*.md). The build fills in the article, the related guides,
+     the head tags and the structured data. Colours and type match index.html. -->
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #4a2a34;
+    --muted: #7c5763;
+    --surface: #ffffff;
+    --surface-2: #fdf1f4;
+    --border: #f3dde3;
+    --rose: #d1607f;
+    --rose-text: #b3496a;
+    --terracotta: #c9805a;
+    --gold: #b98a3f;
+    --shadow: 24px 40px -30px rgba(209, 96, 127, 0.32);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding-inline: clamp(16px, 5vw, 64px);
+    overflow-x: hidden;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3 {
+    font-family: "Fraunces", "Plus Jakarta Sans", serif;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+    margin: 0;
+    line-height: 1.15;
+    font-weight: 600;
+  }
+  p { color: var(--muted); line-height: 1.7; margin: 0; font-weight: 500; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+  .label { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; font-weight: 700; color: var(--rose-text); }
+  .wrap { max-width: 1180px; margin-inline: auto; }
+
+  /* nav (same look as the home page) */
+  nav.top {
+    max-width: 1180px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between;
+    padding-block: 22px; gap: 16px; position: relative; z-index: 20;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: "Fraunces", serif; font-weight: 600;
+           font-size: 1.1rem; text-decoration: none; color: var(--ink); }
+  .brand-mark { width: 30px; height: 30px; display: block; flex-shrink: 0; filter: drop-shadow(0 6px 12px rgba(209, 96, 127, 0.45)); }
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .lang-toggle { display: inline-flex; align-items: center; gap: 2px; background: var(--surface-2);
+                 border: 1px solid var(--border); border-radius: 999px; padding: 3px; }
+  .lang-btn { font-weight: 700; font-size: 0.74rem; letter-spacing: 0.03em; padding: 11px 14px; min-width: 40px;
+              min-height: 40px; border-radius: 999px; color: var(--muted); display: inline-flex; align-items: center;
+              justify-content: center; text-decoration: none; }
+  .lang-btn.active { background: var(--surface); color: var(--ink); box-shadow: 0 2px 6px rgba(74,42,52,0.12); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 999px; font-weight: 700;
+         font-size: 0.92rem; text-decoration: none; border: none; cursor: pointer; font-family: inherit; }
+  .btn-primary { background: linear-gradient(120deg, var(--rose), var(--terracotta)); color: #fff;
+                 box-shadow: 0 14px 28px -12px rgba(209, 96, 127, 0.5); transition: transform 0.2s ease; }
+  .btn-primary:hover { transform: translateY(-2px); }
+
+  /* article */
+  main { max-width: 1180px; margin-inline: auto; padding-bottom: 56px; }
+  .crumbs { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; color: var(--muted); padding-top: 12px; }
+  .crumbs a { color: var(--rose-text); text-decoration: none; font-weight: 600; }
+  .crumbs a:hover { text-decoration: underline; }
+  .guide-head { max-width: 46rem; padding-block: 28px 40px; border-bottom: 1px solid var(--border); }
+  .guide-head h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.08; }
+  .guide-head .lede { margin-top: 18px; font-size: 1.12rem; color: var(--ink); opacity: 0.86; max-width: 60ch; }
+  .guide-meta { margin-top: 18px; font-size: 0.85rem; }
+  .guide-layout { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); padding-top: 40px; }
+  .toc { position: sticky; top: 24px; align-self: start; }
+  .toc ol { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 2px; border-left: 2px solid var(--border); }
+  .toc a { display: block; padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid transparent; text-decoration: none;
+           color: var(--muted); font-size: 0.9rem; font-weight: 600; line-height: 1.35; }
+  .toc a:hover { color: var(--rose-text); border-left-color: var(--rose); }
+  .prose { max-width: 44rem; min-width: 0; }
+  .prose h2 { font-size: clamp(1.45rem, 3vw, 1.85rem); margin: 48px 0 14px; scroll-margin-top: 24px; }
+  .prose h2:first-child { margin-top: 0; }
+  .prose h3 { font-size: 1.18rem; margin: 30px 0 10px; }
+  .prose p { margin: 0 0 16px; max-width: 68ch; }
+  .prose strong { color: var(--ink); }
+  .prose a { color: var(--rose-text); font-weight: 600; text-underline-offset: 3px; }
+  .prose ul, .prose ol { margin: 0 0 18px; padding-left: 1.3em; color: var(--muted); line-height: 1.65; font-weight: 500; }
+  .prose li { margin-bottom: 8px; padding-left: 4px; }
+  .prose li::marker { color: var(--rose); font-weight: 700; }
+  .callout { background: var(--surface-2); border: 1px solid var(--border); border-radius: 18px; padding: 18px 22px; margin: 6px 0 22px; }
+  .callout p { margin: 0; color: var(--ink); }
+  .callout p + p { margin-top: 10px; }
+  .table-wrap { overflow-x: auto; margin: 6px 0 22px; border: 1px solid var(--border); border-radius: 16px; }
+  table { border-collapse: collapse; width: 100%; min-width: 30rem; font-size: 0.93rem; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  th { background: var(--surface-2); color: var(--ink); font-weight: 700; }
+  td { color: var(--muted); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+
+  /* FAQ (same look as the home page) */
+  .guide-faq { margin-top: 48px; }
+  .faq-list { display: grid; gap: 12px; margin-top: 18px; }
+  .faq-item { border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
+  .faq-item summary { list-style: none; cursor: pointer; padding: 18px 56px 18px 22px; position: relative;
+                      font-family: "Fraunces", "Plus Jakarta Sans", serif; font-weight: 600; font-size: 1.08rem; line-height: 1.3; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+                             font-family: "Plus Jakarta Sans", sans-serif; font-size: 1.4rem; color: var(--rose-text); }
+  .faq-item[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .faq-item p { padding: 0 22px 18px; margin: 0; }
+
+  .guide-cta { margin-top: 48px; padding: 28px; border-radius: 24px; color: #fff;
+               background: linear-gradient(125deg, var(--rose), var(--terracotta) 70%, var(--gold)); }
+  .guide-cta .cta-title { font-family: "Fraunces", serif; font-size: 1.5rem; font-weight: 600; color: #fff; line-height: 1.2; }
+  .guide-cta p { color: rgba(255,255,255,0.92); margin: 8px 0 18px; }
+  .guide-cta .btn { background: #fff; color: var(--ink); box-shadow: none; }
+
+  /* related guides */
+  .related { max-width: 1180px; margin-inline: auto; padding-block: 8px 56px; }
+  .related-label { margin-bottom: 16px; }
+  .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 16px; }
+  .guide-card { display: grid; gap: 8px; align-content: start; padding: 22px; border: 1px solid var(--border);
+                border-radius: 20px; background: var(--surface); text-decoration: none; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .guide-card:hover { border-color: var(--rose); transform: translateY(-2px); }
+  .guide-card-title { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.12rem; line-height: 1.25; color: var(--ink); }
+  .guide-card-text { color: var(--muted); font-size: 0.92rem; line-height: 1.55; font-weight: 500; }
+  .guide-card-more { color: var(--rose-text); font-weight: 700; font-size: 0.88rem; }
+
+  footer { border-top: 1px solid var(--border); padding-block: 36px; display: flex; justify-content: space-between;
+           align-items: center; gap: 20px; flex-wrap: wrap; font-size: 0.85rem; color: var(--muted); max-width: 1180px; margin-inline: auto; }
+  .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .foot-links a { text-decoration: none; color: var(--muted); }
+  .foot-links a:hover { color: var(--rose-text); }
+
+  @media (max-width: 860px) {
+    .guide-layout { grid-template-columns: 1fr; padding-top: 28px; }
+    .toc { position: static; background: var(--surface-2); border: 1px solid var(--border); border-radius: 18px; padding: 16px 18px; }
+  }
+  @media (max-width: 520px) {
+    .nav-right .btn { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.001ms !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+<!-- bloom:fonts (self-hosted) -->
+
+<!-- bloom:structured-data -->
+</head>
+<body>
+<nav class="top">
+  <a class="brand" data-home="" href="/">
+    <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <linearGradient id="brandMarkGradGuide" x1="8" y1="12" x2="92" y2="90" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#d1607f"/>
+          <stop offset="60%" stop-color="#c9805a"/>
+          <stop offset="100%" stop-color="#b98a3f"/>
+        </linearGradient>
+      </defs>
+      <g fill="url(#brandMarkGradGuide)">
+      <path d="M50,52 C36,40 34,16 50,6 C66,16 64,40 50,52 Z" transform="rotate(0 50 50)"/>
+      <path d="M50,52 C36,40 34,16 50,6 C66,16 64,40 50,52 Z" transform="rotate(72 50 50)"/>
+      <path d="M50,52 C36,40 34,16 50,6 C66,16 64,40 50,52 Z" transform="rotate(144 50 50)"/>
+      <path d="M50,52 C36,40 34,16 50,6 C66,16 64,40 50,52 Z" transform="rotate(216 50 50)"/>
+      <path d="M50,52 C36,40 34,16 50,6 C66,16 64,40 50,52 Z" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="7" fill="#3d2430"/>
+    </svg>
+    Bloom Models
+  </a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Nyelv / Language" data-i18n-aria="lang.label">
+      <a class="lang-btn" data-lang="hu" hreflang="hu" lang="hu" href="/">HU</a>
+      <a class="lang-btn" data-lang="en" hreflang="en" lang="en" href="/en/">EN</a>
+    </div>
+    <a class="btn btn-primary" data-home="apply" href="/#apply" data-i18n="nav.applyBtn">Apply now</a>
+  </div>
+</nav>
+
+<main>
+<!-- bloom:article -->
+</main>
+
+<section class="related">
+<!-- bloom:related -->
+</section>
+
+<footer>
+  <span>© 2026 Bloom Models. <span data-i18n="footer.copyrightNote">All rights reserved.</span></span>
+  <div class="foot-links">
+    <a data-home="services" href="/#services" data-i18n="nav.services">Services</a>
+    <a data-home="earnings" href="/#earnings" data-i18n="nav.earnings">Earnings</a>
+    <a data-home="faq" href="/#faq" data-i18n="footer.faq">FAQ</a>
+    <a data-home="apply" href="/#apply" data-i18n="nav.apply">Apply</a>
+  </div>
+</footer>
+</body>
+</html>

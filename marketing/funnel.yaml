@@ -6,6 +6,9 @@
 # interviews:   first conversations held
 # started:      people who started working
 # top_referrer: most common answer to "Who referred you?" (optional)
+# by_source:    applications per channel. Each Formspree submission has a "source" field, e.g.
+#               "google / cpc / okt-search", "meta / paid / okt-meta", "ref:Anna", "from:l.instagram.com", "direct"
+# spend:        what each paid channel cost that week (Ft), and referral bonuses paid
 
 # Copy the example below (remove the # signs), one block per week, newest last.
 weeks:
@@ -15,4 +18,15 @@ weeks:
 #    interviews: 2
 #    started: 1
 #    top_referrer: ""
+#    by_source: {google_ads: 1, meta_ads: 0, referral: 2, instagram_organic: 1, other: 0}
+#    spend: {google_ads: 2100, meta_ads: 0, referral_bonus: 0}
 #    notes: ""
+  - week: 2026-W42
+    applications: 1
+    replied_24h: 1
+    interviews: 0
+    started: 0
+    top_referrer: ""
+    by_source: {google_ads: 0, meta_ads: 0, referral: 0, instagram_organic: 0, other: 1}
+    spend: {google_ads: 0, meta_ads: 0, referral_bonus: 0}
+    notes: "First application (organic, found the site online). Phone call planned this week."

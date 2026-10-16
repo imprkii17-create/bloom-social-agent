@@ -18,7 +18,7 @@ import httpx
 import yaml
 
 from ..facts import Facts, load_facts
-from ..site.config import LANGS, SiteConfig, load_site_config, site_dir
+from ..site.config import LANGS, Guide, SiteConfig, load_guides, load_site_config, site_dir
 from .findings import FindingList
 from .onpage import PageExpectations, PageFacts, check_page
 
@@ -158,13 +158,69 @@ def check_site(
         f.extend(findings)
         pages[lang] = pf
 
+    guides = _load_guides_safely(repo_root, f)
+    _check_guides(cfg, guides, fetcher, f, pages, facts, today, live)
+
     _cross_page(cfg, pages, f)
     robots = _robots(cfg, fetcher, f)
-    _sitemap(cfg, fetcher, f)
+    _sitemap(cfg, fetcher, f, guides)
     _ai_visibility(cfg, fetcher, robots, pages, f)
     if live:
         _live_only(cfg, fetcher, f)
     return SiteReport(f, pages, live)
+
+
+def _load_guides_safely(repo_root: Path, f: FindingList) -> dict[str, dict[str, Guide]]:
+    try:
+        return load_guides(repo_root)
+    except (ValueError, OSError) as exc:
+        f.add(AREA, "warning", "guides-invalid", "A guide page in site/src/guides can't be read", str(exc))
+        return {}
+
+
+def _check_guides(
+    cfg: SiteConfig,
+    guides: dict[str, dict[str, Guide]],
+    fetcher: Fetcher,
+    f: FindingList,
+    pages: dict[str, PageFacts],
+    facts: Facts,
+    today: date | None,
+    live: bool,
+) -> None:
+    """The guide pages (site/src/guides): same on-page checks as the home pages, plus: each language version links
+    to the others (hreflang), and the home page links to every guide (otherwise Google barely finds them)."""
+    homes = {lang: fetcher.get(cfg.url(lang)) for lang in LANGS if guides}
+    for gid, by_lang in guides.items():
+        alternates = {lang: cfg.base_url + by_lang[lang].meta.path for lang in LANGS}
+        alternates["x-default"] = alternates[cfg.x_default]
+        for lang in LANGS:
+            meta = by_lang[lang].meta
+            url = alternates[lang]
+            r = fetcher.get(url)
+            if r.status != 200:
+                f.add(
+                    AREA,
+                    "warning" if live else "critical",
+                    "guide-status",
+                    f"Guide page answers {r.status} instead of 200",
+                    fix="Rebuild the site (bloom site build) and check the latest Netlify deploy.",
+                    page=url,
+                )
+                continue
+            findings, pf = check_page(r.text, PageExpectations(url, lang, meta.keywords, alternates, today), facts)
+            f.extend(findings)
+            pages[f"{lang}:{gid}"] = pf
+            home = homes.get(lang)
+            if home is not None and home.status == 200 and f'href="{meta.path}"' not in home.text:
+                f.add(
+                    AREA,
+                    "warning",
+                    "guide-orphan",
+                    "The home page doesn't link to this guide",
+                    fix="Keep the guides section (<!-- bloom:guides -->) on the home page.",
+                    page=url,
+                )
 
 
 def _cross_page(cfg: SiteConfig, pages: dict[str, PageFacts], f: FindingList) -> None:
@@ -219,7 +275,7 @@ def _robots(cfg: SiteConfig, fetcher: Fetcher, f: FindingList) -> urllib.robotpa
     return rp
 
 
-def _sitemap(cfg: SiteConfig, fetcher: Fetcher, f: FindingList) -> None:
+def _sitemap(cfg: SiteConfig, fetcher: Fetcher, f: FindingList, guides: dict[str, dict[str, Guide]] | None = None) -> None:
     r = fetcher.get(cfg.base_url + "/sitemap.xml")
     if r.status != 200:
         f.add(AREA, "warning", "sitemap-missing", "No sitemap.xml", fix="Add one and submit it in Search Console.")
@@ -231,8 +287,9 @@ def _sitemap(cfg: SiteConfig, fetcher: Fetcher, f: FindingList) -> None:
         return
     ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     locs = {(u.findtext("s:loc", default="", namespaces=ns) or "").strip(): u for u in root.findall("s:url", ns)}
-    for lang in LANGS:
-        url = cfg.url(lang)
+    urls = [cfg.url(lang) for lang in LANGS]
+    urls += [cfg.base_url + g.meta.path for by_lang in (guides or {}).values() for g in by_lang.values()]
+    for url in urls:
         if url not in locs:
             f.add(AREA, "warning", "sitemap-page", f"sitemap.xml doesn't list {url}")
         elif not locs[url].findtext("s:lastmod", default="", namespaces=ns):
