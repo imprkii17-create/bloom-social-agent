@@ -1,5 +1,5 @@
 id: 2026-10-20-earnings
-status: approved
+status: missed
 type: image
 platforms:
 - instagram
@@ -10,3 +10,6 @@ caption_file: caption.txt
 alt_text: A woman in a cream halter top leaning in a sunlit wooden doorway, with a large "80%" and the
   line "of what you bring in stays with you".
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
+result:
+  attempts: 0
+  last_error: 'Missed: scheduled 2026-10-15 18:30, checked 1175 min late'

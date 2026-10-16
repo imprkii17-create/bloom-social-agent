@@ -1,5 +1,5 @@
 id: 2026-10-22-discretion
-status: approved
+status: missed
 type: image
 platforms:
 - instagram
@@ -10,3 +10,6 @@ caption_file: caption.txt
 alt_text: A woman with slicked-back dark hair looking straight at the camera, framed in an arch on a dark
   background, with the headline "Your spotlight. Your rules. Your secret." and three privacy promises.
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
+result:
+  attempts: 0
+  last_error: 'Missed: scheduled 2026-10-14 18:30, checked 2615 min late'

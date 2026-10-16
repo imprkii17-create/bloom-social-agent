@@ -1,5 +1,5 @@
 id: 2026-10-21-no-experience
-status: approved
+status: missed
 type: image
 platforms:
 - instagram
@@ -10,3 +10,6 @@ caption_file: caption.txt
 alt_text: A professional studio desk with a camera, laptop and tablet under warm light, above the headline
   "Never been on camera? Perfect." and four steps from applying to a first stream.
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
+result:
+  attempts: 0
+  last_error: 'Missed: scheduled 2026-10-13 18:30, checked 4055 min late'
