@@ -1,5 +1,5 @@
 id: 2026-10-23-apply-now
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -11,7 +11,8 @@ alt_text: A young woman in a headscarf smiling and winking at the camera, with t
   to apply. A whole new week ahead." and an "Apply — link in bio" button.
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
 result:
+  instagram:
+    media_id: '18390652387228524'
+    permalink: https://www.instagram.com/p/DekAlw1FLkc/
+    published_at: '2026-10-16T16:54:19+00:00'
   attempts: 0
-  ig_pending_container: '18118409872907050'
-  ig_pending_fingerprint: dee5ebf25e919a5f
-  ig_attempt_started_at: '2026-10-16T16:54:19+00:00'
