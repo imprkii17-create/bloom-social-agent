@@ -1,59 +1,87 @@
 {
  "week": "2026-W43",
- "mode": "library",
+ "mode": "claude",
  "plan": {
-  "summary": "Rule-based plan (no Claude API key): next week's posts come from the ready-made library, and the recommendations below come straight from the SEO and Instagram checks.",
+  "summary": "This week has no free post slots, so there are no new posts: all of 19–30 October is already scheduled and only the 30 October post is still a draft. Instagram numbers are missing because the API access was blocked (code 200), so I can't judge the funnel from data. The last known snapshot (W43 brief) was 2 followers, 0 reach and 20 profile views. Google shows the first signs of life: 5 impressions and 2 clicks over 28 days at an average position of 15.8, but no query data yet. Google hasn't indexed the English page yet, and mobile LCP on the Hungarian page is 2.7s, slightly above the 2.5s target. The most useful things this week are fixing the Instagram connection, requesting indexing, and logging applications.",
   "bottleneck": "unknown",
-  "bottleneck_reason": "No Instagram numbers yet.",
-  "wins": [],
-  "problems": [],
+  "bottleneck_reason": "The Instagram profile couldn't be read (API access blocked), funnel_weeks is empty, and Search Console has only 5 impressions with no queries. Without reach, link clicks and application counts, no stage can be named the bottleneck. To log: weekly Instagram reach, profile visits and bio link clicks (copy them by hand from the Instagram app's Insights if the API stays blocked), site visits, and the number of form submissions in marketing/funnel.yaml.",
+  "wins": [
+   "Technical health is strong: Website 100, AI search 100, Instagram 98, Google Search 94, Speed 94 (up from 88 in the last brief).",
+   "Google has started showing the Hungarian page: 5 impressions and 2 clicks from Hungary in 28 days, average position 15.8 (previously 0).",
+   "Both language versions have complete structured data (FAQPage, JobPosting, Organization, WebSite), hreflang, and an Instagram sameAs link.",
+   "The content calendar is fully approved through 29 October, with only 30 October still a draft."
+  ],
+  "problems": [
+   "The Instagram API returns 'access blocked (code 200)', so there are no follower, reach or post figures.",
+   "The English page (/en/) is 'Discovered – currently not indexed' and has never been crawled.",
+   "Mobile LCP is 2.7s on the Hungarian page (2.4s on the English one); the Hungarian one is above the 2.5s 'good' threshold.",
+   "No funnel data is logged, so we can't tell whether any applications came from Instagram or Google.",
+   "No Reels are planned or published, even though Reels are the main way to reach people who don't follow us.",
+   "The site has only 7 FAQ entries and no real applicant questions have been collected yet."
+  ],
   "decisions_for_you": [
-   "Log last week's applications in marketing/funnel.yaml — it's how the agent knows what works."
+   "Reconnect Instagram API access (check that the token and permissions are valid and the app isn't restricted in Meta Business settings) so next week's report has real numbers.",
+   "In Search Console, run URL inspection → Request indexing for https://bloommodels.hu/en/.",
+   "Approve or edit the 30 October draft post (not-from-budapest).",
+   "Log last week's applications and bio-link clicks in marketing/funnel.yaml, even if the number is 0.",
+   "Decide whether you can film 1–2 short Reels a week (studio detail shots are enough, no faces needed), since the Reel test below depends on it.",
+   "Write down the real questions applicants ask in DMs and the form, so they can become FAQ entries."
   ],
   "posts": [],
   "reel_ideas": [
    {
     "title": "Myth vs. reality (5 seconds each)",
-    "hook": "„Ezt mindenki hiszi az online modell munkáról…”",
+    "hook": "Ezt mindenki hiszi az online modell munkáról…",
     "shots": [
-     "Text on screen: myth 1 → reality",
-     "Studio detail shots between myths",
+     "Text on screen: myth 1 („Modellnek kell lenned hozzá”) → reality: nem kell tapasztalat, ingyenes betanítás",
+     "Studio detail shots between myths: desk, camera, warm lights",
+     "Text on screen: myth 2 („Nincs beleszólásod, mit mutatsz”) → reality: te döntöd el",
      "End card: link a bióban · 18+"
     ],
-    "caption_idea": "3 tévhit, amit minden héten hallunk."
+    "caption_idea": "Online modell munka: 2 tévhit, 2 őszinte válasz. Jelentkezés: link a bióban · 18+ — Online modeling myths, honest answers. Apply: link in bio · 18+"
    },
    {
-    "title": "Studio walk-through",
-    "hook": "„Így néz ki egy profi streamelő stúdió Budapesten”",
+    "title": "A stúdió 10 másodpercben",
+    "hook": "Ide jössz dolgozni Budapest V. kerületében.",
     "shots": [
-     "Door opens to the studio",
-     "Lights switching on",
-     "Camera + laptop setup",
-     "Window view toward the Basilica"
+     "Slow pan over the streaming desk with the laptop and camera",
+     "Warm studio lights switching on",
+     "Text overlay: „Stúdió a Szent István-bazilika közelében — vagy otthonról”",
+     "End card: Jelentkezés 2 perc · 18+"
     ],
-    "caption_idea": "Profi fények, profi technika — neked csak jönnöd kell."
+    "caption_idea": "Stúdió vagy otthoni munka: te választod. Jelentkezés: link a bióban · 18+ — Studio or home: your choice. Apply: link in bio · 18+"
    }
   ],
   "story_ideas": [
-   "Poll: „Mi tartana vissza attól, hogy kipróbáld?” (tapasztalat / diszkréció / idő / más)",
-   "Behind the scenes: 10 seconds of the studio lights going on",
-   "Question box: „Kérdezz bármit az online modell munkáról” — answer 3 in Stories, best one becomes a FAQ entry",
-   "Repost today's feed post with a „link a bióban” sticker"
+   "Daily Story that reposts the day's scheduled post, with a 'link in bio · 18+' reminder.",
+   "Poll: 'Reggeli, délutáni, esti vagy éjszakai blokk lenne neked jó?' (flexibility pillar, no engagement bait).",
+   "FAQ sticker Story: 'Mennyi idő a jelentkezés?' → two minutes, one photo.",
+   "Behind-the-scenes Story of the studio desk and lights, original footage only.",
+   "Story answering one real DM question each week (anonymised, no personal details)."
   ],
-  "experiments": [],
+  "experiments": [
+   {
+    "title": "Trial Reel hook test",
+    "hypothesis": "A question hook ('Mennyit lehet valójában keresni? Őszintén.') earns more profile visits per reach than a myth hook ('Ezt mindenki hiszi…') when shown to non-followers as Trial Reels.",
+    "metric": "Profile visits per reach, and shares per reach, per Reel (compare the two hook types across 2+ Reels each)",
+    "duration_weeks": 3
+   }
+  ],
   "experiment_updates": [],
   "site_changes": [],
   "seo_actions": [
-   "Google Search: Google hasn't indexed this page: URL is unknown to Google — In Search Console use URL inspection → Request indexing. New sites take days to weeks.",
-   "Speed: Main content appears after 2.8s on mobile (test run) — Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files.",
-   "Speed: Main content appears after 3.0s on mobile (test run) — Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files.",
-   "Google Search: No Google search impressions yet — Normal for a new site: it takes a few weeks. Keep the sitemap submitted.",
-   "Instagram: No Reels planned — Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week."
+   "Request indexing for https://bloommodels.hu/en/ in Search Console, then re-check in a week.",
+   "Reduce the mobile LCP on the Hungarian page from 2.7s to under 2.5s: compress the hero image (WebP, correct dimensions), preload it, and cut render-blocking files. Batch with the next weekly deploy.",
+   "No title, description or FAQ change this week: Search Console has no queries yet, so there is no data to act on. Re-check once queries appear (positions 4–20 are the first targets).",
+   "Start collecting real applicant questions for new FAQ entries (the site has 7 now); add them in HU and EN together.",
+   "Submit consistent name, city and website to a few Hungarian business directories to build third-party mentions.",
+   "Review whether hreflang x-default should point to the Hungarian page instead of /en/, since Hungarian is the primary audience; this is a low-priority decision for you.",
+   "Keep the 'undecided' explicit keywords (webkamerás modell munka, webcam modell állás) off the site until you decide on them."
   ]
  },
  "posts": [],
  "dropped": [],
  "posts_pr": "",
  "site_pr": "",
- "spend_usd": 0.0
+ "spend_usd": 0.071151
 }

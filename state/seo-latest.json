@@ -1,11 +1,11 @@
 {
- "created": "2026-10-12T22:32+02:00",
+ "created": "2026-10-16T10:09+02:00",
  "live": true,
  "scores": {
   "Website": 100,
-  "Speed": 88,
-  "Google Search": 93,
-  "Instagram": 99,
+  "Speed": 94,
+  "Google Search": 94,
+  "Instagram": 98,
   "AI search": 100
  },
  "findings": [
@@ -13,7 +13,7 @@
    "area": "Google Search",
    "severity": "warning",
    "code": "not-indexed",
-   "title": "Google hasn't indexed this page: URL is unknown to Google",
+   "title": "Google hasn't indexed this page: Discovered - currently not indexed",
    "detail": "last crawl: never",
    "fix": "In Search Console use URL inspection → Request indexing. New sites take days to weeks.",
    "page": "https://bloommodels.hu/en/"
@@ -22,28 +22,10 @@
    "area": "Speed",
    "severity": "warning",
    "code": "lcp",
-   "title": "Main content appears after 2.8s on mobile (test run)",
+   "title": "Main content appears after 2.7s on mobile (test run)",
    "detail": "",
    "fix": "Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files.",
    "page": "https://bloommodels.hu/"
-  },
-  {
-   "area": "Speed",
-   "severity": "warning",
-   "code": "lcp",
-   "title": "Main content appears after 3.0s on mobile (test run)",
-   "detail": "",
-   "fix": "Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files.",
-   "page": "https://bloommodels.hu/en/"
-  },
-  {
-   "area": "Google Search",
-   "severity": "info",
-   "code": "gsc-no-data",
-   "title": "No Google search impressions yet",
-   "detail": "2026-09-12 – 2026-10-09",
-   "fix": "Normal for a new site: it takes a few weeks. Keep the sitemap submitted.",
-   "page": ""
   },
   {
    "area": "Instagram",
@@ -52,6 +34,15 @@
    "title": "No Reels planned",
    "detail": "",
    "fix": "Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week.",
+   "page": ""
+  },
+  {
+   "area": "Instagram",
+   "severity": "info",
+   "code": "ig-profile-error",
+   "title": "Couldn't read the Instagram profile",
+   "detail": "API access blocked. (code 200) [trace Ajo4eMaWpIWRfWl0k-h4Ni4]",
+   "fix": "",
    "page": ""
   }
  ],
@@ -115,10 +106,10 @@
    "strategy": "mobile",
    "score": 96,
    "lab": {
-    "lcp_ms": 2821.0,
-    "cls": 0.002787361000544036,
+    "lcp_ms": 2708.0,
+    "cls": 0.009554993786886536,
     "tbt_ms": 0.0,
-    "fcp_ms": 1051.0
+    "fcp_ms": 956.0
    },
    "field_data": {},
    "opportunities": [],
@@ -127,12 +118,12 @@
   {
    "url": "https://bloommodels.hu/",
    "strategy": "desktop",
-   "score": 100,
+   "score": 99,
    "lab": {
-    "lcp_ms": 681.0,
-    "cls": 0.009970694361119914,
+    "lcp_ms": 700.0,
+    "cls": 0.0008875813252691387,
     "tbt_ms": 0.0,
-    "fcp_ms": 481.0
+    "fcp_ms": 445.0
    },
    "field_data": {},
    "opportunities": [],
@@ -141,12 +132,12 @@
   {
    "url": "https://bloommodels.hu/en/",
    "strategy": "mobile",
-   "score": 91,
+   "score": 95,
    "lab": {
-    "lcp_ms": 2989.0,
+    "lcp_ms": 2412.0,
     "cls": 0.0,
     "tbt_ms": 0.0,
-    "fcp_ms": 1662.0
+    "fcp_ms": 1507.0
    },
    "field_data": {},
    "opportunities": [],
@@ -157,10 +148,10 @@
    "strategy": "desktop",
    "score": 100,
    "lab": {
-    "lcp_ms": 698.5,
-    "cls": 0.0001428002231253486,
+    "lcp_ms": 683.5,
+    "cls": 0.013045734801973269,
     "tbt_ms": 0.0,
-    "fcp_ms": 365.0
+    "fcp_ms": 381.0
    },
    "field_data": {},
    "opportunities": [],
@@ -168,28 +159,41 @@
   }
  ],
  "search": {
-  "start": "2026-09-12",
-  "end": "2026-10-09",
-  "clicks": 0,
-  "impressions": 0,
-  "ctr": 0,
-  "position": 0,
+  "start": "2026-09-16",
+  "end": "2026-10-13",
+  "clicks": 2.0,
+  "impressions": 5.0,
+  "ctr": 0.4,
+  "position": 15.8,
   "prev_clicks": 0,
   "prev_impressions": 0,
   "queries": [],
-  "pages": [],
-  "countries": [],
+  "pages": [
+   {
+    "keys": [
+     "https://bloommodels.hu/"
+    ],
+    "clicks": 2.0,
+    "impressions": 5.0,
+    "ctr": 0.4,
+    "position": 15.8
+   }
+  ],
+  "countries": [
+   {
+    "keys": [
+     "hun"
+    ],
+    "clicks": 2.0,
+    "impressions": 5.0,
+    "ctr": 0.4,
+    "position": 15.8
+   }
+  ],
   "striking_distance": [],
   "low_ctr": [],
   "new_queries": []
  },
- "profile": {
-  "username": "bloommodelsagency",
-  "name": "Bloom Models Agency",
-  "biography": "🌸 Online modellügynökség · Budapest\n⏰ Rugalmas beosztás · 💸\n🔒 Diszkrét · nem kell tapasztalat\n🇭🇺 🇬🇧 HU/EN · Jelentkezz 👇 · 18+",
-  "website": "https://bloommodels.hu",
-  "followers_count": 2,
-  "media_count": 0
- },
+ "profile": {},
  "skipped": []
 }

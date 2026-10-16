@@ -1,2 +1,11 @@
 # Experiments the marketing agent runs and evaluates. You can edit or stop any of them.
-experiments: []
+experiments:
+- id: 20261016-1
+  title: Trial Reel hook test
+  hypothesis: A question hook ('Mennyit lehet valójában keresni? Őszintén.') earns more profile visits per reach
+    than a myth hook ('Ezt mindenki hiszi…') when shown to non-followers as Trial Reels.
+  metric: Profile visits per reach, and shares per reach, per Reel (compare the two hook types across 2+ Reels each)
+  start: '2026-10-16'
+  end: '2026-11-06'
+  status: running
+  result: ''
