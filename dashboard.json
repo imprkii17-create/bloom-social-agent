@@ -1,0 +1,473 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-18T01:54+02:00",
+ "timezone": "Europe/Budapest",
+ "repo": "imprkii17-create/bloom-social-agent",
+ "dashboard_url": "https://imprkii17-create.github.io/bloom-social-agent/",
+ "features": {
+  "claude": true,
+  "telegram": true,
+  "search_console": true,
+  "pagespeed_key": true,
+  "instagram": true
+ },
+ "site": {
+  "checked": true,
+  "checked_at": "2026-10-18T01:54+02:00",
+  "base_url": "https://bloommodels.hu",
+  "ok": true,
+  "pages": [
+   {
+    "url": "https://bloommodels.hu/",
+    "status": 200,
+    "ms": 670,
+    "ok": true,
+    "note": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "status": 200,
+    "ms": 23,
+    "ok": true,
+    "note": ""
+   }
+  ]
+ },
+ "queue": {
+  "counts": {
+   "published": 1,
+   "approved": 8,
+   "draft": 1
+  },
+  "upcoming": [
+   {
+    "id": "2026-10-19-flexible-hours",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-19 18:30",
+    "when": "2026-10-19T18:30+02:00",
+    "caption": "Hétfő reggel 8-kor ébresztő? Az online modell munkánál ez nem kötelező. ⏰ A Bloom Modelsnél te döntöd el, mikor dolgozol: heti nagyjából 20 óra, 5 órás blokkok…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-19-flexible-hours/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-26-studio-or-home",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-20 18:30",
+    "when": "2026-10-20T18:30+02:00",
+    "caption": "Stúdióból vagy otthonról? Nálunk nem kell választanod a kettő közül véglegesen. 🏠✨ 📍 Stúdióban: Budapest V. kerületében, a Bazilika mellett — profi fény, felsz…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-26-studio-or-home/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-27-myths",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-21 18:30",
+    "when": "2026-10-21T18:30+02:00",
+    "caption": "4 tévhit az online modell munkáról, ami miatt sokan el sem kezdik. 🙅‍♀️ 1️⃣ „Modellmúlt kell hozzá.\" → Nem kell tapasztalat, az első naptól betanítunk. 2️⃣ „Mi…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-27-myths/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-28-what-you-get",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-22 18:30",
+    "when": "2026-10-22T18:30+02:00",
+    "caption": "Mit kapsz, ha online modellként hozzánk csatlakozol? Röviden: mindent, ami az induláshoz kell. 🎁 📚 Ingyenes betanítás az első naptól 🎥 Profi felszerelés és vil…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-28-what-you-get/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-29-faq",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-23 18:30",
+    "when": "2026-10-23T18:30+02:00",
+    "caption": "A 4 kérdés az online modell munkáról, amit a legtöbbször kapunk. 💬 ❓ Kell tapasztalat? — Nem. Az első naptól betanítunk. ❓ Mennyi időt kell rászánni? — Átlagos…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-29-faq/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-21-no-experience",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-26 18:30",
+    "when": "2026-10-26T18:30+01:00",
+    "caption": "Még sosem álltál kamera elé? Pont jó — az online modell munkához nem kell tapasztalat. 🎥 Nem kell modellmúlt, nem kell portfólió. Az első naptól betanítunk: te…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-21-no-experience/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-22-discretion",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-27 18:30",
+    "when": "2026-10-27T18:30+01:00",
+    "caption": "A te reflektorfényed. A te szabályaid. A te titkod. Online modell munka, teljes diszkrécióval. 🔒 A diszkréció nálunk nem utólagos gondolat — az első naptól be…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-22-discretion/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-20-earnings",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-28 18:30",
+    "when": "2026-10-28T18:30+01:00",
+    "caption": "Beszéljünk nyíltan a pénzről. 💸 Budapesten nálunk az egyik legmagasabb a bevételi részesedés: amit behozol, annak akár 80%-a a tiéd. Megbízható havi kifizetés,…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-20-earnings/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-30-not-from-budapest",
+    "status": "draft",
+    "type": "image",
+    "scheduled_at": "2026-10-30 18:30",
+    "when": "2026-10-30T18:30+01:00",
+    "caption": "Nem Budapesten élsz? Ez nem akadály. 🚆 ✔️ Segítünk megszervezni az utazást ✔️ Szállás rövid vagy hosszabb távra ✔️ Vagy kezdd otthonról — segítünk berendezni a…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-30-not-from-budapest/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   }
+  ],
+  "recent": [
+   {
+    "id": "2026-10-23-apply-now",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-16 18:30",
+    "when": "2026-10-16T18:30+02:00",
+    "caption": "Jön a hétvége. Mi lenne, ha a jövő heted már egy kicsit a sajátod lenne? Online modell munka, rugalmasan. 🌸 Nem a külsőn múlik — hanem azon, hogy jól érzed-e m…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-23-apply-now/image.jpg",
+    "permalink": "https://www.instagram.com/p/DekAlw1FLkc/",
+    "published_at": "2026-10-16T16:54:19+00:00",
+    "error": null
+   }
+  ],
+  "next": {
+   "id": "2026-10-19-flexible-hours",
+   "status": "approved",
+   "type": "image",
+   "scheduled_at": "2026-10-19 18:30",
+   "when": "2026-10-19T18:30+02:00",
+   "caption": "Hétfő reggel 8-kor ébresztő? Az online modell munkánál ez nem kötelező. ⏰ A Bloom Modelsnél te döntöd el, mikor dolgozol: heti nagyjából 20 óra, 5 órás blokkok…",
+   "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-19-flexible-hours/image.jpg",
+   "permalink": null,
+   "published_at": null,
+   "error": null
+  },
+  "unreadable": [],
+  "drafts_next_7_days": []
+ },
+ "instagram": {
+  "configured": true,
+  "live": {
+   "username": "bloommodelsagency",
+   "followers": 4,
+   "media_count": 1,
+   "fetched_at": "2026-10-18T01:54+02:00"
+  }
+ },
+ "seo": {
+  "created": "2026-10-16T10:09+02:00",
+  "scores": {
+   "Website": 100,
+   "Speed": 94,
+   "Google Search": 94,
+   "Instagram": 98,
+   "AI search": 100
+  },
+  "findings": [
+   {
+    "area": "Google Search",
+    "severity": "warning",
+    "title": "Google hasn't indexed this page: Discovered - currently not indexed",
+    "page": "https://bloommodels.hu/en/",
+    "fix": "In Search Console use URL inspection → Request indexing. New sites take days to weeks."
+   },
+   {
+    "area": "Speed",
+    "severity": "warning",
+    "title": "Main content appears after 2.7s on mobile (test run)",
+    "page": "https://bloommodels.hu/",
+    "fix": "Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files."
+   },
+   {
+    "area": "Instagram",
+    "severity": "info",
+    "title": "No Reels planned",
+    "page": "",
+    "fix": "Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week."
+   },
+   {
+    "area": "Instagram",
+    "severity": "info",
+    "title": "Couldn't read the Instagram profile",
+    "page": "",
+    "fix": ""
+   }
+  ],
+  "counts": {
+   "critical": 0,
+   "warning": 2,
+   "info": 2
+  },
+  "search": {
+   "start": "2026-09-16",
+   "end": "2026-10-13",
+   "clicks": 2.0,
+   "impressions": 5.0,
+   "ctr": 0.4,
+   "position": 15.8,
+   "prev_clicks": 0,
+   "prev_impressions": 0,
+   "queries": [],
+   "pages": [
+    {
+     "keys": [
+      "https://bloommodels.hu/"
+     ],
+     "clicks": 2.0,
+     "impressions": 5.0,
+     "ctr": 0.4,
+     "position": 15.8
+    }
+   ],
+   "countries": [
+    {
+     "keys": [
+      "hun"
+     ],
+     "clicks": 2.0,
+     "impressions": 5.0,
+     "ctr": 0.4,
+     "position": 15.8
+    }
+   ],
+   "striking_distance": [],
+   "low_ctr": [],
+   "new_queries": []
+  },
+  "speed": [
+   {
+    "url": "https://bloommodels.hu/",
+    "strategy": "mobile",
+    "score": 96,
+    "lcp_ms": 2708.0,
+    "cls": 0.009554993786886536,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/",
+    "strategy": "desktop",
+    "score": 99,
+    "lcp_ms": 700.0,
+    "cls": 0.0008875813252691387,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "strategy": "mobile",
+    "score": 95,
+    "lcp_ms": 2412.0,
+    "cls": 0.0,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "strategy": "desktop",
+    "score": 100,
+    "lcp_ms": 683.5,
+    "cls": 0.013045734801973269,
+    "error": ""
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-12",
+    "scores": {
+     "Website": 100,
+     "Speed": 98,
+     "Google Search": 93,
+     "Instagram": 99,
+     "AI search": 94
+    },
+    "impressions": 0,
+    "clicks": 0,
+    "speed": {}
+   },
+   {
+    "date": "2026-10-12",
+    "scores": {
+     "Website": 100,
+     "Speed": 88,
+     "Google Search": 93,
+     "Instagram": 99,
+     "AI search": 100
+    },
+    "impressions": 0,
+    "clicks": 0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 96,
+     "desktop:https://bloommodels.hu/": 100,
+     "mobile:https://bloommodels.hu/en/": 91,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   },
+   {
+    "date": "2026-10-16",
+    "scores": {
+     "Website": 100,
+     "Speed": 94,
+     "Google Search": 94,
+     "Instagram": 98,
+     "AI search": 100
+    },
+    "impressions": 5.0,
+    "clicks": 2.0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 96,
+     "desktop:https://bloommodels.hu/": 99,
+     "mobile:https://bloommodels.hu/en/": 95,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   }
+  ]
+ },
+ "marketing": {
+  "week": "2026-W43",
+  "mode": "claude",
+  "summary": "This week has no free post slots, so there are no new posts: all of 19–30 October is already scheduled and only the 30 October post is still a draft. Instagram numbers are missing because the API access was blocked (code 200), so I can't judge the funnel from data. The last known snapshot (W43 brief) was 2 followers, 0 reach and 20 profile views. Google shows the first signs of life: 5 impressions and 2 clicks over 28 days at an average position of 15.8, but no query data yet. Google hasn't indexed the English page yet, and mobile LCP on the Hungarian page is 2.7s, slightly above the 2.5s target. The most useful things this week are fixing the Instagram connection, requesting indexing, and logging applications.",
+  "bottleneck": "unknown",
+  "bottleneck_reason": "The Instagram profile couldn't be read (API access blocked), funnel_weeks is empty, and Search Console has only 5 impressions with no queries. Without reach, link clicks and application counts, no stage can be named the bottleneck. To log: weekly Instagram reach, profile visits and bio link clicks (copy them by hand from the Instagram app's Insights if the API stays blocked), site visits, and the number of form submissions in marketing/funnel.yaml.",
+  "wins": [
+   "Technical health is strong: Website 100, AI search 100, Instagram 98, Google Search 94, Speed 94 (up from 88 in the last brief).",
+   "Google has started showing the Hungarian page: 5 impressions and 2 clicks from Hungary in 28 days, average position 15.8 (previously 0).",
+   "Both language versions have complete structured data (FAQPage, JobPosting, Organization, WebSite), hreflang, and an Instagram sameAs link.",
+   "The content calendar is fully approved through 29 October, with only 30 October still a draft."
+  ],
+  "problems": [
+   "The Instagram API returns 'access blocked (code 200)', so there are no follower, reach or post figures.",
+   "The English page (/en/) is 'Discovered – currently not indexed' and has never been crawled.",
+   "Mobile LCP is 2.7s on the Hungarian page (2.4s on the English one); the Hungarian one is above the 2.5s 'good' threshold.",
+   "No funnel data is logged, so we can't tell whether any applications came from Instagram or Google.",
+   "No Reels are planned or published, even though Reels are the main way to reach people who don't follow us.",
+   "The site has only 7 FAQ entries and no real applicant questions have been collected yet."
+  ],
+  "decisions": [
+   "Reconnect Instagram API access (check that the token and permissions are valid and the app isn't restricted in Meta Business settings) so next week's report has real numbers.",
+   "In Search Console, run URL inspection → Request indexing for https://bloommodels.hu/en/.",
+   "Approve or edit the 30 October draft post (not-from-budapest).",
+   "Log last week's applications and bio-link clicks in marketing/funnel.yaml, even if the number is 0.",
+   "Decide whether you can film 1–2 short Reels a week (studio detail shots are enough, no faces needed), since the Reel test below depends on it.",
+   "Write down the real questions applicants ask in DMs and the form, so they can become FAQ entries."
+  ],
+  "reels": [
+   {
+    "title": "Myth vs. reality (5 seconds each)",
+    "hook": "Ezt mindenki hiszi az online modell munkáról…",
+    "shots": [
+     "Text on screen: myth 1 („Modellnek kell lenned hozzá”) → reality: nem kell tapasztalat, ingyenes betanítás",
+     "Studio detail shots between myths: desk, camera, warm lights",
+     "Text on screen: myth 2 („Nincs beleszólásod, mit mutatsz”) → reality: te döntöd el",
+     "End card: link a bióban · 18+"
+    ],
+    "caption_idea": "Online modell munka: 2 tévhit, 2 őszinte válasz. Jelentkezés: link a bióban · 18+ — Online modeling myths, honest answers. Apply: link in bio · 18+"
+   },
+   {
+    "title": "A stúdió 10 másodpercben",
+    "hook": "Ide jössz dolgozni Budapest V. kerületében.",
+    "shots": [
+     "Slow pan over the streaming desk with the laptop and camera",
+     "Warm studio lights switching on",
+     "Text overlay: „Stúdió a Szent István-bazilika közelében — vagy otthonról”",
+     "End card: Jelentkezés 2 perc · 18+"
+    ],
+    "caption_idea": "Stúdió vagy otthoni munka: te választod. Jelentkezés: link a bióban · 18+ — Studio or home: your choice. Apply: link in bio · 18+"
+   }
+  ],
+  "stories": [
+   "Daily Story that reposts the day's scheduled post, with a 'link in bio · 18+' reminder.",
+   "Poll: 'Reggeli, délutáni, esti vagy éjszakai blokk lenne neked jó?' (flexibility pillar, no engagement bait).",
+   "FAQ sticker Story: 'Mennyi idő a jelentkezés?' → two minutes, one photo.",
+   "Behind-the-scenes Story of the studio desk and lights, original footage only.",
+   "Story answering one real DM question each week (anonymised, no personal details)."
+  ],
+  "experiments": [
+   {
+    "title": "Trial Reel hook test",
+    "hypothesis": "A question hook ('Mennyit lehet valójában keresni? Őszintén.') earns more profile visits per reach than a myth hook ('Ezt mindenki hiszi…') when shown to non-followers as Trial Reels.",
+    "metric": "Profile visits per reach, and shares per reach, per Reel (compare the two hook types across 2+ Reels each)",
+    "duration_weeks": 3
+   }
+  ],
+  "posts_pr": "",
+  "site_pr": "",
+  "spend_usd": 0.071151,
+  "brief": "reports/marketing/2026-W43.md"
+ },
+ "funnel": [
+  {
+   "week": "2026-W42",
+   "applications": 1,
+   "replied_24h": 1,
+   "interviews": 0,
+   "started": 0,
+   "top_referrer": "",
+   "by_source": {
+    "google_ads": 0,
+    "meta_ads": 0,
+    "referral": 0,
+    "instagram_organic": 0,
+    "other": 1
+   },
+   "spend": {
+    "google_ads": 0,
+    "meta_ads": 0,
+    "referral_bonus": 0
+   },
+   "notes": "First application (organic, found the site online). Phone call planned this week."
+  }
+ ],
+ "attention": [
+  {
+   "level": "info",
+   "text": "Reconnect Instagram API access (check that the token and permissions are valid and the app isn't restricted in Meta Business settings) so next week's report has real numbers."
+  },
+  {
+   "level": "info",
+   "text": "In Search Console, run URL inspection → Request indexing for https://bloommodels.hu/en/."
+  },
+  {
+   "level": "info",
+   "text": "Approve or edit the 30 October draft post (not-from-budapest)."
+  },
+  {
+   "level": "info",
+   "text": "Log last week's applications and bio-link clicks in marketing/funnel.yaml, even if the number is 0."
+  },
+  {
+   "level": "info",
+   "text": "Decide whether you can film 1–2 short Reels a week (studio detail shots are enough, no faces needed), since the Reel test below depends on it."
+  }
+ ]
+}
