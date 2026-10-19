@@ -18,6 +18,7 @@ IMAGE_EXT = {".jpg", ".jpeg"}
 CONVERTIBLE_EXT = {".png", ".webp"}
 VIDEO_EXT = {".mp4", ".mov"}
 MAX_CAPTION = 2200
+MAX_FEED_POSTS_PER_DAY = 3  # morning, afternoon, evening
 MAX_HASHTAGS = 5  # Instagram limit since Dec 2025
 MAX_MENTIONS = 20
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
@@ -198,7 +199,7 @@ def validate_all(
     issues = [Issue("error", e.path.parent.name, f"post.yaml: {e.message}") for e in load_errors]
     facts = load_facts(settings.repo_root) if (settings.repo_root / "brand" / "facts.yaml").is_file() else None
     seen: dict[str, str] = {}
-    days: dict[str, str] = {}
+    days: dict[str, list[str]] = {}
     for post in posts:
         issues.extend(validate_post(post, settings, now, facts))
         if post.status in (Status.APPROVED, Status.DRAFT):
@@ -207,7 +208,11 @@ def validate_all(
             seen.setdefault(post.scheduled_at, post.id)
             day = post.scheduled_at[:10]
             if post.type != PostType.STORY:
-                if day in days and post.status == Status.APPROVED:
-                    issues.append(Issue("warning", post.id, f"second feed post on {day} (also {days[day]})"))
-                days.setdefault(day, post.id)
+                same_day = days.setdefault(day, [])
+                if len(same_day) >= MAX_FEED_POSTS_PER_DAY and post.status == Status.APPROVED:
+                    issues.append(
+                        Issue("warning", post.id, f"more than {MAX_FEED_POSTS_PER_DAY} feed posts on {day} "
+                              f"(also {', '.join(same_day)})")
+                    )
+                same_day.append(post.id)
     return issues

@@ -1,0 +1,13 @@
+id: 2026-10-24-nem-kell-influenszernek-lenned
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-10-24 08:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'AI-generált kép: fiatal nő kávéval a kezében egy napos városi utcán. A képen
+  a felirat: „Reggeli kávé, nyugodt tempó. A napod a tiéd.” — Bloom Models, online modell munka Budapesten.'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (training).

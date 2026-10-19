@@ -304,6 +304,7 @@ class LibraryPhoto:
     alt_hu: str
     instagram_ok: bool
     focus_y: float
+    ai_generated: bool = False
 
 
 def photo_library(repo_root: Path) -> dict[str, LibraryPhoto]:
@@ -322,6 +323,7 @@ def photo_library(repo_root: Path) -> dict[str, LibraryPhoto]:
                 str(m.get("alt_hu", "")),
                 bool(m.get("instagram_ok", False)),
                 float(m.get("focus_y", 0.35)),
+                bool(m.get("ai_generated", False)),
             )
     return out
 

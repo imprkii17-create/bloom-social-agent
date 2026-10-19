@@ -26,6 +26,7 @@ POST_DAYS = (0, 1, 2, 3, 4, 5, 6)  # every day, Monday–Sunday
 SLOT_GAP = timedelta(minutes=90)  # a feed post this close to a slot already fills it
 FOOTER = "18+ | Budapest, V. ker. / District V"
 LIBRARY_NOTE = "From library: "
+AI_NOTE_RE = re.compile(r"\bAI\b|\bMI-generált|mesterséges intelligencia", re.IGNORECASE)
 
 
 @dataclass
@@ -208,6 +209,11 @@ def check_planned(p: PlannedPost, settings: Settings, facts: Facts) -> list[str]
         lib = photo_library(settings.repo_root)
         if p.photo not in lib or not lib[p.photo].instagram_ok:
             problems.append(f"photo '{p.photo}' is not an Instagram-approved library photo")
+        elif lib[p.photo].ai_generated:
+            if not (AI_NOTE_RE.search(p.hu.footnote) and AI_NOTE_RE.search(p.en.footnote)):
+                problems.append(f"photo '{p.photo}' is AI-generated: say so in the graphic's footnote (both languages)")
+            if not (AI_NOTE_RE.search(p.caption_hu) and AI_NOTE_RE.search(p.caption_en)):
+                problems.append(f"photo '{p.photo}' is AI-generated: say so in both captions")
     everything = "\n".join([p.caption_hu, p.caption_en, p.hu.all_text(), p.en.all_text(), " ".join(p.hashtags), p.alt_text])
     banned = find_banned(everything, settings.banned_words)
     if banned:

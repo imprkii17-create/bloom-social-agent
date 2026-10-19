@@ -33,6 +33,7 @@ from .graphics import photo_library
 
 log = logging.getLogger(__name__)
 
+AI_PHOTO_HINT = " [AI-generated: the graphic footnote and both captions must say so]"
 DEFAULT_MAX_USD = 5.0  # three posts a day, every day: 21 posts to write
 SITE_BRANCH = "agent/site"  # one rolling branch: a new proposal replaces an unmerged older one
 STORY_IDEAS = [
@@ -352,7 +353,11 @@ def run_weekly(
                     research = brain.research(system, RESEARCH_BRIEF)
                 except Exception as exc:
                     result.notes.append(f"Research skipped: {exc}")
-            photos = {n: p.alt_en for n, p in photo_library(root).items() if p.instagram_ok}
+            photos = {
+                n: p.alt_en + (AI_PHOTO_HINT if p.ai_generated else "")
+                for n, p in photo_library(root).items()
+                if p.instagram_ok
+            }
             context = claude_context(
                 today=today,
                 slots=slots,

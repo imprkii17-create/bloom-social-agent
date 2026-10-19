@@ -1,21 +1,25 @@
 # Photo library for post graphics (AI characters created for Bloom Models).
 # instagram_ok: false keeps a photo off Instagram graphics (too close to "suggestive" for Meta's rules); it can
-# still be used on the website. focus_y: where the face is, 0 = top, 1 = bottom (used when cropping).
+# still be used on the website. ai_generated: true makes the agent require an "AI" note on the graphic and in the
+# caption (Meta and honest recruiting both need it). focus_y: where the face is, 0 = top, 1 = bottom (used when cropping).
 photos:
   hero-1.jpg:
     alt_en: A smiling young woman with a colourful headscarf and sunglasses on her head, playfully winking at the camera
     alt_hu: Mosolygó fiatal nő színes fejkendőben, napszemüveggel a fején, kacsint a kamerába
     instagram_ok: true
+    ai_generated: true
     focus_y: 0.3
   hero-2.jpg:
     alt_en: A young woman with slicked-back dark hair in a white racing jacket, looking straight into the camera
     alt_hu: Hátrafésült sötét hajú fiatal nő fehér versenydzsekiben, egyenesen a kamerába néz
     instagram_ok: true
+    ai_generated: true
     focus_y: 0.35
   doorway.jpg:
     alt_en: A young woman in a cream halter top leaning in a sunlit wooden doorway
     alt_hu: Fiatal nő krémszínű nyakpántos felsőben egy napfényes faajtóban
     instagram_ok: true
+    ai_generated: true
     focus_y: 0.3
   studio.jpg:
     alt_en: A streaming desk with a laptop, a professional camera and warm studio lights
@@ -26,14 +30,48 @@ photos:
     alt_en: A young woman in a black lace top relaxing on a green velvet sofa
     alt_hu: Fiatal nő fekete csipkés felsőben egy zöld bársonykanapén
     instagram_ok: false
+    ai_generated: true
     focus_y: 0.3
   hero-3.jpg:
     alt_en: "A fashion shoot of a young woman in black, sitting on a blue platform against a pale background"
     alt_hu: "Divatfotó — feketébe öltözött fiatal nő egy kék emelvényen ül, világos háttér előtt"
     instagram_ok: false
+    ai_generated: true
     focus_y: 0.3
   benefits.jpg:
     alt_en: "A fashion shoot of a young woman in black lying on a white floor with tiny dancer figurines around her"
     alt_hu: "Divatfotó — feketébe öltözött fiatal nő fekszik fehér padlón, körülötte apró táncosfigurák"
     instagram_ok: false
+    ai_generated: true
     focus_y: 0.5
+  # AI-generated character photos. Always labelled as AI, never presented as a real model or a real life.
+  ai-bloom-sofa.jpg:
+    alt_en: "AI-generated image: a young woman smiling on a cream sofa in a black blazer"
+    alt_hu: "AI-generált kép: fiatal nő mosolyog egy krémszínű kanapén, fekete blézerben"
+    instagram_ok: true
+    ai_generated: true
+    focus_y: 0.25
+  ai-bloom-paris.jpg:
+    alt_en: "AI-generated image: a young woman holding a coffee on a sunny city street"
+    alt_hu: "AI-generált kép: fiatal nő kávéval a kezében egy napos városi utcán"
+    instagram_ok: true
+    ai_generated: true
+    focus_y: 0.38
+  ai-bloom-street.jpg:
+    alt_en: "AI-generated image: a young woman in a studded black jacket on a crosswalk"
+    alt_hu: "AI-generált kép: fiatal nő szegecses fekete dzsekiben egy zebrán"
+    instagram_ok: true
+    ai_generated: true
+    focus_y: 0.2
+  ai-bloom-mirror.jpg:
+    alt_en: "AI-generated image: a young woman taking a mirror selfie in a black top"
+    alt_hu: "AI-generált kép: fiatal nő tükörszelfit készít fekete felsőben"
+    instagram_ok: true
+    ai_generated: true
+    focus_y: 0.3
+  ai-bloom-dinner.jpg:
+    alt_en: "AI-generated image: a young woman smiling at a restaurant table in a red lace top"
+    alt_hu: "AI-generált kép: fiatal nő mosolyog egy étteremben, piros csipkés felsőben"
+    instagram_ok: true
+    ai_generated: true
+    focus_y: 0.4

@@ -41,25 +41,27 @@ posts:
         headline: Havi 2000 € felett
         accent: reális cél.
         body: A bevételed akár 80%-a a tiéd. Havonta fizetünk.
-        footnote: "*A kereset az óraszámtól és az aktivitástól függ, nem garantált."
+        footnote: "*A kereset az óraszámtól és az aktivitástól függ, nem garantált. AI-generált kép."
       en:
         eyebrow: Earnings — honestly
         headline: €2,000+ a month
         accent: is a realistic goal.
         body: You keep up to 80% of what you bring in. Paid monthly.
-        footnote: "*Earnings depend on your hours and activity and aren't guaranteed."
+        footnote: "*Earnings depend on your hours and activity and aren't guaranteed. AI-generated image."
     caption_hu: |
       Mennyit lehet keresni online modellként? Őszinte válasz. 💸
 
       Havi 2000 € felett reális cél, és a bevételed akár 80%-a a tiéd. Havonta fizetünk, és mindig pontosan látod, mennyit kerestél. A kereset az óraszámtól és az aktivitástól függ, ezért nem garantált — de az átláthatóság igen.
 
       Kérdésed van? Írd meg a jelentkezésben: link a bióban.
+      (A képen AI-generált karakter látható.)
     caption_en: |
       How much can you earn as an online model? The honest answer.
 
       €2,000+ a month is a realistic goal, and you keep up to 80% of what you bring in. Paid monthly, always transparent. Earnings vary with your hours and activity and aren't guaranteed.
 
       Questions? Ask in your application: link in bio.
+      (The image shows an AI-generated character.)
     hashtags: ["#bloommodels", "#onlinemodell", "#rugalmasmunka", "#budapest", "#onlinemodeling"]
 
   - id: your-hours
@@ -239,23 +241,27 @@ posts:
         headline: Nem egyedül csinálod.
         accent: Ott vagyunk mögötted.
         body: Dedikált menedzser, barátságos kollégák, éjjel-nappal elérhető operátorok.
+        footnote: "AI-generált kép."
       en:
         eyebrow: A team, zero pressure
         headline: You're not doing this alone.
         accent: We're right behind you.
         body: A dedicated manager, friendly colleagues, operators online around the clock.
+        footnote: "AI-generated image."
     caption_hu: |
       Online modell munka egy barátságos, fiatal csapattal. 🌸
 
       Dedikált menedzser, támogató kollégák és operátorok, akik éjjel-nappal elérhetők. Minden mérföldkövet együtt ünneplünk, és soha senki nem siettet.
 
       Jelentkezz: link a bióban.
+      (A képen AI-generált karakter látható.)
     caption_en: |
       Online modeling with a friendly, young team.
 
       A dedicated manager, supportive colleagues and operators online around the clock. We celebrate every milestone with you, and nobody rushes you.
 
       Apply: link in bio.
+      (The image shows an AI-generated character.)
     hashtags: ["#bloommodels", "#onlinemodell", "#csapat", "#budapest", "#onlinemodeling"]
 
   - id: how-to-apply
