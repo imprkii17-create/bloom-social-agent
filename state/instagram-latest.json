@@ -1,0 +1,33 @@
+{
+ "generated_at": "2026-10-19T07:56+00:00",
+ "days": 7,
+ "report": "reports/2026-W43.md",
+ "followers": 5,
+ "account": {
+  "Reach": 9,
+  "Views": 16,
+  "Profile views": 76,
+  "Link clicks": 4,
+  "Accounts engaged": 2,
+  "Interactions": 1
+ },
+ "posts": [
+  {
+   "id": "2026-10-23-apply-now",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/DekAlw1FLkc/",
+   "metrics": {
+    "Reach": 9,
+    "Views": 16,
+    "Likes": 1,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 1
+  }
+ ],
+ "best": "2026-10-23-apply-now"
+}
