@@ -15,7 +15,7 @@ Your head of marketing, running for free on GitHub Actions:
 
 ```
 Friday   ─► SEO report + brief + next week's posts (PR) + website ideas (PR)    you: review, merge
-Mon–Fri  ─► posts go out at 18:30, results saved back into each post            you: reply to DMs, log applications
+Every day ─► posts go out at 08:30, 13:00 and 19:30, results saved back into each post            you: reply to DMs, log applications
 Daily    ─► website health check (alert if down, paused, not indexable)
 Monday   ─► Instagram report, token renewal
 ```

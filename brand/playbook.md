@@ -118,10 +118,12 @@ Our category is sensitive. Losing the Instagram account would cost months. Rules
 - **Trial Reels** show a Reel to non-followers only: use them to test hooks before posting to followers.
 
 ### Formats and cadence (starting point)
-- 5 feed posts a week (Mon–Fri), alternating carousel / single image; 1–2 Reels a week once filming is possible.
+- 3 feed posts a day, every day (21 a week): 08:30 light and short, 13:00 useful (FAQ, how it works, carousels),
+  19:30 the main call to apply. Never the same topic twice in one day. 1–2 Reels a week once filming is possible.
 - Stories daily: behind the scenes, quick polls, FAQ answers, reposts of our own posts, "link in bio" reminders.
 - Highlights: How it works · FAQ · Studio · Earnings · Apply. Keep them current — they are the profile's sales page.
-- Post 18:00–20:00 Budapest time to start; test 12:00–13:00. Change only one thing at a time.
+- Watch reach per post in the Monday report: if it drops by more than about half for two weeks running, go back
+  to fewer posts. Change only one thing at a time.
 
 ### Caption formula
 1. **Hook line with a search keyword** in the first 125 characters (that's what shows before "… more"):

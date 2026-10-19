@@ -92,13 +92,18 @@ def test_graphics_never_cut_text(full_repo: Path) -> None:
 # ---- drafting ---------------------------------------------------------------------------------------------------------
 
 
-def test_next_week_slots_skip_taken_days(full_repo: Path, make_post) -> None:  # type: ignore[no-untyped-def]
+def test_next_week_slots_three_a_day_skip_taken(full_repo: Path, make_post) -> None:  # type: ignore[no-untyped-def]
     settings = load_settings(full_repo)
-    make_post("2026-10-13-taken", status="approved", scheduled_at="2026-10-13 12:00")
+    make_post("2026-10-13-taken", status="approved", scheduled_at="2026-10-13 12:00")  # fills Tue 13:00
+    make_post("2026-10-14-old", status="approved", scheduled_at="2026-10-14 18:30")  # fills Wed 19:30
     posts, _ = load_queue(settings.posts_dir)
     slots = next_week_slots(posts, TODAY, settings.timezone)
-    assert [s.day for s in slots] == [12, 14, 15, 16]
-    assert all(s.hour == 18 and s.minute == 30 for s in slots)
+    assert len(slots) == 7 * 3 - 2
+    assert {s.day for s in slots} == set(range(12, 19))  # Monday to Sunday
+    assert {s.strftime("%H:%M") for s in slots} == {"08:30", "13:00", "19:30"}
+    tue = [s.strftime("%H:%M") for s in slots if s.day == 13]
+    wed = [s.strftime("%H:%M") for s in slots if s.day == 14]
+    assert tue == ["08:30", "19:30"] and wed == ["08:30", "13:00"]
 
 
 def test_library_is_valid_and_picked_least_recently_used(full_repo: Path) -> None:
@@ -232,7 +237,7 @@ def test_weekly_with_claude_opens_both_pull_requests(git_repo: Path, monkeypatch
                     "reason": "query 'online modeling jobs budapest' at position 8"},
                    {"field": "description", "lang": "hu", "new_value": "túl rövid", "reason": "x"}]
     repaired = {"posts": [good_post(slug="p0")]}
-    messages = FakeMessages([fake_plan(5, site_change), repaired])
+    messages = FakeMessages([fake_plan(21, site_change), repaired])
     brain = Brain(settings, max_usd=1.0, client=SimpleNamespace(messages=messages))
     opened: list[tuple[str, str, str]] = []
 
@@ -243,7 +248,7 @@ def test_weekly_with_claude_opens_both_pull_requests(git_repo: Path, monkeypatch
     result = run_weekly(settings, now=datetime(2026, 10, 9, 9, 37, tzinfo=settings.timezone), seo_live=False,
                         brain_factory=lambda: brain, pr_opener=opener)
     assert result.mode == "claude", result.notes
-    assert len(result.posts) == 5 and not result.dropped
+    assert len(result.posts) == 21 and not result.dropped
     assert [b for b, _, _ in opened] == ["agent/posts-2026-W42", "agent/site"]
     # main is untouched: the posts and the website change live only on their branches
     assert not list((git_repo / "posts").glob("2026-10-1*"))
@@ -267,7 +272,8 @@ def test_weekly_without_key_uses_library(full_repo: Path) -> None:
     settings = load_settings(full_repo)
     result = run_weekly(settings, now=datetime(2026, 10, 9, 9, 37, tzinfo=settings.timezone), seo_live=False,
                         open_prs=False)
-    assert result.mode == "library" and len(result.posts) == 5
+    assert result.mode == "library" and len(result.posts) == 7  # once a day without Claude
+    assert all(p.scheduled_at.endswith("19:30") for p in result.posts)
     assert all(p.status == Status.DRAFT for p in result.posts)
     assert all("From library:" in (p.notes or "") for p in result.posts)
     assert (full_repo / result.brief_path).is_file() and (full_repo / result.seo_path).is_file()
@@ -280,7 +286,7 @@ def test_weekly_falls_back_when_claude_fails(full_repo: Path, monkeypatch: pytes
     brain = Brain(settings, max_usd=1.0, client=SimpleNamespace(messages=FakeMessages(["not json"])))
     result = run_weekly(settings, now=datetime(2026, 10, 9, 9, 37, tzinfo=settings.timezone), seo_live=False,
                         open_prs=False, brain_factory=lambda: brain)
-    assert result.mode == "library" and len(result.posts) == 5
+    assert result.mode == "library" and len(result.posts) == 7
     assert any("Claude plan failed" in n for n in result.notes)
 
 

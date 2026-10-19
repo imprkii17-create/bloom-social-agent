@@ -28,12 +28,12 @@ from ..queue import load_queue
 from ..seo.findings import FindingList
 from ..seo.run import SeoReport, render_markdown, run_seo, write_report
 from ..site.config import LANGS, faq_pairs, load_site_config, load_strings
-from .drafts import PlannedPost, build_week, load_library, next_week_slots, pick_from_library
+from .drafts import DEFAULT_TIME, PlannedPost, build_week, load_library, next_week_slots, pick_from_library
 from .graphics import photo_library
 
 log = logging.getLogger(__name__)
 
-DEFAULT_MAX_USD = 2.0
+DEFAULT_MAX_USD = 5.0  # three posts a day, every day: 21 posts to write
 SITE_BRANCH = "agent/site"  # one rolling branch: a new proposal replaces an unmerged older one
 STORY_IDEAS = [
     "Poll: „Mi tartana vissza attól, hogy kipróbáld?” (tapasztalat / diszkréció / idő / más)",
@@ -271,6 +271,9 @@ def claude_context(
     return (
         "Here is this week's data. Write the weekly plan.\n"
         f"- Create exactly {len(slots)} posts, one per free slot, in slot order.\n"
+        "- There are up to three posts a day (morning, afternoon, evening). Never repeat a topic or pillar on the "
+        "same day; mornings light and short, afternoons useful (FAQ, how it works, carousels), evenings the main "
+        "call to apply. Vary templates so the grid doesn't look repetitive.\n"
         "- Decide the bottleneck stage from the numbers; if numbers are missing, say 'unknown' and what to log.\n"
         "- Propose website changes only if the SEO data supports them.\n"
         "- Update running experiments if their end date has passed (with the data); propose at most one new one.\n\n"
@@ -380,7 +383,11 @@ def run_weekly(
             result.spend_lines = list(brain.spend.calls)
 
     if result.mode == "library":
+        # The library is small: without Claude, post once a day (evenings) instead of repeating posts three times
+        # as fast.
         result.plan = rule_based_plan(seo, ig, funnel)
+        slots = [s for s in slots if s.strftime("%H:%M") == DEFAULT_TIME]
+        result.notes.append("No Claude plan this week: one library post a day (evenings) instead of three.")
         planned = pick_from_library(library, posts, len(slots))
     else:
         # top up from the library if Claude's posts were dropped

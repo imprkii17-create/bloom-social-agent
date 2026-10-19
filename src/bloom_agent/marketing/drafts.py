@@ -20,8 +20,10 @@ from ..validate import HASHTAG_RE, MAX_HASHTAGS, find_banned, validate_post
 from .graphics import TEMPLATES, GraphicError, GraphicSpec, missing_glyphs, photo_library, render
 
 SLUG_RE = re.compile(r"[^a-z0-9]+")
-DEFAULT_TIME = "18:30"
-WEEKDAYS = (0, 1, 2, 3, 4)  # Monday–Friday
+POST_TIMES = ("08:30", "13:00", "19:30")  # morning, afternoon, evening (Budapest time)
+DEFAULT_TIME = POST_TIMES[-1]  # the evening slot: used alone when the week comes from the library
+POST_DAYS = (0, 1, 2, 3, 4, 5, 6)  # every day, Monday–Sunday
+SLOT_GAP = timedelta(minutes=90)  # a feed post this close to a slot already fills it
 FOOTER = "18+ | Budapest, V. ker. / District V"
 LIBRARY_NOTE = "From library: "
 
@@ -102,20 +104,24 @@ def normalise_tag(tag: str) -> str:
 # ---- scheduling ------------------------------------------------------------------------------------------------
 
 
-def next_week_slots(posts: list[Post], today: date, tz: ZoneInfo, time_of_day: str = DEFAULT_TIME) -> list[datetime]:
-    """Monday–Friday of next week at the posting time, skipping days that already have a feed post."""
+def next_week_slots(
+    posts: list[Post], today: date, tz: ZoneInfo, times: tuple[str, ...] = POST_TIMES
+) -> list[datetime]:
+    """Every posting time on every posting day of next week, skipping slots that already have a feed post nearby."""
     monday = today + timedelta(days=7 - today.weekday())
-    taken = {
-        p.scheduled_dt(tz).date()
+    taken = [
+        p.scheduled_dt(tz)
         for p in posts
         if p.type != PostType.STORY and p.status not in (Status.SKIPPED, Status.FAILED, Status.MISSED)
-    }
-    hh, mm = (int(x) for x in time_of_day.split(":"))
+    ]
     slots = []
-    for offset in WEEKDAYS:
+    for offset in POST_DAYS:
         day = monday + timedelta(days=offset)
-        if day not in taken:
-            slots.append(datetime(day.year, day.month, day.day, hh, mm, tzinfo=tz))
+        for time_of_day in times:
+            hh, mm = (int(x) for x in time_of_day.split(":"))
+            slot = datetime(day.year, day.month, day.day, hh, mm, tzinfo=tz)
+            if not any(abs(t - slot) < SLOT_GAP for t in taken):
+                slots.append(slot)
     return slots
 
 

@@ -23,7 +23,7 @@ PRICES: dict[str, tuple[float, float]] = {
     "claude-fable-5-1": (10.0, 50.0),
 }
 WEB_SEARCH_USD = 0.01
-MAX_TOKENS_PLAN = 16000
+MAX_TOKENS_PLAN = 32000  # room for 21 bilingual posts a week
 MAX_TOKENS_RESEARCH = 4000
 
 SITE_FIELDS = ["title", "description", "og_title", "faq.h2", "faq.p"] + [
