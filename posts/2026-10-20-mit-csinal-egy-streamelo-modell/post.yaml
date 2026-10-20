@@ -1,5 +1,5 @@
 id: 2026-10-20-mit-csinal-egy-streamelo-modell
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'AI-generált kép: fiatal nő tükörszelfit készít fekete felsőbe
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (how-it-works).
 result:
+  instagram:
+    media_id: '18094931153172003'
+    permalink: https://www.instagram.com/p/DetQw55my6C/
+    published_at: '2026-10-20T07:08:48+00:00'
   attempts: 0
-  ig_pending_container: '18119266489907050'
-  ig_pending_fingerprint: 799c72300f284dfb
-  ig_attempt_started_at: '2026-10-20T07:08:48+00:00'
