@@ -1,5 +1,5 @@
 id: 2026-10-26-studio-or-home
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -11,7 +11,8 @@ alt_text: 'Two cards side by side: a streaming desk with a camera and laptop lab
   and a woman relaxing on a green sofa labelled "From home".'
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
 result:
+  instagram:
+    media_id: '18203295316377109'
+    permalink: https://www.instagram.com/p/DeuT0b7FsO5/
+    published_at: '2026-10-20T16:54:44+00:00'
   attempts: 0
-  ig_pending_container: '18119372671907050'
-  ig_pending_fingerprint: f2bc73fb2d51ee1b
-  ig_attempt_started_at: '2026-10-20T16:54:44+00:00'
