@@ -10,3 +10,8 @@ caption_file: caption.txt
 alt_text: 'Two cards side by side: a streaming desk with a camera and laptop labelled "In the studio",
   and a woman relaxing on a green sofa labelled "From home".'
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
+result:
+  attempts: 0
+  ig_pending_container: '18119372671907050'
+  ig_pending_fingerprint: f2bc73fb2d51ee1b
+  ig_attempt_started_at: '2026-10-20T16:54:44+00:00'
