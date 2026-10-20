@@ -7,7 +7,12 @@ scheduled_at: 2026-10-20 08:30
 media:
 - image.jpg
 caption_file: caption.txt
-alt_text: 'AI-generált kép: fiatal nő tükörszelfit készít fekete felsőben. A képen a felirat:
-  „Mit csinál egy streamelő modell? Élőben van jelen.” — Bloom Models, online modell munka Budapesten.'
+alt_text: 'AI-generált kép: fiatal nő tükörszelfit készít fekete felsőben. A képen a felirat: „Mit csinál
+  egy streamelő modell? Élőben van jelen.” — Bloom Models, online modell munka Budapesten.'
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (how-it-works).
+result:
+  attempts: 0
+  ig_pending_container: '18119266489907050'
+  ig_pending_fingerprint: 799c72300f284dfb
+  ig_attempt_started_at: '2026-10-20T07:08:48+00:00'
