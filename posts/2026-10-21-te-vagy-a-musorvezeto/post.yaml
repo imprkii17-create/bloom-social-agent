@@ -7,7 +7,12 @@ scheduled_at: 2026-10-21 08:30
 media:
 - image.jpg
 caption_file: caption.txt
-alt_text: 'AI-generált kép: fiatal nő mosolyog egy krémszínű kanapén, fekete blézerben.
-  A képen a felirat: „Te vagy a műsorvezető. A saját showdban.” — Bloom Models, online modell munka Budapesten.'
+alt_text: 'AI-generált kép: fiatal nő mosolyog egy krémszínű kanapén, fekete blézerben. A képen a felirat:
+  „Te vagy a műsorvezető. A saját showdban.” — Bloom Models, online modell munka Budapesten.'
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (how-it-works).
+result:
+  attempts: 0
+  ig_pending_container: '18119483860907050'
+  ig_pending_fingerprint: 39e868b9072b0d9a
+  ig_attempt_started_at: '2026-10-21T07:11:06+00:00'
