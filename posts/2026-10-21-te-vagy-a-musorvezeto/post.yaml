@@ -1,5 +1,5 @@
 id: 2026-10-21-te-vagy-a-musorvezeto
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'AI-generált kép: fiatal nő mosolyog egy krémszínű kanapén, fek
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (how-it-works).
 result:
+  instagram:
+    media_id: '17874524682638981'
+    permalink: https://www.instagram.com/p/Dev10pvnNmm/
+    published_at: '2026-10-21T07:11:06+00:00'
   attempts: 0
-  ig_pending_container: '18119483860907050'
-  ig_pending_fingerprint: 39e868b9072b0d9a
-  ig_attempt_started_at: '2026-10-21T07:11:06+00:00'
