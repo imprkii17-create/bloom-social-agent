@@ -1,5 +1,5 @@
 id: 2026-10-27-myths
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -11,7 +11,8 @@ alt_text: Dark graphic titled "4 myths about streaming modeling", with four cros
   by the reality.
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
 result:
+  instagram:
+    media_id: '17977446179932738'
+    permalink: https://www.instagram.com/p/Dew42s0GjLT/
+    published_at: '2026-10-21T16:56:51+00:00'
   attempts: 0
-  ig_pending_container: '18119590678907050'
-  ig_pending_fingerprint: 4798fffee3d7d155
-  ig_attempt_started_at: '2026-10-21T16:56:51+00:00'
