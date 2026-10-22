@@ -1,5 +1,5 @@
 id: 2026-10-22-a-jo-streamek-titka
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -13,7 +13,8 @@ alt_text: 'Bloom Models grafika sötét bordó háttéren, a felirat: „A jó s
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (training).
 result:
+  instagram:
+    media_id: '18092762681664540'
+    permalink: https://www.instagram.com/p/Dey2FzVEUC1/
+    published_at: '2026-10-22T11:11:11+00:00'
   attempts: 0
-  ig_pending_container: '18119746690907050'
-  ig_pending_fingerprint: ae9b6f12be5831eb
-  ig_attempt_started_at: '2026-10-22T11:11:11+00:00'
