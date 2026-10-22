@@ -1,5 +1,5 @@
 id: 2026-10-22-a-chat-a-szinpadod
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'Bloom Models grafika világos rózsaszín háttéren, a felirat: „A
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (how-it-works).
 result:
+  instagram:
+    media_id: '18152963806551953'
+    permalink: https://www.instagram.com/p/Deyay6gFVi_/
+    published_at: '2026-10-22T07:12:40+00:00'
   attempts: 0
-  ig_pending_container: '18119714935907050'
-  ig_pending_fingerprint: 0efa4c672980d090
-  ig_attempt_started_at: '2026-10-22T07:12:40+00:00'
