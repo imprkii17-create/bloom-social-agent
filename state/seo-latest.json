@@ -1,5 +1,5 @@
 {
- "created": "2026-10-16T10:09+02:00",
+ "created": "2026-10-23T10:14+02:00",
  "live": true,
  "scores": {
   "Website": 100,
@@ -22,10 +22,10 @@
    "area": "Speed",
    "severity": "warning",
    "code": "lcp",
-   "title": "Main content appears after 2.7s on mobile (test run)",
+   "title": "Main content appears after 3.1s on mobile (test run)",
    "detail": "",
    "fix": "Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files.",
-   "page": "https://bloommodels.hu/"
+   "page": "https://bloommodels.hu/en/"
   },
   {
    "area": "Instagram",
@@ -39,9 +39,9 @@
   {
    "area": "Instagram",
    "severity": "info",
-   "code": "ig-profile-error",
-   "title": "Couldn't read the Instagram profile",
-   "detail": "API access blocked. (code 200) [trace Ajo4eMaWpIWRfWl0k-h4Ni4]",
+   "code": "ig-post-seo",
+   "title": "6 upcoming post(s): The first 125 characters (what shows before '… more') have no search keyword (online modell, modellügynökség, budapest…).",
+   "detail": "2026-10-24-nem-kell-influenszernek-lenned, 2026-10-24-mi-tart-vissza, 2026-10-24-stream-utan-az-este-a-tied, 2026-10-25-a-te-szabalyaid, 2026-10-25-otthoni-stream-sarok, 2026-10-25-kereset-oszinten-hetvege",
    "fix": "",
    "page": ""
   }
@@ -69,7 +69,7 @@
    "same_as": [
     "https://www.instagram.com/bloommodelsagency/"
    ],
-   "word_count": 1639,
+   "word_count": 1739,
    "faq_count": 7,
    "job_valid_through": "2026-12-31T23:59:59+01:00"
   },
@@ -95,21 +95,183 @@
    "same_as": [
     "https://www.instagram.com/bloommodelsagency/"
    ],
-   "word_count": 1846,
+   "word_count": 1968,
    "faq_count": 7,
    "job_valid_through": "2026-12-31T23:59:59+01:00"
+  },
+  "hu:webcam": {
+   "url": "https://bloommodels.hu/webkameras-modell-munka/",
+   "title": "Webkamerás modell munka Budapesten: útmutató | Bloom",
+   "description": "Webkamerás modell munka Budapesten: mit csinál egy webcam modell, mennyit lehet keresni, és hogyan ismered fel a megbízható ügynökséget? Őszinte útmutató, 18+.",
+   "h1": "Webkamerás modell munka Budapesten: őszinte útmutató",
+   "lang": "hu",
+   "canonical": "https://bloommodels.hu/webkameras-modell-munka/",
+   "hreflang": {
+    "hu": "https://bloommodels.hu/webkameras-modell-munka/",
+    "en": "https://bloommodels.hu/en/webcam-model-jobs-budapest/",
+    "x-default": "https://bloommodels.hu/en/webcam-model-jobs-budapest/"
+   },
+   "schema_types": [
+    "Article",
+    "BreadcrumbList",
+    "FAQPage",
+    "Organization",
+    "WebPage",
+    "WebSite"
+   ],
+   "same_as": [
+    "https://www.instagram.com/bloommodelsagency/"
+   ],
+   "word_count": 842,
+   "faq_count": 5,
+   "job_valid_through": ""
+  },
+  "en:webcam": {
+   "url": "https://bloommodels.hu/en/webcam-model-jobs-budapest/",
+   "title": "Webcam Model Jobs in Budapest: A Straight Guide | Bloom",
+   "description": "Webcam model jobs in Budapest: what the work is, what you can earn, studio or home, and how to spot an agency you can trust. An honest guide, 18+.",
+   "h1": "Webcam model jobs in Budapest: a straight guide",
+   "lang": "en",
+   "canonical": "https://bloommodels.hu/en/webcam-model-jobs-budapest/",
+   "hreflang": {
+    "hu": "https://bloommodels.hu/webkameras-modell-munka/",
+    "en": "https://bloommodels.hu/en/webcam-model-jobs-budapest/",
+    "x-default": "https://bloommodels.hu/en/webcam-model-jobs-budapest/"
+   },
+   "schema_types": [
+    "Article",
+    "BreadcrumbList",
+    "FAQPage",
+    "Organization",
+    "WebPage",
+    "WebSite"
+   ],
+   "same_as": [
+    "https://www.instagram.com/bloommodelsagency/"
+   ],
+   "word_count": 996,
+   "faq_count": 5,
+   "job_valid_through": ""
+  },
+  "hu:home-studio": {
+   "url": "https://bloommodels.hu/online-modell-munka-otthonrol/",
+   "title": "Online modell munka otthonról vagy stúdióban? | Bloom",
+   "description": "Online modell munka otthonról vagy stúdióban? Mi kell az otthoni streameléshez, mit ad egy budapesti stúdió, és hogyan dönts. Őszinte összehasonlítás, 18+.",
+   "h1": "Online modell munka otthonról vagy stúdióban?",
+   "lang": "hu",
+   "canonical": "https://bloommodels.hu/online-modell-munka-otthonrol/",
+   "hreflang": {
+    "hu": "https://bloommodels.hu/online-modell-munka-otthonrol/",
+    "en": "https://bloommodels.hu/en/online-modeling-from-home/",
+    "x-default": "https://bloommodels.hu/en/online-modeling-from-home/"
+   },
+   "schema_types": [
+    "Article",
+    "BreadcrumbList",
+    "FAQPage",
+    "Organization",
+    "WebPage",
+    "WebSite"
+   ],
+   "same_as": [
+    "https://www.instagram.com/bloommodelsagency/"
+   ],
+   "word_count": 581,
+   "faq_count": 4,
+   "job_valid_through": ""
+  },
+  "en:home-studio": {
+   "url": "https://bloommodels.hu/en/online-modeling-from-home/",
+   "title": "Online Modeling From Home or in a Studio? | Bloom Models",
+   "description": "Online modeling from home or in a studio? What you need to stream from home, what a Budapest studio offers, and how to choose. An honest comparison, 18+.",
+   "h1": "Online modeling from home or in a studio?",
+   "lang": "en",
+   "canonical": "https://bloommodels.hu/en/online-modeling-from-home/",
+   "hreflang": {
+    "hu": "https://bloommodels.hu/online-modell-munka-otthonrol/",
+    "en": "https://bloommodels.hu/en/online-modeling-from-home/",
+    "x-default": "https://bloommodels.hu/en/online-modeling-from-home/"
+   },
+   "schema_types": [
+    "Article",
+    "BreadcrumbList",
+    "FAQPage",
+    "Organization",
+    "WebPage",
+    "WebSite"
+   ],
+   "same_as": [
+    "https://www.instagram.com/bloommodelsagency/"
+   ],
+   "word_count": 717,
+   "faq_count": 4,
+   "job_valid_through": ""
+  },
+  "hu:earnings": {
+   "url": "https://bloommodels.hu/streamelo-modell-kereset/",
+   "title": "Mennyit keres egy streamelő modell? Őszintén | Bloom",
+   "description": "Mennyit keres egy webkamerás vagy streamelő modell, és mitől függ? Bevétel-megosztás, figyelmeztető jelek, őszintén. A kereset változó, nem garantált.",
+   "h1": "Mennyit keres egy streamelő modell? Őszinte válasz",
+   "lang": "hu",
+   "canonical": "https://bloommodels.hu/streamelo-modell-kereset/",
+   "hreflang": {
+    "hu": "https://bloommodels.hu/streamelo-modell-kereset/",
+    "en": "https://bloommodels.hu/en/streaming-model-earnings/",
+    "x-default": "https://bloommodels.hu/en/streaming-model-earnings/"
+   },
+   "schema_types": [
+    "Article",
+    "BreadcrumbList",
+    "FAQPage",
+    "Organization",
+    "WebPage",
+    "WebSite"
+   ],
+   "same_as": [
+    "https://www.instagram.com/bloommodelsagency/"
+   ],
+   "word_count": 603,
+   "faq_count": 4,
+   "job_valid_through": ""
+  },
+  "en:earnings": {
+   "url": "https://bloommodels.hu/en/streaming-model-earnings/",
+   "title": "How Much Does a Streaming Model Earn? | Bloom Models",
+   "description": "What do webcam and streaming models earn? What it depends on, how revenue share works, and the red flags to watch for. Earnings vary and aren't guaranteed.",
+   "h1": "How much does a streaming model earn? An honest answer",
+   "lang": "en",
+   "canonical": "https://bloommodels.hu/en/streaming-model-earnings/",
+   "hreflang": {
+    "hu": "https://bloommodels.hu/streamelo-modell-kereset/",
+    "en": "https://bloommodels.hu/en/streaming-model-earnings/",
+    "x-default": "https://bloommodels.hu/en/streaming-model-earnings/"
+   },
+   "schema_types": [
+    "Article",
+    "BreadcrumbList",
+    "FAQPage",
+    "Organization",
+    "WebPage",
+    "WebSite"
+   ],
+   "same_as": [
+    "https://www.instagram.com/bloommodelsagency/"
+   ],
+   "word_count": 733,
+   "faq_count": 4,
+   "job_valid_through": ""
   }
  },
  "speed": [
   {
    "url": "https://bloommodels.hu/",
    "strategy": "mobile",
-   "score": 96,
+   "score": 99,
    "lab": {
-    "lcp_ms": 2708.0,
-    "cls": 0.009554993786886536,
+    "lcp_ms": 1832.5,
+    "cls": 0.012447300354471655,
     "tbt_ms": 0.0,
-    "fcp_ms": 956.0
+    "fcp_ms": 1008.5
    },
    "field_data": {},
    "opportunities": [],
@@ -120,10 +282,10 @@
    "strategy": "desktop",
    "score": 99,
    "lab": {
-    "lcp_ms": 700.0,
-    "cls": 0.0008875813252691387,
+    "lcp_ms": 742.0,
+    "cls": 0.009814362612286949,
     "tbt_ms": 0.0,
-    "fcp_ms": 445.0
+    "fcp_ms": 402.0
    },
    "field_data": {},
    "opportunities": [],
@@ -132,12 +294,12 @@
   {
    "url": "https://bloommodels.hu/en/",
    "strategy": "mobile",
-   "score": 95,
+   "score": 90,
    "lab": {
-    "lcp_ms": 2412.0,
+    "lcp_ms": 3110.0,
     "cls": 0.0,
     "tbt_ms": 0.0,
-    "fcp_ms": 1507.0
+    "fcp_ms": 1674.0
    },
    "field_data": {},
    "opportunities": [],
@@ -148,10 +310,10 @@
    "strategy": "desktop",
    "score": 100,
    "lab": {
-    "lcp_ms": 683.5,
-    "cls": 0.013045734801973269,
+    "lcp_ms": 697.0,
+    "cls": 0.0001428002231253486,
     "tbt_ms": 0.0,
-    "fcp_ms": 381.0
+    "fcp_ms": 372.5
    },
    "field_data": {},
    "opportunities": [],
@@ -159,24 +321,34 @@
   }
  ],
  "search": {
-  "start": "2026-09-16",
-  "end": "2026-10-13",
-  "clicks": 2.0,
-  "impressions": 5.0,
+  "start": "2026-09-23",
+  "end": "2026-10-20",
+  "clicks": 4.0,
+  "impressions": 10.0,
   "ctr": 0.4,
-  "position": 15.8,
+  "position": 10.3,
   "prev_clicks": 0,
   "prev_impressions": 0,
-  "queries": [],
+  "queries": [
+   {
+    "keys": [
+     "bloom models"
+    ],
+    "clicks": 1.0,
+    "impressions": 1.0,
+    "ctr": 1.0,
+    "position": 1.0
+   }
+  ],
   "pages": [
    {
     "keys": [
      "https://bloommodels.hu/"
     ],
-    "clicks": 2.0,
-    "impressions": 5.0,
+    "clicks": 4.0,
+    "impressions": 10.0,
     "ctr": 0.4,
-    "position": 15.8
+    "position": 10.3
    }
   ],
   "countries": [
@@ -184,16 +356,25 @@
     "keys": [
      "hun"
     ],
-    "clicks": 2.0,
-    "impressions": 5.0,
+    "clicks": 4.0,
+    "impressions": 10.0,
     "ctr": 0.4,
-    "position": 15.8
+    "position": 10.3
    }
   ],
   "striking_distance": [],
   "low_ctr": [],
-  "new_queries": []
+  "new_queries": [
+   "bloom models"
+  ]
  },
- "profile": {},
+ "profile": {
+  "username": "bloommodelsagency",
+  "name": "Bloom Models Agency",
+  "biography": "🌸 Online modellügynökség · Budapest\n⏰ Rugalmas beosztás · 💸\n🔒 Diszkrét · nem kell tapasztalat\n🇭🇺 🇬🇧 HU/EN · Jelentkezz 👇 · 18+",
+  "website": "https://bloommodels.hu",
+  "followers_count": 5,
+  "media_count": 12
+ },
  "skipped": []
 }
