@@ -1,0 +1,13 @@
+id: 2026-10-31-home-studio
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-10-31 19:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Bloom Models grafika sötét bordó háttéren, a felirat: „A show indulhat a saját szobádból. Segítünk
+  berendezni.”. Online modell munka Budapesten.'
+notes: 'Hungarian image is published. For the English version, change media to [image-en.jpg]. From library:
+  home-studio'
