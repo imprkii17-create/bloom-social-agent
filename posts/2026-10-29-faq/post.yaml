@@ -1,5 +1,5 @@
 id: 2026-10-29-faq
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -11,7 +11,8 @@ alt_text: Pink graphic titled "Your 4 most common questions", with four question
   experience, time, payment and minimum age.
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
 result:
+  instagram:
+    media_id: '18024120995716109'
+    permalink: https://www.instagram.com/p/De2D_lUlb8c/
+    published_at: '2026-10-23T17:10:23+00:00'
   attempts: 0
-  ig_pending_container: '18120057994907050'
-  ig_pending_fingerprint: c2698c0c41de8887
-  ig_attempt_started_at: '2026-10-23T17:10:23+00:00'
