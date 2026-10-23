@@ -1,5 +1,5 @@
 id: 2026-10-23-unnepi-pihenes
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'Bloom Models grafika világos rózsaszín háttéren, a felirat: „N
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (brand).
 result:
+  instagram:
+    media_id: '18436457881196147'
+    permalink: https://www.instagram.com/p/De0_Tj2m3IS/
+    published_at: '2026-10-23T07:10:10+00:00'
   attempts: 0
-  ig_pending_container: '18119940283907050'
-  ig_pending_fingerprint: 49a7b8d8f531dcb3
-  ig_attempt_started_at: '2026-10-23T07:10:10+00:00'
