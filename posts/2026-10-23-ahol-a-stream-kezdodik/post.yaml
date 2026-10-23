@@ -1,5 +1,5 @@
 id: 2026-10-23-ahol-a-stream-kezdodik
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'Streamelő asztal laptoppal, profi kamerával és meleg stúdiófény
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (studio).
 result:
+  instagram:
+    media_id: '18026516945922525'
+    permalink: https://www.instagram.com/p/De1amGUHFth/
+    published_at: '2026-10-23T11:08:38+00:00'
   attempts: 0
-  ig_pending_container: '18119986918907050'
-  ig_pending_fingerprint: 2a2ef3b21fee31e1
-  ig_attempt_started_at: '2026-10-23T11:08:38+00:00'
