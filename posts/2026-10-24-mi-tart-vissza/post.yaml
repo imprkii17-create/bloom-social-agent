@@ -1,5 +1,5 @@
 id: 2026-10-24-mi-tart-vissza
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -13,7 +13,8 @@ alt_text: 'Bloom Models grafika sötét bordó háttéren, a felirat: „A leggy
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (how-it-works).
 result:
+  instagram:
+    media_id: '18053781767660652'
+    permalink: https://www.instagram.com/p/De3-kyKlqbf/
+    published_at: '2026-10-24T11:01:30+00:00'
   attempts: 0
-  ig_pending_container: '18120229105907050'
-  ig_pending_fingerprint: c14bd903ba72c104
-  ig_attempt_started_at: '2026-10-24T11:01:30+00:00'
