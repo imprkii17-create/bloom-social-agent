@@ -1,0 +1,536 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-24T21:29+02:00",
+ "timezone": "Europe/Budapest",
+ "repo": "imprkii17-create/bloom-social-agent",
+ "dashboard_url": "https://imprkii17-create.github.io/bloom-social-agent/",
+ "features": {
+  "claude": true,
+  "telegram": true,
+  "search_console": true,
+  "pagespeed_key": true,
+  "instagram": true
+ },
+ "site": {
+  "checked": true,
+  "checked_at": "2026-10-24T21:29+02:00",
+  "base_url": "https://bloommodels.hu",
+  "ok": true,
+  "pages": [
+   {
+    "url": "https://bloommodels.hu/",
+    "status": 200,
+    "ms": 528,
+    "ok": true,
+    "note": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "status": 200,
+    "ms": 22,
+    "ok": true,
+    "note": ""
+   }
+  ]
+ },
+ "queue": {
+  "counts": {
+   "published": 17,
+   "approved": 6,
+   "draft": 1
+  },
+  "upcoming": [
+   {
+    "id": "2026-10-25-a-te-szabalyaid",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-25 08:30",
+    "when": "2026-10-25T08:30+01:00",
+    "caption": "Streamelő modellként a te streamed, a te szabályaid. Mindig. 🔒 Te döntöd el, miről beszélsz, mit mutatsz meg magadból, és mi az, ami nem fér bele. Ebben mi min…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-25-a-te-szabalyaid/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-25-otthoni-stream-sarok",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-25 13:00",
+    "when": "2026-10-25T13:00+01:00",
+    "caption": "Streamelő modell otthonról: így néz ki egy jó stream-sarok. 🏠 Egy nyugodt, saját sarok, stabil internet és jó fény. A végén egy kis dekor, ami rólad szól: egy…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-25-otthoni-stream-sarok/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-25-kereset-oszinten-hetvege",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-25 19:30",
+    "when": "2026-10-25T19:30+01:00",
+    "caption": "Mennyit keres egy streamelő modell? Őszintén: a bevétel akár 80%-a a tiéd, és havi 2000 € felett reális cél. 💸 Havonta fizetünk, és mindig látod, miből jön öss…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-25-kereset-oszinten-hetvege/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-21-no-experience",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-26 18:30",
+    "when": "2026-10-26T18:30+01:00",
+    "caption": "Még sosem álltál kamera elé? Pont jó — az online modell munkához nem kell tapasztalat. 🎥 Nem kell modellmúlt, nem kell portfólió. Az első naptól betanítunk: te…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-21-no-experience/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-22-discretion",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-27 18:30",
+    "when": "2026-10-27T18:30+01:00",
+    "caption": "A te reflektorfényed. A te szabályaid. A te titkod. Online modell munka, teljes diszkrécióval. 🔒 A diszkréció nálunk nem utólagos gondolat — az első naptól be…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-22-discretion/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-20-earnings",
+    "status": "approved",
+    "type": "image",
+    "scheduled_at": "2026-10-28 18:30",
+    "when": "2026-10-28T18:30+01:00",
+    "caption": "Beszéljünk nyíltan a pénzről. 💸 Budapesten nálunk az egyik legmagasabb a bevételi részesedés: amit behozol, annak akár 80%-a a tiéd. Megbízható havi kifizetés,…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-20-earnings/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   },
+   {
+    "id": "2026-10-30-not-from-budapest",
+    "status": "draft",
+    "type": "image",
+    "scheduled_at": "2026-10-30 18:30",
+    "when": "2026-10-30T18:30+01:00",
+    "caption": "Nem Budapesten élsz? Ez nem akadály. 🚆 ✔️ Segítünk megszervezni az utazást ✔️ Szállás rövid vagy hosszabb távra ✔️ Vagy kezdd otthonról — segítünk berendezni a…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-30-not-from-budapest/image.jpg",
+    "permalink": null,
+    "published_at": null,
+    "error": null
+   }
+  ],
+  "recent": [
+   {
+    "id": "2026-10-24-stream-utan-az-este-a-tied",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-24 19:30",
+    "when": "2026-10-24T19:30+02:00",
+    "caption": "Stream után az este a tiéd. 🍝 Streamelő modellként átlagosan heti kb. 20 órát dolgozol, 5 órás blokkokban, és a beosztást veled együtt tervezzük. Így marad idő…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-24-stream-utan-az-este-a-tied/image.jpg",
+    "permalink": "https://www.instagram.com/p/De4s4CAmkF2/",
+    "published_at": "2026-10-24T17:46:06+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-24-mi-tart-vissza",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-24 13:00",
+    "when": "2026-10-24T13:00+02:00",
+    "caption": "Érdekel a streamelő modell munka, de valami visszatart? A leggyakoribb aggodalmak, őszinte válaszokkal. 💬 Az első streamnél mindenki izgul, ezért ott vagyunk m…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-24-mi-tart-vissza/image.jpg",
+    "permalink": "https://www.instagram.com/p/De3-kyKlqbf/",
+    "published_at": "2026-10-24T11:01:30+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-24-nem-kell-influenszernek-lenned",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-24 08:30",
+    "when": "2026-10-24T08:30+02:00",
+    "caption": "Reggeli kávé, nyugodt tempó: a streamelő modell munka egyik legjobb része, hogy a napodat te osztod be. ☕ Nem kell influenszernek lenned, és tapasztalat sem ke…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-24-nem-kell-influenszernek-lenned/image.jpg",
+    "permalink": "https://www.instagram.com/p/De3jnwDm9Pr/",
+    "published_at": "2026-10-24T07:05:59+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-29-faq",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-23 18:30",
+    "when": "2026-10-23T18:30+02:00",
+    "caption": "A 4 kérdés az online modell munkáról, amit a legtöbbször kapunk. 💬 ❓ Kell tapasztalat? — Nem. Az első naptól betanítunk. ❓ Mennyi időt kell rászánni? — Átlagos…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-29-faq/image.jpg",
+    "permalink": "https://www.instagram.com/p/De2D_lUlb8c/",
+    "published_at": "2026-10-23T17:10:23+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-23-ahol-a-stream-kezdodik",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-23 13:00",
+    "when": "2026-10-23T13:00+02:00",
+    "caption": "Ahol a stream elkezdődik: a stúdiónk Budapest V. kerületében, a Szent István-bazilika közelében. 💡 Profi fények, kamera, csendes munkahely, minden beállítva. T…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-23-ahol-a-stream-kezdodik/image.jpg",
+    "permalink": "https://www.instagram.com/p/De1amGUHFth/",
+    "published_at": "2026-10-23T11:08:38+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-23-unnepi-pihenes",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-23 08:30",
+    "when": "2026-10-23T08:30+02:00",
+    "caption": "Nyugodt, szép ünnepet kívánunk mindenkinek. 🇭🇺 Pihenj, töltődj fel. Ha közben eszedbe jut egy kérdés az online modell munkáról, írj nyugodtan, a hét végén is v…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-23-unnepi-pihenes/image.jpg",
+    "permalink": "https://www.instagram.com/p/De0_Tj2m3IS/",
+    "published_at": "2026-10-23T07:10:10+00:00",
+    "error": null
+   }
+  ],
+  "next": {
+   "id": "2026-10-25-a-te-szabalyaid",
+   "status": "approved",
+   "type": "image",
+   "scheduled_at": "2026-10-25 08:30",
+   "when": "2026-10-25T08:30+01:00",
+   "caption": "Streamelő modellként a te streamed, a te szabályaid. Mindig. 🔒 Te döntöd el, miről beszélsz, mit mutatsz meg magadból, és mi az, ami nem fér bele. Ebben mi min…",
+   "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-25-a-te-szabalyaid/image.jpg",
+   "permalink": null,
+   "published_at": null,
+   "error": null
+  },
+  "unreadable": [],
+  "drafts_next_7_days": [
+   "2026-10-30-not-from-budapest"
+  ]
+ },
+ "instagram": {
+  "configured": true,
+  "week": {
+   "generated_at": "2026-10-19T07:56+00:00",
+   "days": 7,
+   "report": "reports/2026-W43.md",
+   "followers": 5,
+   "account": {
+    "Reach": 9,
+    "Views": 16,
+    "Profile views": 76,
+    "Link clicks": 4,
+    "Accounts engaged": 2,
+    "Interactions": 1
+   },
+   "posts": [
+    {
+     "id": "2026-10-23-apply-now",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/DekAlw1FLkc/",
+     "metrics": {
+      "Reach": 9,
+      "Views": 16,
+      "Likes": 1,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 1
+    }
+   ],
+   "best": "2026-10-23-apply-now"
+  },
+  "live": {
+   "username": "bloommodelsagency",
+   "followers": 5,
+   "media_count": 17,
+   "fetched_at": "2026-10-24T21:29+02:00"
+  },
+  "token": {
+   "expires_at": "2026-12-18T06:49:43+00:00",
+   "days_left": 54
+  }
+ },
+ "seo": {
+  "created": "2026-10-23T10:14+02:00",
+  "scores": {
+   "Website": 100,
+   "Speed": 94,
+   "Google Search": 94,
+   "Instagram": 98,
+   "AI search": 100
+  },
+  "findings": [
+   {
+    "area": "Google Search",
+    "severity": "warning",
+    "title": "Google hasn't indexed this page: Discovered - currently not indexed",
+    "page": "https://bloommodels.hu/en/",
+    "fix": "In Search Console use URL inspection → Request indexing. New sites take days to weeks."
+   },
+   {
+    "area": "Speed",
+    "severity": "warning",
+    "title": "Main content appears after 3.1s on mobile (test run)",
+    "page": "https://bloommodels.hu/en/",
+    "fix": "Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files."
+   },
+   {
+    "area": "Instagram",
+    "severity": "info",
+    "title": "No Reels planned",
+    "page": "",
+    "fix": "Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week."
+   },
+   {
+    "area": "Instagram",
+    "severity": "info",
+    "title": "6 upcoming post(s): The first 125 characters (what shows before '… more') have no search keyword (online modell, modellügynökség, budapest…).",
+    "page": "",
+    "fix": ""
+   }
+  ],
+  "counts": {
+   "critical": 0,
+   "warning": 2,
+   "info": 2
+  },
+  "search": {
+   "start": "2026-09-23",
+   "end": "2026-10-20",
+   "clicks": 4.0,
+   "impressions": 10.0,
+   "ctr": 0.4,
+   "position": 10.3,
+   "prev_clicks": 0,
+   "prev_impressions": 0,
+   "queries": [
+    {
+     "keys": [
+      "bloom models"
+     ],
+     "clicks": 1.0,
+     "impressions": 1.0,
+     "ctr": 1.0,
+     "position": 1.0
+    }
+   ],
+   "pages": [
+    {
+     "keys": [
+      "https://bloommodels.hu/"
+     ],
+     "clicks": 4.0,
+     "impressions": 10.0,
+     "ctr": 0.4,
+     "position": 10.3
+    }
+   ],
+   "countries": [
+    {
+     "keys": [
+      "hun"
+     ],
+     "clicks": 4.0,
+     "impressions": 10.0,
+     "ctr": 0.4,
+     "position": 10.3
+    }
+   ],
+   "striking_distance": [],
+   "low_ctr": [],
+   "new_queries": [
+    "bloom models"
+   ]
+  },
+  "speed": [
+   {
+    "url": "https://bloommodels.hu/",
+    "strategy": "mobile",
+    "score": 99,
+    "lcp_ms": 1832.5,
+    "cls": 0.012447300354471655,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/",
+    "strategy": "desktop",
+    "score": 99,
+    "lcp_ms": 742.0,
+    "cls": 0.009814362612286949,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "strategy": "mobile",
+    "score": 90,
+    "lcp_ms": 3110.0,
+    "cls": 0.0,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "strategy": "desktop",
+    "score": 100,
+    "lcp_ms": 697.0,
+    "cls": 0.0001428002231253486,
+    "error": ""
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-12",
+    "scores": {
+     "Website": 100,
+     "Speed": 98,
+     "Google Search": 93,
+     "Instagram": 99,
+     "AI search": 94
+    },
+    "impressions": 0,
+    "clicks": 0,
+    "speed": {}
+   },
+   {
+    "date": "2026-10-12",
+    "scores": {
+     "Website": 100,
+     "Speed": 88,
+     "Google Search": 93,
+     "Instagram": 99,
+     "AI search": 100
+    },
+    "impressions": 0,
+    "clicks": 0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 96,
+     "desktop:https://bloommodels.hu/": 100,
+     "mobile:https://bloommodels.hu/en/": 91,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   },
+   {
+    "date": "2026-10-16",
+    "scores": {
+     "Website": 100,
+     "Speed": 94,
+     "Google Search": 94,
+     "Instagram": 98,
+     "AI search": 100
+    },
+    "impressions": 5.0,
+    "clicks": 2.0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 96,
+     "desktop:https://bloommodels.hu/": 99,
+     "mobile:https://bloommodels.hu/en/": 95,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   },
+   {
+    "date": "2026-10-23",
+    "scores": {
+     "Website": 100,
+     "Speed": 94,
+     "Google Search": 94,
+     "Instagram": 98,
+     "AI search": 100
+    },
+    "impressions": 10.0,
+    "clicks": 4.0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 99,
+     "desktop:https://bloommodels.hu/": 99,
+     "mobile:https://bloommodels.hu/en/": 90,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   }
+  ]
+ },
+ "marketing": {
+  "week": "2026-W44",
+  "mode": "library",
+  "summary": "Rule-based plan (no Claude API key): next week's posts come from the ready-made library, and the recommendations below come straight from the SEO and Instagram checks.",
+  "bottleneck": "intent",
+  "bottleneck_reason": "Link clicks are 3% of profile visits (target ≥ 10%): the profile doesn't convince.",
+  "wins": [
+   "Best post: 2026-10-20-mit-csinal-egy-streamelo-modell (score 7). Make more like it."
+  ],
+  "problems": [],
+  "decisions": [],
+  "reels": [
+   {
+    "title": "Myth vs. reality (5 seconds each)",
+    "hook": "„Ezt mindenki hiszi az online modell munkáról…”",
+    "shots": [
+     "Text on screen: myth 1 → reality",
+     "Studio detail shots between myths",
+     "End card: link a bióban · 18+"
+    ],
+    "caption_idea": "3 tévhit, amit minden héten hallunk."
+   },
+   {
+    "title": "Studio walk-through",
+    "hook": "„Így néz ki egy profi streamelő stúdió Budapesten”",
+    "shots": [
+     "Door opens to the studio",
+     "Lights switching on",
+     "Camera + laptop setup",
+     "Window view toward the Basilica"
+    ],
+    "caption_idea": "Profi fények, profi technika — neked csak jönnöd kell."
+   }
+  ],
+  "stories": [
+   "Poll: „Mi tartana vissza attól, hogy kipróbáld?” (tapasztalat / diszkréció / idő / más)",
+   "Behind the scenes: 10 seconds of the studio lights going on",
+   "Question box: „Kérdezz bármit az online modell munkáról” — answer 3 in Stories, best one becomes a FAQ entry",
+   "Repost today's feed post with a „link a bióban” sticker"
+  ],
+  "experiments": [],
+  "posts_pr": "https://github.com/imprkii17-create/bloom-social-agent/pull/2",
+  "site_pr": "",
+  "spend_usd": 0.3765395,
+  "brief": "reports/marketing/2026-W44.md"
+ },
+ "funnel": [
+  {
+   "week": "2026-W42",
+   "applications": 1,
+   "replied_24h": 1,
+   "interviews": 0,
+   "started": 0,
+   "top_referrer": "",
+   "by_source": {
+    "google_ads": 0,
+    "meta_ads": 0,
+    "referral": 0,
+    "instagram_organic": 0,
+    "other": 1
+   },
+   "spend": {
+    "google_ads": 0,
+    "meta_ads": 0,
+    "referral_bonus": 0
+   },
+   "notes": "First application (organic, found the site online). Phone call planned this week."
+  }
+ ],
+ "attention": [
+  {
+   "level": "warning",
+   "text": "1 draft post(s) in the next 7 days aren't approved: 2026-10-30-not-from-budapest. Approve them, or they won't go out."
+  }
+ ]
+}
