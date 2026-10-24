@@ -7,7 +7,12 @@ scheduled_at: 2026-10-24 19:30
 media:
 - image.jpg
 caption_file: caption.txt
-alt_text: 'AI-generált kép: fiatal nő mosolyog egy étteremben, piros csipkés felsőben.
-  A képen a felirat: „Stream után? Az este a tiéd.” — Bloom Models, online modell munka Budapesten.'
+alt_text: 'AI-generált kép: fiatal nő mosolyog egy étteremben, piros csipkés felsőben. A képen a felirat:
+  „Stream után? Az este a tiéd.” — Bloom Models, online modell munka Budapesten.'
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (flexibility).
+result:
+  attempts: 0
+  ig_pending_container: '18120324997907050'
+  ig_pending_fingerprint: 18a088daf26d3363
+  ig_attempt_started_at: '2026-10-24T17:46:06+00:00'
