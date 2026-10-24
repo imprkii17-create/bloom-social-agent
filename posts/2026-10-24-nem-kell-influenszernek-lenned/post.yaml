@@ -1,5 +1,5 @@
 id: 2026-10-24-nem-kell-influenszernek-lenned
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'AI-generált kép: fiatal nő kávéval a kezében egy napos városi 
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (training).
 result:
+  instagram:
+    media_id: '18118716911006582'
+    permalink: https://www.instagram.com/p/De3jnwDm9Pr/
+    published_at: '2026-10-24T07:05:59+00:00'
   attempts: 0
-  ig_pending_container: '18120189334907050'
-  ig_pending_fingerprint: 89793684f4f108df
-  ig_attempt_started_at: '2026-10-24T07:05:59+00:00'
