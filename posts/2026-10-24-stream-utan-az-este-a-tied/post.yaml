@@ -1,5 +1,5 @@
 id: 2026-10-24-stream-utan-az-este-a-tied
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'AI-generált kép: fiatal nő mosolyog egy étteremben, piros csipké
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (flexibility).
 result:
+  instagram:
+    media_id: '17954475651311684'
+    permalink: https://www.instagram.com/p/De4s4CAmkF2/
+    published_at: '2026-10-24T17:46:06+00:00'
   attempts: 0
-  ig_pending_container: '18120324997907050'
-  ig_pending_fingerprint: 18a088daf26d3363
-  ig_attempt_started_at: '2026-10-24T17:46:06+00:00'
