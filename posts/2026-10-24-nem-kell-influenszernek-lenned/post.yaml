@@ -7,7 +7,12 @@ scheduled_at: 2026-10-24 08:30
 media:
 - image.jpg
 caption_file: caption.txt
-alt_text: 'AI-generált kép: fiatal nő kávéval a kezében egy napos városi utcán. A képen
-  a felirat: „Reggeli kávé, nyugodt tempó. A napod a tiéd.” — Bloom Models, online modell munka Budapesten.'
+alt_text: 'AI-generált kép: fiatal nő kávéval a kezében egy napos városi utcán. A képen a felirat: „Reggeli
+  kávé, nyugodt tempó. A napod a tiéd.” — Bloom Models, online modell munka Budapesten.'
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (training).
+result:
+  attempts: 0
+  ig_pending_container: '18120189334907050'
+  ig_pending_fingerprint: 89793684f4f108df
+  ig_attempt_started_at: '2026-10-24T07:05:59+00:00'
