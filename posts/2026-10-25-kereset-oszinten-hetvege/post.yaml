@@ -7,7 +7,12 @@ scheduled_at: 2026-10-25 19:30
 media:
 - image.jpg
 caption_file: caption.txt
-alt_text: 'AI-generált kép: fiatal nő szegecses fekete dzsekiben egy zebrán. A képen a
-  felirat: „A bevétel akár 80%-a a tiéd.” — Bloom Models, online modell munka Budapesten.'
+alt_text: 'AI-generált kép: fiatal nő szegecses fekete dzsekiben egy zebrán. A képen a felirat: „A bevétel
+  akár 80%-a a tiéd.” — Bloom Models, online modell munka Budapesten.'
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (earnings).
+result:
+  attempts: 0
+  ig_pending_container: '18120611614907050'
+  ig_pending_fingerprint: 5209a13f4040c019
+  ig_attempt_started_at: '2026-10-25T18:55:45+00:00'
