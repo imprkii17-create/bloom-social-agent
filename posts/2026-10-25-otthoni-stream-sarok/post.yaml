@@ -1,5 +1,5 @@
 id: 2026-10-25-otthoni-stream-sarok
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -13,7 +13,8 @@ alt_text: 'Bloom Models grafika sötét bordó háttéren, a felirat: „Az otth
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (remote).
 result:
+  instagram:
+    media_id: '18505122874101794'
+    permalink: https://www.instagram.com/p/De6qGFgkYvX/
+    published_at: '2026-10-25T12:00:17+00:00'
   attempts: 0
-  ig_pending_container: '18120508963907050'
-  ig_pending_fingerprint: 5539f9596f07782b
-  ig_attempt_started_at: '2026-10-25T12:00:17+00:00'
