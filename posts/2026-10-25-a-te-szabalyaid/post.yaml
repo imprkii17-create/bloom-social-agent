@@ -1,5 +1,5 @@
 id: 2026-10-25-a-te-szabalyaid
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'Bloom Models grafika világos rózsaszín háttéren, a felirat: „A
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (discretion).
 result:
+  instagram:
+    media_id: '17976717918157537'
+    permalink: https://www.instagram.com/p/De6PF3gFdkO/
+    published_at: '2026-10-25T08:04:20+00:00'
   attempts: 0
-  ig_pending_container: '18120464044907050'
-  ig_pending_fingerprint: f1756707b2019688
-  ig_attempt_started_at: '2026-10-25T08:04:20+00:00'
