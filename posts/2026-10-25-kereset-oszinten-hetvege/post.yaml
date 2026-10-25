@@ -1,5 +1,5 @@
 id: 2026-10-25-kereset-oszinten-hetvege
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -12,7 +12,8 @@ alt_text: 'AI-generált kép: fiatal nő szegecses fekete dzsekiben egy zebrán.
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
   by the marketing agent (earnings).
 result:
+  instagram:
+    media_id: '18090430163691641'
+    permalink: https://www.instagram.com/p/De7ZpEClKxY/
+    published_at: '2026-10-25T18:55:45+00:00'
   attempts: 0
-  ig_pending_container: '18120611614907050'
-  ig_pending_fingerprint: 5209a13f4040c019
-  ig_attempt_started_at: '2026-10-25T18:55:45+00:00'
