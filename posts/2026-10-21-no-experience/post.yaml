@@ -1,5 +1,5 @@
 id: 2026-10-21-no-experience
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -11,7 +11,8 @@ alt_text: A professional studio desk with a camera, laptop and tablet under warm
   "Never been on camera? Perfect." and four steps from applying to a first stream.
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
 result:
+  instagram:
+    media_id: '18064131647716595'
+    permalink: https://www.instagram.com/p/De937wElSMn/
+    published_at: '2026-10-26T17:58:55+00:00'
   attempts: 0
-  ig_pending_container: '18120892567907050'
-  ig_pending_fingerprint: dfca284ee6edc6f7
-  ig_attempt_started_at: '2026-10-26T17:58:55+00:00'
