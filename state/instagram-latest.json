@@ -1,24 +1,104 @@
 {
- "generated_at": "2026-10-19T07:56+00:00",
+ "generated_at": "2026-10-26T07:58+00:00",
  "days": 7,
- "report": "reports/2026-W43.md",
+ "report": "reports/2026-W44.md",
  "followers": 5,
  "account": {
-  "Reach": 9,
-  "Views": 16,
-  "Profile views": 76,
-  "Link clicks": 4,
-  "Accounts engaged": 2,
-  "Interactions": 1
+  "Reach": 11,
+  "Views": 195,
+  "Profile views": 37,
+  "Link clicks": 1,
+  "Accounts engaged": 1,
+  "Interactions": 2
  },
  "posts": [
   {
-   "id": "2026-10-23-apply-now",
+   "id": "2026-10-20-mit-csinal-egy-streamelo-modell",
    "type": "image",
-   "permalink": "https://www.instagram.com/p/DekAlw1FLkc/",
+   "permalink": "https://www.instagram.com/p/DetQw55my6C/",
    "metrics": {
-    "Reach": 9,
-    "Views": 16,
+    "Reach": 8,
+    "Views": 23,
+    "Likes": 1,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 2,
+    "Follows": 0
+   },
+   "score": 7
+  },
+  {
+   "id": "2026-10-21-te-vagy-a-musorvezeto",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/Dev10pvnNmm/",
+   "metrics": {
+    "Reach": 7,
+    "Views": 20,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 1,
+    "Follows": 0
+   },
+   "score": 3
+  },
+  {
+   "id": "2026-10-21-stream-elotti-checklist",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/DewRT0DFeSH/",
+   "metrics": {
+    "Reach": 4,
+    "Views": 17,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 1,
+    "Follows": 0
+   },
+   "score": 3
+  },
+  {
+   "id": "2026-10-28-what-you-get",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/DezdtFHlelM/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 10,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 1,
+    "Follows": 0
+   },
+   "score": 3
+  },
+  {
+   "id": "2026-10-24-stream-utan-az-este-a-tied",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De4s4CAmkF2/",
+   "metrics": {
+    "Reach": 3,
+    "Views": 8,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 1,
+    "Follows": 0
+   },
+   "score": 3
+  },
+  {
+   "id": "2026-10-19-flexible-hours",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/DervWPBmqk8/",
+   "metrics": {
+    "Reach": 6,
+    "Views": 11,
     "Likes": 1,
     "Comments": 0,
     "Saves": 0,
@@ -27,7 +107,215 @@
     "Follows": 0
    },
    "score": 1
+  },
+  {
+   "id": "2026-10-20-amikor-elo-vagy",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/DetsH5pljzG/",
+   "metrics": {
+    "Reach": 5,
+    "Views": 11,
+    "Likes": 1,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 1
+  },
+  {
+   "id": "2026-10-26-studio-or-home",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/DeuT0b7FsO5/",
+   "metrics": {
+    "Reach": 5,
+    "Views": 7,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-27-myths",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/Dew42s0GjLT/",
+   "metrics": {
+    "Reach": 3,
+    "Views": 9,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-22-a-chat-a-szinpadod",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/Deyay6gFVi_/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 10,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-22-a-jo-streamek-titka",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/Dey2FzVEUC1/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 9,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-23-unnepi-pihenes",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De0_Tj2m3IS/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 2,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-23-ahol-a-stream-kezdodik",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De1amGUHFth/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 14,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-29-faq",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De2D_lUlb8c/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 9,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-24-nem-kell-influenszernek-lenned",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De3jnwDm9Pr/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 8,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-24-mi-tart-vissza",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De3-kyKlqbf/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 3,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-25-a-te-szabalyaid",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De6PF3gFdkO/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 4,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-25-otthoni-stream-sarok",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De6qGFgkYvX/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 8,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
+  },
+  {
+   "id": "2026-10-25-kereset-oszinten-hetvege",
+   "type": "image",
+   "permalink": "https://www.instagram.com/p/De7ZpEClKxY/",
+   "metrics": {
+    "Reach": 2,
+    "Views": 5,
+    "Likes": 0,
+    "Comments": 0,
+    "Saves": 0,
+    "Shares": 0,
+    "Profile visits": 0,
+    "Follows": 0
+   },
+   "score": 0
   }
  ],
- "best": "2026-10-23-apply-now"
+ "best": "2026-10-20-mit-csinal-egy-streamelo-modell"
 }
