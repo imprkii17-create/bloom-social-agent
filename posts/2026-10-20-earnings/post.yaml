@@ -1,5 +1,5 @@
 id: 2026-10-20-earnings
-status: approved
+status: published
 type: image
 platforms:
 - instagram
@@ -11,7 +11,8 @@ alt_text: A woman in a cream halter top leaning in a sunlit wooden doorway, with
   line "of what you bring in stays with you".
 notes: Hungarian image is published. For the English version, change media to [image-en.jpg].
 result:
+  instagram:
+    media_id: '17900401899672445'
+    permalink: https://www.instagram.com/p/DfC-n5RlS8S/
+    published_at: '2026-10-28T17:33:35+00:00'
   attempts: 0
-  ig_pending_container: '18121391371907050'
-  ig_pending_fingerprint: b30917dff81a89ff
-  ig_attempt_started_at: '2026-10-28T17:33:35+00:00'
