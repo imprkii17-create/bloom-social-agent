@@ -1,0 +1,13 @@
+id: 2026-11-06-no-experience
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-11-06 19:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Bloom Models grafika világos rózsaszín háttéren, a felirat: „Még sosem álltál kamera elé? Pont
+  jó.”. Online modell munka Budapesten.'
+notes: 'Hungarian image is published. For the English version, change media to [image-en.jpg]. From library:
+  no-experience'
