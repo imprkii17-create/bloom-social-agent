@@ -1,12 +1,12 @@
 {
- "week": "2026-W44",
+ "week": "2026-W45",
  "mode": "library",
  "plan": {
   "summary": "Rule-based plan (no Claude API key): next week's posts come from the ready-made library, and the recommendations below come straight from the SEO and Instagram checks.",
   "bottleneck": "intent",
-  "bottleneck_reason": "Link clicks are 3% of profile visits (target ≥ 10%): the profile doesn't convince.",
+  "bottleneck_reason": "Link clicks are 0% of profile visits (target ≥ 10%): the profile doesn't convince.",
   "wins": [
-   "Best post: 2026-10-20-mit-csinal-egy-streamelo-modell (score 7). Make more like it."
+   "Best post: 2026-10-24-stream-utan-az-este-a-tied (score 3). Make more like it."
   ],
   "problems": [],
   "decisions_for_you": [],
@@ -45,18 +45,21 @@
   "site_changes": [],
   "seo_actions": [
    "Google Search: Google hasn't indexed this page: Discovered - currently not indexed — In Search Console use URL inspection → Request indexing. New sites take days to weeks.",
-   "Speed: Main content appears after 3.1s on mobile (test run) — Under 2.5s is 'good'. Usually: smaller hero image, fewer render-blocking files.",
-   "Instagram: No Reels planned — Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week.",
-   "Instagram: 6 upcoming post(s): The first 125 characters (what shows before '… more') have no search keyword (online modell, modellügynökség, budapest…)."
+   "Instagram: Nothing approved for the next 7 days — Approve drafts (or merge the agent's weekly pull request) so the account stays active.",
+   "Instagram: No Reels planned — Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week."
   ]
  },
  "posts": [
-  "2026-10-29-first-week",
-  "2026-10-31-home-studio",
-  "2026-11-01-honest-earnings"
+  "2026-11-02-first-week",
+  "2026-11-03-home-studio",
+  "2026-11-04-honest-earnings",
+  "2026-11-05-how-to-apply",
+  "2026-11-06-no-experience",
+  "2026-11-07-privacy-first",
+  "2026-11-08-studio-tour"
  ],
  "dropped": [],
- "posts_pr": "https://github.com/imprkii17-create/bloom-social-agent/pull/2",
+ "posts_pr": "https://github.com/imprkii17-create/bloom-social-agent/pull/3",
  "site_pr": "",
- "spend_usd": 0.3765395
+ "spend_usd": 0.3758695
 }
