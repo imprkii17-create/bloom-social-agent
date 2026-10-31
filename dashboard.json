@@ -1,0 +1,790 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-31T20:18+01:00",
+ "timezone": "Europe/Budapest",
+ "repo": "imprkii17-create/bloom-social-agent",
+ "dashboard_url": "https://imprkii17-create.github.io/bloom-social-agent/",
+ "features": {
+  "claude": true,
+  "telegram": true,
+  "search_console": true,
+  "pagespeed_key": true,
+  "instagram": true
+ },
+ "site": {
+  "checked": true,
+  "checked_at": "2026-10-31T20:18+01:00",
+  "base_url": "https://bloommodels.hu",
+  "ok": true,
+  "pages": [
+   {
+    "url": "https://bloommodels.hu/",
+    "status": 200,
+    "ms": 1131,
+    "ok": true,
+    "note": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "status": 200,
+    "ms": 278,
+    "ok": true,
+    "note": ""
+   }
+  ]
+ },
+ "queue": {
+  "counts": {
+   "published": 23,
+   "draft": 1
+  },
+  "upcoming": [],
+  "recent": [
+   {
+    "id": "2026-10-20-earnings",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-28 18:30",
+    "when": "2026-10-28T18:30+01:00",
+    "caption": "Beszéljünk nyíltan a pénzről. 💸 Budapesten nálunk az egyik legmagasabb a bevételi részesedés: amit behozol, annak akár 80%-a a tiéd. Megbízható havi kifizetés,…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-20-earnings/image.jpg",
+    "permalink": "https://www.instagram.com/p/DfC-n5RlS8S/",
+    "published_at": "2026-10-28T17:33:35+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-22-discretion",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-27 18:30",
+    "when": "2026-10-27T18:30+01:00",
+    "caption": "A te reflektorfényed. A te szabályaid. A te titkod. Online modell munka, teljes diszkrécióval. 🔒 A diszkréció nálunk nem utólagos gondolat — az első naptól be…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-22-discretion/image.jpg",
+    "permalink": "https://www.instagram.com/p/DfAZi3wFWM-/",
+    "published_at": "2026-10-27T17:31:07+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-21-no-experience",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-26 18:30",
+    "when": "2026-10-26T18:30+01:00",
+    "caption": "Még sosem álltál kamera elé? Pont jó — az online modell munkához nem kell tapasztalat. 🎥 Nem kell modellmúlt, nem kell portfólió. Az első naptól betanítunk: te…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-21-no-experience/image.jpg",
+    "permalink": "https://www.instagram.com/p/De937wElSMn/",
+    "published_at": "2026-10-26T17:58:55+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-25-kereset-oszinten-hetvege",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-25 19:30",
+    "when": "2026-10-25T19:30+01:00",
+    "caption": "Mennyit keres egy streamelő modell? Őszintén: a bevétel akár 80%-a a tiéd, és havi 2000 € felett reális cél. 💸 Havonta fizetünk, és mindig látod, miből jön öss…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-25-kereset-oszinten-hetvege/image.jpg",
+    "permalink": "https://www.instagram.com/p/De7ZpEClKxY/",
+    "published_at": "2026-10-25T18:55:45+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-25-otthoni-stream-sarok",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-25 13:00",
+    "when": "2026-10-25T13:00+01:00",
+    "caption": "Streamelő modell otthonról: így néz ki egy jó stream-sarok. 🏠 Egy nyugodt, saját sarok, stabil internet és jó fény. A végén egy kis dekor, ami rólad szól: egy…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-25-otthoni-stream-sarok/image.jpg",
+    "permalink": "https://www.instagram.com/p/De6qGFgkYvX/",
+    "published_at": "2026-10-25T12:00:17+00:00",
+    "error": null
+   },
+   {
+    "id": "2026-10-25-a-te-szabalyaid",
+    "status": "published",
+    "type": "image",
+    "scheduled_at": "2026-10-25 08:30",
+    "when": "2026-10-25T08:30+01:00",
+    "caption": "Streamelő modellként a te streamed, a te szabályaid. Mindig. 🔒 Te döntöd el, miről beszélsz, mit mutatsz meg magadból, és mi az, ami nem fér bele. Ebben mi min…",
+    "image": "https://raw.githubusercontent.com/imprkii17-create/bloom-social-agent/main/posts/2026-10-25-a-te-szabalyaid/image.jpg",
+    "permalink": "https://www.instagram.com/p/De6PF3gFdkO/",
+    "published_at": "2026-10-25T08:04:20+00:00",
+    "error": null
+   }
+  ],
+  "next": null,
+  "unreadable": [],
+  "drafts_next_7_days": []
+ },
+ "instagram": {
+  "configured": true,
+  "week": {
+   "generated_at": "2026-10-26T07:58+00:00",
+   "days": 7,
+   "report": "reports/2026-W44.md",
+   "followers": 5,
+   "account": {
+    "Reach": 11,
+    "Views": 195,
+    "Profile views": 37,
+    "Link clicks": 1,
+    "Accounts engaged": 1,
+    "Interactions": 2
+   },
+   "posts": [
+    {
+     "id": "2026-10-20-mit-csinal-egy-streamelo-modell",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/DetQw55my6C/",
+     "metrics": {
+      "Reach": 8,
+      "Views": 23,
+      "Likes": 1,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 2,
+      "Follows": 0
+     },
+     "score": 7
+    },
+    {
+     "id": "2026-10-21-te-vagy-a-musorvezeto",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/Dev10pvnNmm/",
+     "metrics": {
+      "Reach": 7,
+      "Views": 20,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 1,
+      "Follows": 0
+     },
+     "score": 3
+    },
+    {
+     "id": "2026-10-21-stream-elotti-checklist",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/DewRT0DFeSH/",
+     "metrics": {
+      "Reach": 4,
+      "Views": 17,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 1,
+      "Follows": 0
+     },
+     "score": 3
+    },
+    {
+     "id": "2026-10-28-what-you-get",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/DezdtFHlelM/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 10,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 1,
+      "Follows": 0
+     },
+     "score": 3
+    },
+    {
+     "id": "2026-10-24-stream-utan-az-este-a-tied",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De4s4CAmkF2/",
+     "metrics": {
+      "Reach": 3,
+      "Views": 8,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 1,
+      "Follows": 0
+     },
+     "score": 3
+    },
+    {
+     "id": "2026-10-19-flexible-hours",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/DervWPBmqk8/",
+     "metrics": {
+      "Reach": 6,
+      "Views": 11,
+      "Likes": 1,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 1
+    },
+    {
+     "id": "2026-10-20-amikor-elo-vagy",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/DetsH5pljzG/",
+     "metrics": {
+      "Reach": 5,
+      "Views": 11,
+      "Likes": 1,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 1
+    },
+    {
+     "id": "2026-10-26-studio-or-home",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/DeuT0b7FsO5/",
+     "metrics": {
+      "Reach": 5,
+      "Views": 7,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-27-myths",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/Dew42s0GjLT/",
+     "metrics": {
+      "Reach": 3,
+      "Views": 9,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-22-a-chat-a-szinpadod",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/Deyay6gFVi_/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 10,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-22-a-jo-streamek-titka",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/Dey2FzVEUC1/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 9,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-23-unnepi-pihenes",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De0_Tj2m3IS/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 2,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-23-ahol-a-stream-kezdodik",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De1amGUHFth/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 14,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-29-faq",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De2D_lUlb8c/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 9,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-24-nem-kell-influenszernek-lenned",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De3jnwDm9Pr/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 8,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-24-mi-tart-vissza",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De3-kyKlqbf/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 3,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-25-a-te-szabalyaid",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De6PF3gFdkO/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 4,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-25-otthoni-stream-sarok",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De6qGFgkYvX/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 8,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    },
+    {
+     "id": "2026-10-25-kereset-oszinten-hetvege",
+     "type": "image",
+     "permalink": "https://www.instagram.com/p/De7ZpEClKxY/",
+     "metrics": {
+      "Reach": 2,
+      "Views": 5,
+      "Likes": 0,
+      "Comments": 0,
+      "Saves": 0,
+      "Shares": 0,
+      "Profile visits": 0,
+      "Follows": 0
+     },
+     "score": 0
+    }
+   ],
+   "best": "2026-10-20-mit-csinal-egy-streamelo-modell"
+  },
+  "live_error": "API access blocked. (code 200) [trace A-h3FeEWY6P9CBNobTX6YqZ]",
+  "token": {
+   "expires_at": "2026-12-25T06:49:30+00:00",
+   "days_left": 54
+  }
+ },
+ "seo": {
+  "created": "2026-10-30T09:26+01:00",
+  "scores": {
+   "Website": 100,
+   "Speed": 100,
+   "Google Search": 94,
+   "Instagram": 93,
+   "AI search": 100
+  },
+  "findings": [
+   {
+    "area": "Google Search",
+    "severity": "warning",
+    "title": "Google hasn't indexed this page: Discovered - currently not indexed",
+    "page": "https://bloommodels.hu/en/",
+    "fix": "In Search Console use URL inspection → Request indexing. New sites take days to weeks."
+   },
+   {
+    "area": "Instagram",
+    "severity": "warning",
+    "title": "Nothing approved for the next 7 days",
+    "page": "",
+    "fix": "Approve drafts (or merge the agent's weekly pull request) so the account stays active."
+   },
+   {
+    "area": "Instagram",
+    "severity": "info",
+    "title": "No Reels planned",
+    "page": "",
+    "fix": "Reels are what Instagram shows to people who don't follow you yet. Aim for 1–2 a week."
+   }
+  ],
+  "counts": {
+   "critical": 0,
+   "warning": 2,
+   "info": 1
+  },
+  "search": {
+   "start": "2026-09-30",
+   "end": "2026-10-27",
+   "clicks": 4.0,
+   "impressions": 28.0,
+   "ctr": 0.14285714285714285,
+   "position": 9.178571428571429,
+   "prev_clicks": 0,
+   "prev_impressions": 0,
+   "queries": [
+    {
+     "keys": [
+      "streaming modell"
+     ],
+     "clicks": 0.0,
+     "impressions": 2.0,
+     "ctr": 0.0,
+     "position": 18.5
+    },
+    {
+     "keys": [
+      "streaming modellkedés"
+     ],
+     "clicks": 0.0,
+     "impressions": 2.0,
+     "ctr": 0.0,
+     "position": 2.0
+    },
+    {
+     "keys": [
+      "bloom models"
+     ],
+     "clicks": 1.0,
+     "impressions": 1.0,
+     "ctr": 1.0,
+     "position": 1.0
+    },
+    {
+     "keys": [
+      "modell munka budapest"
+     ],
+     "clicks": 0.0,
+     "impressions": 1.0,
+     "ctr": 0.0,
+     "position": 4.0
+    },
+    {
+     "keys": [
+      "online modell"
+     ],
+     "clicks": 0.0,
+     "impressions": 1.0,
+     "ctr": 0.0,
+     "position": 19.0
+    },
+    {
+     "keys": [
+      "online modell munka"
+     ],
+     "clicks": 0.0,
+     "impressions": 1.0,
+     "ctr": 0.0,
+     "position": 24.0
+    }
+   ],
+   "pages": [
+    {
+     "keys": [
+      "https://bloommodels.hu/"
+     ],
+     "clicks": 4.0,
+     "impressions": 28.0,
+     "ctr": 0.14285714285714285,
+     "position": 9.178571428571429
+    }
+   ],
+   "countries": [
+    {
+     "keys": [
+      "hun"
+     ],
+     "clicks": 4.0,
+     "impressions": 27.0,
+     "ctr": 0.14814814814814814,
+     "position": 9.296296296296296
+    },
+    {
+     "keys": [
+      "svk"
+     ],
+     "clicks": 0.0,
+     "impressions": 1.0,
+     "ctr": 0.0,
+     "position": 6.0
+    }
+   ],
+   "striking_distance": [],
+   "low_ctr": [],
+   "new_queries": [
+    "streaming modell",
+    "streaming modellkedés",
+    "bloom models",
+    "modell munka budapest",
+    "online modell",
+    "online modell munka"
+   ]
+  },
+  "speed": [
+   {
+    "url": "https://bloommodels.hu/",
+    "strategy": "mobile",
+    "score": 100,
+    "lcp_ms": 1362.5,
+    "cls": 0.002787361000544036,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/",
+    "strategy": "desktop",
+    "score": 100,
+    "lcp_ms": 683.5,
+    "cls": 0.010316390617562449,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "strategy": "mobile",
+    "score": 97,
+    "lcp_ms": 1044.5,
+    "cls": 0.0,
+    "error": ""
+   },
+   {
+    "url": "https://bloommodels.hu/en/",
+    "strategy": "desktop",
+    "score": 100,
+    "lcp_ms": 581.5,
+    "cls": 0.006935927874213007,
+    "error": ""
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-12",
+    "scores": {
+     "Website": 100,
+     "Speed": 98,
+     "Google Search": 93,
+     "Instagram": 99,
+     "AI search": 94
+    },
+    "impressions": 0,
+    "clicks": 0,
+    "speed": {}
+   },
+   {
+    "date": "2026-10-12",
+    "scores": {
+     "Website": 100,
+     "Speed": 88,
+     "Google Search": 93,
+     "Instagram": 99,
+     "AI search": 100
+    },
+    "impressions": 0,
+    "clicks": 0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 96,
+     "desktop:https://bloommodels.hu/": 100,
+     "mobile:https://bloommodels.hu/en/": 91,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   },
+   {
+    "date": "2026-10-16",
+    "scores": {
+     "Website": 100,
+     "Speed": 94,
+     "Google Search": 94,
+     "Instagram": 98,
+     "AI search": 100
+    },
+    "impressions": 5.0,
+    "clicks": 2.0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 96,
+     "desktop:https://bloommodels.hu/": 99,
+     "mobile:https://bloommodels.hu/en/": 95,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   },
+   {
+    "date": "2026-10-23",
+    "scores": {
+     "Website": 100,
+     "Speed": 94,
+     "Google Search": 94,
+     "Instagram": 98,
+     "AI search": 100
+    },
+    "impressions": 10.0,
+    "clicks": 4.0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 99,
+     "desktop:https://bloommodels.hu/": 99,
+     "mobile:https://bloommodels.hu/en/": 90,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   },
+   {
+    "date": "2026-10-30",
+    "scores": {
+     "Website": 100,
+     "Speed": 100,
+     "Google Search": 94,
+     "Instagram": 93,
+     "AI search": 100
+    },
+    "impressions": 28.0,
+    "clicks": 4.0,
+    "speed": {
+     "mobile:https://bloommodels.hu/": 100,
+     "desktop:https://bloommodels.hu/": 100,
+     "mobile:https://bloommodels.hu/en/": 97,
+     "desktop:https://bloommodels.hu/en/": 100
+    }
+   }
+  ]
+ },
+ "marketing": {
+  "week": "2026-W45",
+  "mode": "library",
+  "summary": "Rule-based plan (no Claude API key): next week's posts come from the ready-made library, and the recommendations below come straight from the SEO and Instagram checks.",
+  "bottleneck": "intent",
+  "bottleneck_reason": "Link clicks are 0% of profile visits (target ≥ 10%): the profile doesn't convince.",
+  "wins": [
+   "Best post: 2026-10-24-stream-utan-az-este-a-tied (score 3). Make more like it."
+  ],
+  "problems": [],
+  "decisions": [],
+  "reels": [
+   {
+    "title": "Myth vs. reality (5 seconds each)",
+    "hook": "„Ezt mindenki hiszi az online modell munkáról…”",
+    "shots": [
+     "Text on screen: myth 1 → reality",
+     "Studio detail shots between myths",
+     "End card: link a bióban · 18+"
+    ],
+    "caption_idea": "3 tévhit, amit minden héten hallunk."
+   },
+   {
+    "title": "Studio walk-through",
+    "hook": "„Így néz ki egy profi streamelő stúdió Budapesten”",
+    "shots": [
+     "Door opens to the studio",
+     "Lights switching on",
+     "Camera + laptop setup",
+     "Window view toward the Basilica"
+    ],
+    "caption_idea": "Profi fények, profi technika — neked csak jönnöd kell."
+   }
+  ],
+  "stories": [
+   "Poll: „Mi tartana vissza attól, hogy kipróbáld?” (tapasztalat / diszkréció / idő / más)",
+   "Behind the scenes: 10 seconds of the studio lights going on",
+   "Question box: „Kérdezz bármit az online modell munkáról” — answer 3 in Stories, best one becomes a FAQ entry",
+   "Repost today's feed post with a „link a bióban” sticker"
+  ],
+  "experiments": [],
+  "posts_pr": "https://github.com/imprkii17-create/bloom-social-agent/pull/3",
+  "site_pr": "",
+  "spend_usd": 0.3758695,
+  "brief": "reports/marketing/2026-W45.md"
+ },
+ "funnel": [
+  {
+   "week": "2026-W42",
+   "applications": 1,
+   "replied_24h": 1,
+   "interviews": 0,
+   "started": 0,
+   "top_referrer": "",
+   "by_source": {
+    "google_ads": 0,
+    "meta_ads": 0,
+    "referral": 0,
+    "instagram_organic": 0,
+    "other": 1
+   },
+   "spend": {
+    "google_ads": 0,
+    "meta_ads": 0,
+    "referral_bonus": 0
+   },
+   "notes": "First application (organic, found the site online). Phone call planned this week."
+  }
+ ],
+ "attention": [
+  {
+   "level": "warning",
+   "text": "Nothing is scheduled for the next two weeks."
+  }
+ ]
+}
