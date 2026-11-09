@@ -1,31 +1,9 @@
 {
- "generated_at": "2026-11-02T08:29+00:00",
+ "generated_at": "2026-11-09T08:33+00:00",
  "days": 7,
- "report": "reports/2026-W45.md",
+ "report": "reports/2026-W46.md",
  "followers": null,
  "account": {},
- "posts": [
-  {
-   "id": "2026-10-21-no-experience",
-   "type": "image",
-   "permalink": "https://www.instagram.com/p/De937wElSMn/",
-   "metrics": {},
-   "score": 0
-  },
-  {
-   "id": "2026-10-22-discretion",
-   "type": "image",
-   "permalink": "https://www.instagram.com/p/DfAZi3wFWM-/",
-   "metrics": {},
-   "score": 0
-  },
-  {
-   "id": "2026-10-20-earnings",
-   "type": "image",
-   "permalink": "https://www.instagram.com/p/DfC-n5RlS8S/",
-   "metrics": {},
-   "score": 0
-  }
- ],
- "best": "2026-10-21-no-experience"
+ "posts": [],
+ "best": null
 }
