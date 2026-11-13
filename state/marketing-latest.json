@@ -1,5 +1,5 @@
 {
- "week": "2026-W46",
+ "week": "2026-W47",
  "mode": "library",
  "plan": {
   "summary": "Rule-based plan (no Claude API key): next week's posts come from the ready-made library, and the recommendations below come straight from the SEO and Instagram checks.",
@@ -42,22 +42,22 @@
   "experiment_updates": [],
   "site_changes": [],
   "seo_actions": [
-   "Google Search: Google hasn't indexed this page: Discovered - currently not indexed — In Search Console use URL inspection → Request indexing. New sites take days to weeks.",
+   "Google Search: Google hasn't indexed this page: URL is unknown to Google — In Search Console use URL inspection → Request indexing. New sites take days to weeks.",
    "Instagram: Nothing approved for the next 7 days — Approve drafts (or merge the agent's weekly pull request) so the account stays active.",
    "Instagram: Couldn't read the Instagram profile"
   ]
  },
  "posts": [
-  "2026-11-09-first-week",
-  "2026-11-10-home-studio",
-  "2026-11-11-honest-earnings",
-  "2026-11-12-how-to-apply",
-  "2026-11-13-no-experience",
-  "2026-11-14-privacy-first",
-  "2026-11-15-studio-tour"
+  "2026-11-16-first-week",
+  "2026-11-17-home-studio",
+  "2026-11-18-honest-earnings",
+  "2026-11-19-how-to-apply",
+  "2026-11-20-no-experience",
+  "2026-11-21-privacy-first",
+  "2026-11-22-studio-tour"
  ],
  "dropped": [],
- "posts_pr": "https://github.com/imprkii17-create/bloom-social-agent/pull/5",
+ "posts_pr": "https://github.com/imprkii17-create/bloom-social-agent/pull/6",
  "site_pr": "",
- "spend_usd": 0.3722175
+ "spend_usd": 0.3735215
 }
