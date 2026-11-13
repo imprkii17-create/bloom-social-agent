@@ -28,6 +28,7 @@ from ..queue import load_queue
 from ..seo.findings import FindingList
 from ..seo.run import SeoReport, render_markdown, run_seo, write_report
 from ..site.config import LANGS, faq_pairs, load_site_config, load_strings
+from .brain import POSTS_PER_BATCH
 from .drafts import DEFAULT_TIME, PlannedPost, build_week, load_library, next_week_slots, pick_from_library
 from .graphics import photo_library
 
@@ -248,6 +249,7 @@ def claude_context(
     library_examples: list[dict[str, Any]],
     photos: dict[str, str],
     research: str,
+    first_batch: int | None = None,
 ) -> str:
     upcoming = [
         {"id": p.id, "when": p.scheduled_at, "status": p.status.value, "notes": (p.notes or "")[:100]}
@@ -271,8 +273,13 @@ def claude_context(
     }
     return (
         "Here is this week's data. Write the weekly plan.\n"
-        f"- Create exactly {len(slots)} posts, one per free slot, in slot order.\n"
-        "- There are up to three posts a day (morning, afternoon, evening). Never repeat a topic or pillar on the "
+        + (
+            f"- Create exactly {first_batch} posts now, for the first {first_batch} free slots in order; the rest of "
+            "the week's posts are written in follow-up requests.\n"
+            if first_batch is not None and first_batch < len(slots)
+            else f"- Create exactly {len(slots)} posts, one per free slot, in slot order.\n"
+        )
+        + "- There are up to three posts a day (morning, afternoon, evening). Never repeat a topic or pillar on the "
         "same day; mornings light and short, afternoons useful (FAQ, how it works, carousels), evenings the main "
         "call to apply. Vary templates so the grid doesn't look repetitive.\n"
         "- Decide the bottleneck stage from the numbers; if numbers are missing, say 'unknown' and what to log.\n"
@@ -371,12 +378,15 @@ def run_weekly(
                 library_examples=library[:2],
                 photos=photos,
                 research=research,
+                first_batch=POSTS_PER_BATCH,
             )
             plan = brain.plan(system, context)
             result.plan, result.mode = plan, "claude"
             if research:
                 plan["research_notes"] = research
-            raw_posts = list(plan.get("posts") or [])
+            raw_posts = list(plan.get("posts") or [])[:POSTS_PER_BATCH]
+            raw_posts += _more_batches(brain, system, slots, raw_posts, plan, result)
+            plan["posts"] = raw_posts
             planned = [PlannedPost.from_dict(p) for p in raw_posts]
             planned = _repair_round(brain, system, planned, raw_posts, settings, facts, result)
         except Exception as exc:
@@ -441,6 +451,34 @@ def run_weekly(
     result.seo_path = str(write_report(settings, seo, name=week_label(today)).relative_to(root))
     result.brief_path = _write_brief(settings, result, seo, ig)
     return result
+
+
+def _more_batches(
+    brain: Any,
+    system: list[dict[str, Any]],
+    slots: list[datetime],
+    first: list[dict[str, Any]],
+    plan: dict[str, Any],
+    result: WeeklyResult,
+) -> list[dict[str, Any]]:
+    """Ask for the rest of the week in batches. A failed batch keeps what we have; the library fills the gap."""
+    brief = f"{plan.get('summary', '')} Bottleneck: {plan.get('bottleneck', '')}."
+    done = list(first)
+    extra: list[dict[str, Any]] = []
+    for start in range(len(first), len(slots), POSTS_PER_BATCH):
+        batch = [s.strftime("%Y-%m-%d %H:%M (%A)") for s in slots[start : start + POSTS_PER_BATCH]]
+        already = [{"slug": p.get("slug"), "pillar": p.get("pillar"), "caption_hu": str(p.get("caption_hu", ""))[:90]}
+                   for p in done]
+        try:
+            posts = brain.more_posts(system, batch, already, brief)[: len(batch)]
+        except Exception as exc:
+            log.warning("Claude batch failed: %s", exc)
+            result.notes.append(f"Claude couldn't write posts {start + 1}–{start + len(batch)} "
+                                f"({type(exc).__name__}); library posts fill those slots.")
+            break
+        extra += posts
+        done += posts
+    return extra
 
 
 def _repair_round(

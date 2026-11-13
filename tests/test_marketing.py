@@ -237,7 +237,9 @@ def test_weekly_with_claude_opens_both_pull_requests(git_repo: Path, monkeypatch
                     "reason": "query 'online modeling jobs budapest' at position 8"},
                    {"field": "description", "lang": "hu", "new_value": "túl rövid", "reason": "x"}]
     repaired = {"posts": [good_post(slug="p0")]}
-    messages = FakeMessages([fake_plan(21, site_change), repaired])
+    batch2 = {"posts": [good_post(slug=f"b{i}") for i in range(7)]}
+    batch3 = {"posts": [good_post(slug=f"c{i}") for i in range(7)]}
+    messages = FakeMessages([fake_plan(7, site_change), batch2, batch3, repaired])
     brain = Brain(settings, max_usd=1.0, client=SimpleNamespace(messages=messages))
     opened: list[tuple[str, str, str]] = []
 
@@ -249,6 +251,8 @@ def test_weekly_with_claude_opens_both_pull_requests(git_repo: Path, monkeypatch
                         brain_factory=lambda: brain, pr_opener=opener)
     assert result.mode == "claude", result.notes
     assert len(result.posts) == 21 and not result.dropped
+    assert len(messages.calls) == 4  # plan + two batches of 7 + one repair
+    assert "Write exactly 7 posts" in messages.calls[1]["messages"][0]["content"]
     assert [b for b, _, _ in opened] == ["agent/posts-2026-W42", "agent/site"]
     # main is untouched: the posts and the website change live only on their branches
     assert not list((git_repo / "posts").glob("2026-10-1*"))
@@ -381,3 +385,20 @@ def test_update_existing_pr_and_permission_error() -> None:
 
 def test_settings_type(settings: Settings) -> None:  # keeps the fixture import used
     assert settings.gsc_property == "sc-domain:bloommodels.hu" and timedelta(days=1)
+
+
+def test_weekly_keeps_claude_posts_when_a_later_batch_fails(full_repo: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test")
+    monkeypatch.setenv("MARKETING_RESEARCH", "0")
+    settings = load_settings(full_repo)
+    plan = fake_plan(7)
+    plan["posts"][0] = good_post(slug="p0")
+    messages = FakeMessages([plan, "not json"])
+    brain = Brain(settings, max_usd=1.0, client=SimpleNamespace(messages=messages))
+    result = run_weekly(settings, now=datetime(2026, 10, 9, 9, 37, tzinfo=settings.timezone), seo_live=False,
+                        open_prs=False, brain_factory=lambda: brain)
+    assert result.mode == "claude"
+    # 7 from Claude; the library (12 posts, no repeats) fills as many of the other 14 slots as it can
+    assert sum("From library:" in (p.notes or "") for p in result.posts) == 12
+    assert len(result.posts) == 19
+    assert any("library posts fill those slots" in n for n in result.notes)

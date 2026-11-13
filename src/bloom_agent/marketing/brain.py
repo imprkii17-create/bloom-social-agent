@@ -23,7 +23,9 @@ PRICES: dict[str, tuple[float, float]] = {
     "claude-fable-5-1": (10.0, 50.0),
 }
 WEB_SEARCH_USD = 0.01
-MAX_TOKENS_PLAN = 32000  # room for 21 bilingual posts a week
+MAX_TOKENS_PLAN = 24000  # the analysis plus the first batch of posts
+MAX_TOKENS_BATCH = 20000  # each further batch of posts
+POSTS_PER_BATCH = 7  # 21 bilingual posts don't fit in one answer, so the week is written in batches
 MAX_TOKENS_RESEARCH = 4000
 
 SITE_FIELDS = ["title", "description", "og_title", "faq.h2", "faq.p"] + [
@@ -283,6 +285,32 @@ class Brain:
             messages=[{"role": "user", "content": context}],
         )
         return _json(resp)
+
+    def more_posts(
+        self, system: list[dict[str, Any]], slots: list[str], already: list[dict[str, Any]], brief: str
+    ) -> list[dict[str, Any]]:
+        """Write the posts for further slots of the same week, avoiding topics already used."""
+        resp = self._create(
+            "posts",
+            0.6,
+            max_tokens=MAX_TOKENS_BATCH,
+            system=system,
+            output_config={"format": {"type": "json_schema", "schema": repair_schema()}},
+            messages=[
+                {
+                    "role": "user",
+                    "content": (
+                        f"Continue next week's plan. Write exactly {len(slots)} posts, one per slot, in slot order:\n"
+                        + "\n".join(f"- {s}" for s in slots)
+                        + "\n\nThis week's direction: " + brief
+                        + "\n\nPosts already written this week (don't repeat their topics or hooks; never the same "
+                        "pillar twice on one day):\n"
+                        + json.dumps(already, ensure_ascii=False, indent=1)
+                    ),
+                }
+            ],
+        )
+        return list(_json(resp).get("posts") or [])
 
     def repair(self, system: list[dict[str, Any]], failed: list[tuple[dict[str, Any], list[str]]]) -> list[dict[str, Any]]:
         payload = [{"post": p, "problems": probs} for p, probs in failed]
