@@ -1,0 +1,13 @@
+id: 2026-11-23-two-minutes-one-photo
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-11-23 19:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Plum színű háttéren nagy felirat: „Két perc. Egy fotó. Ennyi a jelentkezés.” A grafikán a Bloom
+  logó és a 18+ jelzés látható.'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (apply).
