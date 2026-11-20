@@ -1,0 +1,13 @@
+id: 2026-11-24-friendly-team
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-11-24 08:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Mosolygó fiatal nő kávéval a kezében egy napos városi utcán. A kép AI-generált, rajta felirat:
+  „Barátságos csapat, nulla nyomás. Te döntesz.”'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (people).

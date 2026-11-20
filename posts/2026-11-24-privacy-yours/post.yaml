@@ -1,0 +1,12 @@
+id: 2026-11-24-privacy-yours
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-11-24 13:00
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Plum háttéren felirat: „Te döntöd el, mi látható és kinek. A magánéleted a tiéd.”'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (discretion).
