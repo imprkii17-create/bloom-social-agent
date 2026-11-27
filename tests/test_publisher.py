@@ -15,7 +15,7 @@ from bloom_agent.graph import GraphClient
 from bloom_agent.instagram import InstagramClient
 from bloom_agent.models import Status
 from bloom_agent.publisher import Publisher
-from bloom_agent.queue import load_post
+from bloom_agent.queue import load_post, save_post
 
 from .conftest import IG_BASE, IG_ID, MEDIA_BASE, TOKEN
 
@@ -556,3 +556,29 @@ def test_scheduled_at_accepts_what_people_type(repo: Path, make_post: Callable[.
     (folder / "post.yaml").write_text(text.replace("2026-10-19 18:30:00", "2026-10-19"))
     with pytest.raises(Exception, match="needs a time"):
         load_post(folder / "post.yaml")
+
+
+@respx.mock
+def test_ai_generated_post_gets_instagram_ai_label(
+    settings: Settings, make_post: Callable[..., Path], ig_factory: Any
+) -> None:
+    folder = make_post()
+    post = load_post(folder / "post.yaml")
+    post.ai_generated = True
+    save_post(post)
+    mock_media_ok(respx.mock)
+    routes = mock_ig_happy(respx.mock)
+    report = publisher(settings, ig_factory).run(at(settings, "2026-10-19 18:31"))
+    assert [o.status for o in report.outcomes] == ["published"]
+    sent = dict(httpx.QueryParams(routes["create"].calls[0].request.content.decode()))
+    assert sent["is_ai_generated"] == "true"
+
+
+@respx.mock
+def test_regular_post_has_no_ai_label(settings: Settings, make_post: Callable[..., Path], ig_factory: Any) -> None:
+    make_post()
+    mock_media_ok(respx.mock)
+    routes = mock_ig_happy(respx.mock)
+    publisher(settings, ig_factory).run(at(settings, "2026-10-19 18:31"))
+    sent = dict(httpx.QueryParams(routes["create"].calls[0].request.content.decode()))
+    assert "is_ai_generated" not in sent

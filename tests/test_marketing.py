@@ -24,6 +24,7 @@ from bloom_agent.marketing.drafts import (
     assemble_caption,
     build_week,
     check_planned,
+    hungarian_only,
     load_library,
     next_week_slots,
     pick_from_library,
@@ -362,6 +363,24 @@ def test_commit_to_branch_never_overwrites_human_edits(git_repo: Path, tmp_path:
     assert (git_repo / "posts" / "b" / "post.yaml").is_file()  # nothing was thrown away on main either
 
 
+def test_rerun_from_shallow_checkout_updates_its_own_proposal(git_repo: Path, tmp_path: Path) -> None:
+    (git_repo / "posts" / "a").mkdir(parents=True)
+    (git_repo / "posts" / "a" / "post.yaml").write_text("id: a\n")
+    assert commit_to_branch(git_repo, "agent/w", ["posts"], "agent proposal")
+    (git_repo / "NOTES.md").write_text("changed\n")
+    git(git_repo, "add", "NOTES.md")
+    git(git_repo, "-c", "user.name=Owner", "-c", "user.email=owner@example.com", "commit", "-qm", "owner fix")
+    git(git_repo, "push", "-q", "origin", "main")
+    shallow = tmp_path / "shallow"  # GitHub Actions checks out only the latest commit of main
+    subprocess.run(["git", "clone", "-q", "--depth", "1", "file://" + git(git_repo, "remote", "get-url", "origin"),
+                    str(shallow)], check=True)
+    (shallow / "posts" / "b").mkdir(parents=True)
+    (shallow / "posts" / "b" / "post.yaml").write_text("id: b\n")
+    assert commit_to_branch(shallow, "agent/w", ["posts"], "agent proposal again")
+    git(git_repo, "fetch", "-q", "origin", "+refs/heads/agent/w:refs/remotes/origin/agent/w")
+    assert "posts/b/post.yaml" in git(git_repo, "ls-tree", "-r", "--name-only", "origin/agent/w")
+
+
 @respx.mock
 def test_create_or_update_pr() -> None:
     respx.get("https://api.github.com/repos/o/r/pulls").mock(return_value=httpx.Response(200, json=[]))
@@ -402,3 +421,23 @@ def test_weekly_keeps_claude_posts_when_a_later_batch_fails(full_repo: Path, mon
     assert sum("From library:" in (p.notes or "") for p in result.posts) == 12
     assert len(result.posts) == 19
     assert any("library posts fill those slots" in n for n in result.notes)
+
+
+def test_english_inside_the_hungarian_caption_is_dropped() -> None:
+    hu = "Online modell munka.\n\nJelentkezés: link a bioban\n\n—\n\nOnline modeling. Apply: link in bio"
+    assert hungarian_only(hu) == "Online modell munka.\n\nJelentkezés: link a bioban"
+    assert hungarian_only("Csak magyar.") == "Csak magyar."
+    p = PlannedPost.from_dict(good_post(caption_hu=hu))
+    assert "Online modeling. Apply" not in p.caption_hu
+    assert assemble_caption(p).count("Apply: link in bio") == 1  # only the English part that caption_en adds
+
+
+def test_workflows_run_shell_scripts_through_bash() -> None:
+    """Windows tools can drop a script's executable bit; `bash script.sh` works either way."""
+    import re as _re
+
+    root = Path(__file__).resolve().parents[1]
+    for wf in (root / ".github" / "workflows").glob("*.yml"):
+        for line in wf.read_text(encoding="utf-8").splitlines():
+            m = _re.search(r"run:\s*'?([^'\s]+\.sh)\b", line)
+            assert not m, f"{wf.name}: call it as `bash {m.group(1)}`" if m else ""

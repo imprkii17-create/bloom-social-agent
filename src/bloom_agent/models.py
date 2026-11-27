@@ -73,6 +73,7 @@ class Post(BaseModel):
     alt_text: str | None = None
     cover: str | None = None  # optional reel cover image (relative path)
     share_to_feed: bool = True  # reels: also show in the main grid
+    ai_generated: bool = False  # adds Instagram's "AI info" label when published (is_ai_generated)
     notes: str | None = None
     result: PostResult = Field(default_factory=PostResult)
 
@@ -129,6 +130,8 @@ class Post(BaseModel):
             h.update(path.read_bytes() if path.is_file() else b"missing")
         h.update(self.caption().encode())
         h.update((self.alt_text or "").encode())
+        if self.ai_generated:
+            h.update(b"ai")
         return h.hexdigest()[:16]
 
     def caption(self) -> str:
@@ -157,6 +160,8 @@ class Post(BaseModel):
         data: dict[str, Any] = self.model_dump(mode="json", exclude_none=True)
         if self.type != PostType.REEL:
             data.pop("share_to_feed", None)  # only meaningful for reels
+        if not self.ai_generated:
+            data.pop("ai_generated", None)
         result = data.get("result") or {}
         if result in ({}, {"attempts": 0}):
             data.pop("result", None)

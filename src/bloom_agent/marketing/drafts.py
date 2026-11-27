@@ -78,7 +78,7 @@ class PlannedPost:
             template=str(d.get("template") or g.get("template") or "statement"),
             hu=TextSet.from_dict(d.get("hu") or g.get("hu")),
             en=TextSet.from_dict(d.get("en") or g.get("en")),
-            caption_hu=str(d.get("caption_hu", "")).strip(),
+            caption_hu=hungarian_only(str(d.get("caption_hu", ""))),
             caption_en=str(d.get("caption_en", "")).strip(),
             hashtags=[normalise_tag(t) for t in d.get("hashtags") or [] if str(t).strip()],
             photo=str(d.get("photo") or g.get("photo") or ""),
@@ -89,6 +89,11 @@ class PlannedPost:
     def spec(self, lang: str) -> GraphicSpec:
         t = self.hu if lang == "hu" else self.en
         return GraphicSpec(self.template, t.headline, t.eyebrow, t.accent, t.body, t.items, t.footnote, self.photo)
+
+
+def hungarian_only(text: str) -> str:
+    """Claude sometimes puts the English version inside caption_hu too; the English is added once, separately."""
+    return re.split(r"\n\s*[—–-]{1,3}\s*\n", text.strip(), maxsplit=1)[0].strip()
 
 
 def slugify(text: str) -> str:
@@ -268,6 +273,9 @@ def write_post(p: PlannedPost, when: datetime, settings: Settings, *, status: St
         caption_file="caption.txt",
         alt_text=auto_alt(p, root),
         notes=note,
+        ai_generated=p.template == "photo" and bool(
+            (lib_photo := photo_library(root).get(p.photo)) and lib_photo.ai_generated
+        ),
     )
     post._folder = folder
     save_post(post)

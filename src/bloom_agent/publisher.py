@@ -357,18 +357,21 @@ class Publisher:
     def _create_container(self, post: Post, caption: str) -> str:
         ig = self.ig
         names = post.media
+        ai = post.ai_generated  # Instagram's "AI info" label
         if post.type == PostType.IMAGE:
-            return ig.image_container(self._url(post, names[0]), caption=caption, alt_text=post.alt_text)
+            return ig.image_container(
+                self._url(post, names[0]), caption=caption, alt_text=post.alt_text, ai_generated=ai
+            )
         if post.type == PostType.REEL:
             cover = self._url(post, post.cover) if post.cover else None
             return ig.video_container(
                 self._url(post, names[0]), media_type="REELS", caption=caption,
-                cover_url=cover, share_to_feed=post.share_to_feed,
+                cover_url=cover, share_to_feed=post.share_to_feed, ai_generated=ai,
             )
         if post.type == PostType.STORY:
             if names[0].lower().endswith(VIDEO_EXT):
-                return ig.video_container(self._url(post, names[0]), media_type="STORIES")
-            return ig.story_image_container(self._url(post, names[0]))
+                return ig.video_container(self._url(post, names[0]), media_type="STORIES", ai_generated=ai)
+            return ig.story_image_container(self._url(post, names[0]), ai_generated=ai)
         # carousel: children first; each must be FINISHED before the parent can be made
         children = []
         for name in names:
@@ -379,7 +382,7 @@ class Publisher:
                 child = ig.image_container(self._url(post, name), carousel_item=True)
                 ig.wait_until_ready(child, timeout=60, interval=3)
             children.append(child)
-        return ig.carousel_container(children, caption)
+        return ig.carousel_container(children, caption, ai_generated=ai)
 
     @staticmethod
     def _timeout(post: Post) -> float:

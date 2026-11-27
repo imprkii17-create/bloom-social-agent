@@ -33,12 +33,21 @@ def current_branch(root: Path) -> str:
 
 
 def human_commits_on_remote(root: Path, branch: str) -> list[str]:
-    """Commits on origin/<branch> that are not on the current branch and weren't made by the agent."""
+    """Commits someone else added on top of the agent's last proposal on origin/<branch>.
+
+    Walks the branch from its tip back to the agent's most recent commit. Comparing with HEAD instead would count
+    all of main's history as "edits" in Actions' shallow checkout, so a second run in the same week could never
+    update its own proposal."""
     if not _git(root, "ls-remote", "--heads", "origin", branch):
         return []
-    _git(root, "fetch", "-q", "origin", f"+refs/heads/{branch}:refs/remotes/origin/{branch}")
-    log_out = _git(root, "log", "--format=%ae %h %s", f"HEAD..origin/{branch}")
-    return [line for line in log_out.splitlines() if line and not line.startswith(BOT_EMAIL + " ")]
+    _git(root, "fetch", "-q", "--depth=50", "origin", f"+refs/heads/{branch}:refs/remotes/origin/{branch}")
+    edits: list[str] = []
+    for line in _git(root, "log", "--first-parent", "--format=%ae %h %s", f"origin/{branch}").splitlines():
+        if line.startswith(BOT_EMAIL + " "):
+            return edits
+        if line:
+            edits.append(line)
+    return edits  # no agent commit at all: not ours, don't touch it
 
 
 def commit_to_branch(root: Path, branch: str, paths: list[str], message: str, *, push: bool = True) -> bool:

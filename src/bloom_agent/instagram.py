@@ -78,13 +78,21 @@ class InstagramClient:
     # ---- containers ---------------------------------------------------------------------------------
 
     def image_container(
-        self, image_url: str, *, caption: str | None = None, alt_text: str | None = None, carousel_item: bool = False
+        self,
+        image_url: str,
+        *,
+        caption: str | None = None,
+        alt_text: str | None = None,
+        carousel_item: bool = False,
+        ai_generated: bool = False,
     ) -> str:
         data: dict[str, Any] = {"image_url": image_url}
         if carousel_item:
             data["is_carousel_item"] = True
         else:
             data["caption"] = caption or None
+            if ai_generated:
+                data["is_ai_generated"] = True
         if alt_text:
             data["alt_text"] = alt_text
         return self._create(data)
@@ -98,6 +106,7 @@ class InstagramClient:
         cover_url: str | None = None,
         share_to_feed: bool | None = None,
         carousel_item: bool = False,
+        ai_generated: bool = False,
     ) -> str:
         data: dict[str, Any] = {"video_url": video_url}
         if carousel_item:
@@ -105,6 +114,8 @@ class InstagramClient:
             data["media_type"] = "VIDEO"
         else:
             data["media_type"] = media_type
+            if ai_generated:
+                data["is_ai_generated"] = True
             if media_type != "STORIES":
                 data["caption"] = caption or None
         if cover_url:
@@ -113,13 +124,19 @@ class InstagramClient:
             data["share_to_feed"] = share_to_feed
         return self._create(data)
 
-    def story_image_container(self, image_url: str) -> str:
-        return self._create({"image_url": image_url, "media_type": "STORIES"})
+    def story_image_container(self, image_url: str, *, ai_generated: bool = False) -> str:
+        data: dict[str, Any] = {"image_url": image_url, "media_type": "STORIES"}
+        if ai_generated:
+            data["is_ai_generated"] = True
+        return self._create(data)
 
-    def carousel_container(self, children: list[str], caption: str | None) -> str:
+    def carousel_container(self, children: list[str], caption: str | None, *, ai_generated: bool = False) -> str:
         if not 2 <= len(children) <= 10:
             raise ContainerError("A carousel needs between 2 and 10 items.")
-        return self._create({"media_type": "CAROUSEL", "children": children, "caption": caption or None})
+        data: dict[str, Any] = {"media_type": "CAROUSEL", "children": children, "caption": caption or None}
+        if ai_generated:
+            data["is_ai_generated"] = True  # on the carousel itself, never on its items (Meta's rule)
+        return self._create(data)
 
     def _create(self, data: dict[str, Any]) -> str:
         # Creating a container is safe to retry: an unpublished container is harmless and expires in 24h.

@@ -18,6 +18,7 @@ IMAGE_EXT = {".jpg", ".jpeg"}
 CONVERTIBLE_EXT = {".png", ".webp"}
 VIDEO_EXT = {".mp4", ".mov"}
 MAX_CAPTION = 2200
+AI_SAID_RE = re.compile(r"AI-generált|AI-generated", re.IGNORECASE)
 MAX_FEED_POSTS_PER_DAY = 3  # morning, afternoon, evening
 MAX_HASHTAGS = 5  # Instagram limit since Dec 2025
 MAX_MENTIONS = 20
@@ -134,6 +135,8 @@ def validate_post(
         warn("alt text is only sent for single-image posts")
     if post.type == PostType.IMAGE and not post.alt_text:
         warn("no alt_text set (recommended for accessibility)")
+    if AI_SAID_RE.search(caption + " " + (post.alt_text or "")) and not post.ai_generated:
+        err("caption or alt text says the image is AI-generated: add `ai_generated: true` so Instagram shows its AI label")
 
     # ---- platforms --------------------------------------------------------------------------------
     if Platform.FACEBOOK in post.platforms and post.type in (PostType.REEL, PostType.STORY):
