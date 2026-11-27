@@ -1,0 +1,13 @@
+id: 2026-12-01-stay-private
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-12-01 13:00
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Világos grafika négy ponttal a diszkrécióról: te választod ki, mi látható, az adataid nálunk
+  maradnak, eltávolítási segítség, barátságos csapat.'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (discretion & safety).

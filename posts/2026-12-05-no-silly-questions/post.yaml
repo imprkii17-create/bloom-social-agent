@@ -1,0 +1,12 @@
+id: 2026-12-05-no-silly-questions
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-12-05 08:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Világos alapon rózsaszín-arany színátmenetes szöveg: Nincs buta kérdés, kérdezz bátran.'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (people).

@@ -1,0 +1,13 @@
+id: 2026-12-01-not-from-budapest
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-12-01 19:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Streamelő asztal laptoppal, profi kamerával és meleg stúdiófényekkel, rajta a szöveg: Nem budapesti
+  vagy? Megoldjuk.'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (the studio).

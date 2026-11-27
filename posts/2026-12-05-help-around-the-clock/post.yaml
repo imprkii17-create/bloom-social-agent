@@ -1,0 +1,12 @@
+id: 2026-12-05-help-around-the-clock
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-12-05 19:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Mély szilvaszínű háttéren fehér szöveg: Elakadtál? Segítünk. Technikai segítség éjjel-nappal.'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (support & training).

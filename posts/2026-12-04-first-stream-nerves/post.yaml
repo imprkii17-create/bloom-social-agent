@@ -1,0 +1,12 @@
+id: 2026-12-04-first-stream-nerves
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-12-04 08:30
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: Világos grafika az „Izgulsz az első streamtől?” felirattal és a „Normális. Betanítunk.” üzenettel.
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (support & training).

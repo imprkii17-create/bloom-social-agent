@@ -1,0 +1,13 @@
+id: 2026-11-30-application-steps
+status: approved
+type: image
+platforms:
+- instagram
+scheduled_at: 2026-11-30 13:00
+media:
+- image.jpg
+caption_file: caption.txt
+alt_text: 'Világos grafika négy lépéssel a jelentkezésről: űrlap két perc alatt, válasz 72 órán belül,
+  rövid beszélgetés, életkor-ellenőrzés.'
+notes: Hungarian image is published. For the English version, change media to [image-en.jpg]. Written
+  by the marketing agent (how it works).
