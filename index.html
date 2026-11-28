@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Bloom HQ</title>
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<style>
+@font-face{font-family:"Fraunces";src:url(fonts/fraunces-latin-opsz-normal.woff2) format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:"Jakarta";src:url(fonts/plus-jakarta-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Jakarta";src:url(fonts/plus-jakarta-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Jakarta";src:url(fonts/plus-jakarta-sans-latin-ext-400-normal.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+0100-024F}
+@font-face{font-family:"Jakarta";src:url(fonts/plus-jakarta-sans-latin-ext-600-normal.woff2) format("woff2");font-weight:600;font-display:swap;unicode-range:U+0100-024F}
+
+:root{
+  --bg:#fbf7f8; --surface:#ffffff; --surface-2:#f7eef1; --ink:#3b2129; --muted:#80606a; --faint:#b59aa3;
+  --line:#eedfe4; --rose:#c4557a; --rose-soft:#f9e3ea;
+  --ok:#2f8f5b; --ok-soft:#e3f4ea; --warn:#b7791f; --warn-soft:#fbf0dc; --bad:#c2413b; --bad-soft:#fbe5e3;
+  --info:#5b6fb0; --info-soft:#e7ebf7; --idle:#9a8a8f;
+  --radius:14px; --shadow:0 1px 2px rgba(80,30,45,.06),0 8px 24px -16px rgba(80,30,45,.25);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#1d1518; --surface:#271c20; --surface-2:#30232a; --ink:#f6e9ed; --muted:#c7a6b0; --faint:#8d717a;
+    --line:#3d2b32; --rose:#ef9bb4; --rose-soft:#43252f;
+    --ok:#6fcf97; --ok-soft:#1f3529; --warn:#e8b45e; --warn-soft:#3b2f1b; --bad:#f2837c; --bad-soft:#41221f;
+    --info:#9fb1ec; --info-soft:#262c45; --idle:#8d7d82;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Jakarta",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+a{color:var(--rose)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--rose);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
+header.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;justify-content:space-between;margin-bottom:18px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand h1{font:600 26px/1.1 "Fraunces",Georgia,serif;margin:0;letter-spacing:-.01em}
+.brand span{color:var(--muted);font-size:13px}
+.fresh{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+button.ghost{font:inherit;font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;
+  padding:6px 12px;cursor:pointer}
+button.ghost:hover{border-color:var(--faint)}
+
+.hero{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;box-shadow:var(--shadow);margin-bottom:22px}
+.hero .big{font:600 22px/1.25 "Fraunces",Georgia,serif;margin:0;text-wrap:balance}
+.hero p{margin:2px 0 0;color:var(--muted)}
+.pulse{flex:none;width:14px;height:14px;border-radius:50%;background:var(--idle);box-shadow:0 0 0 6px var(--surface-2)}
+.pulse.ok{background:var(--ok);box-shadow:0 0 0 6px var(--ok-soft)}
+.pulse.warn{background:var(--warn);box-shadow:0 0 0 6px var(--warn-soft)}
+.pulse.bad{background:var(--bad);box-shadow:0 0 0 6px var(--bad-soft)}
+
+h2{font:600 18px/1.3 "Fraunces",Georgia,serif;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 small{font:400 13px "Jakarta",sans-serif;color:var(--muted)}
+.grid{display:grid;gap:12px}
+.systems{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:820px){.systems{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;min-width:0}
+.tile .name{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+.tile .line{margin-top:6px;font-size:14px;overflow-wrap:anywhere}
+.tile .sub{margin-top:2px;font-size:12.5px;color:var(--muted);overflow-wrap:anywhere}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--idle)}
+.dot.ok{background:var(--ok)} .dot.warn{background:var(--warn)} .dot.bad{background:var(--bad)} .dot.info{background:var(--info)}
+
+.needs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.needs li{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+.needs li .tag{flex:none;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:2px 9px;margin-top:1px}
+.tag.critical{background:var(--bad-soft);color:var(--bad)} .tag.warning{background:var(--warn-soft);color:var(--warn)}
+.tag.info{background:var(--info-soft);color:var(--info)} .tag.review{background:var(--rose-soft);color:var(--rose)}
+.needs li div{min-width:0;overflow-wrap:anywhere}
+.calm{background:var(--ok-soft);color:var(--ok);border-radius:12px;padding:12px 14px;font-weight:600}
+
+.queue{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x proximity}
+.post{flex:0 0 190px;scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.post .img{aspect-ratio:4/5;max-width:100%;background:var(--surface-2) center/cover no-repeat;display:block}
+.post .meta{padding:10px 12px 12px}
+.post .when{font-weight:600;font-size:13.5px}
+.post .id{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.chip{display:inline-block;font-size:11.5px;font-weight:600;border-radius:999px;padding:1px 8px;margin-top:6px}
+.chip.approved{background:var(--ok-soft);color:var(--ok)} .chip.draft{background:var(--warn-soft);color:var(--warn)}
+.chip.published{background:var(--info-soft);color:var(--info)} .chip.failed,.chip.missed{background:var(--bad-soft);color:var(--bad)}
+.chip.skipped{background:var(--surface-2);color:var(--muted)}
+
+.cols{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;min-width:0}
+.card h3{margin:0 0 10px;font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px}
+.stat .v{font:600 26px/1.1 "Fraunces",Georgia,serif;font-variant-numeric:tabular-nums}
+.stat .k{font-size:12.5px;color:var(--muted)}
+.bars{display:grid;gap:9px}
+.bar{display:grid;grid-template-columns:110px 1fr 34px;gap:10px;align-items:center;font-size:13.5px}
+.bar .track{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.bar .fill{height:100%;border-radius:999px;background:var(--ok)}
+.bar .fill.warn{background:var(--warn)} .bar .fill.bad{background:var(--bad)}
+.bar .n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.small{font-size:13px;color:var(--muted)}
+ul.plain{margin:6px 0 0;padding-left:18px} ul.plain li{margin:3px 0}
+.reel{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.reel b{display:block}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.links a{font-size:13px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--ink);background:var(--surface)}
+.links a:hover{border-color:var(--rose);color:var(--rose)}
+
+.feed{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.feed li{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;padding:9px 14px;border-top:1px solid var(--line);font-size:14px}
+.feed li:first-child{border-top:0}
+.feed li a{color:var(--ink);text-decoration:none} .feed li a:hover{color:var(--rose)}
+.feed .t{color:var(--muted);font-size:12.5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:14px;padding:12px 0}
+svg.spark{width:100%;height:56px;display:block;margin-top:8px}
+footer{margin-top:36px;color:var(--muted);font-size:12.5px}
+.skeleton{color:var(--faint)}
+@media (max-width:520px){.brand span{display:none}.tile{padding:12px}.hero{padding:14px 16px}.hero .big{font-size:19px}.bar{grid-template-columns:92px 1fr 30px}}
+@media (prefers-reduced-motion:no-preference){.pulse.ok{animation:breathe 3s ease-in-out infinite}}
+@keyframes breathe{50%{box-shadow:0 0 0 9px var(--ok-soft)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>Bloom HQ</h1><span id="repo-label">marketing agent</span></div>
+    <div class="fresh"><span id="fresh">Loading…</span><button class="ghost" id="refresh" type="button">Refresh</button></div>
+  </header>
+
+  <section class="hero" aria-live="polite">
+    <div class="pulse" id="pulse"></div>
+    <div><p class="big" id="headline">Checking everything…</p><p id="subline"></p></div>
+  </section>
+
+  <h2>Needs you</h2>
+  <div id="needs"><p class="empty skeleton">Loading…</p></div>
+
+  <h2>Systems <small id="systems-note"></small></h2>
+  <div class="grid systems" id="systems"></div>
+
+  <h2>Post queue <small>next two weeks</small></h2>
+  <div class="queue" id="queue"><p class="empty skeleton">Loading…</p></div>
+
+  <h2>Numbers</h2>
+  <div class="cols">
+    <div class="card"><h3>Instagram</h3><div class="stats" id="ig"></div><p class="small" id="ig-note"></p></div>
+    <div class="card"><h3>Google search · 28 days</h3><div class="stats" id="google"></div><div id="google-chart"></div><p class="small" id="google-note"></p></div>
+    <div class="card"><h3>SEO scores</h3><div class="bars" id="scores"></div><p class="small" id="seo-note"></p></div>
+  </div>
+
+  <h2>This week's plan <small id="plan-week"></small></h2>
+  <div class="cols">
+    <div class="card" id="plan"></div>
+    <div class="card" id="content"></div>
+  </div>
+
+  <h2>Activity <small>live from GitHub</small></h2>
+  <ul class="feed" id="feed"><li class="empty">Loading…</li></ul>
+
+  <div class="links" id="links"></div>
+  <footer id="footer"></footer>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, attrs = {}, ...kids) => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v == null || v === false) continue;
+      if (k === "class") n.className = v; else if (k === "text") n.textContent = v; else n.setAttribute(k, v);
+    }
+    for (const k of kids) if (k != null) n.append(k instanceof Node ? k : document.createTextNode(String(k)));
+    return n;
+  };
+  const clear = (n) => { while (n.firstChild) n.removeChild(n.firstChild); return n; };
+  const fmtNum = (v) => (v == null || v === "" ? "–" : Number(v).toLocaleString("en-US"));
+  const ago = (iso) => {
+    if (!iso) return "–";
+    const s = (Date.now() - new Date(iso).getTime()) / 1000;
+    if (s < 60) return "just now";
+    if (s < 3600) return Math.round(s / 60) + " min ago";
+    if (s < 86400) return Math.round(s / 3600) + " h ago";
+    return Math.round(s / 86400) + " d ago";
+  };
+  const when = (iso) => {
+    if (!iso) return "–";
+    const d = new Date(iso);
+    return d.toLocaleString("en-GB", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Budapest" });
+  };
+  const safeUrl = (u) => (typeof u === "string" && /^https:\/\//.test(u) ? u : null);
+
+  let snap = null;
+  const gh = { runs: null, issues: null, pulls: null, error: null, at: null };
+  const etags = {};
+  let repo = null;
+
+  async function loadSnapshot() {
+    const r = await fetch("dashboard.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("dashboard.json: HTTP " + r.status);
+    snap = await r.json();
+    repo = snap.repo || repo;
+  }
+
+  async function ghGet(path) {
+    const headers = { Accept: "application/vnd.github+json" };
+    const prev = etags[path];
+    if (prev) headers["If-None-Match"] = prev.etag;
+    const r = await fetch("https://api.github.com" + path, { headers });
+    if (r.status === 304 && prev) return prev.body;
+    if (r.status === 403 || r.status === 429) {
+      const reset = r.headers.get("x-ratelimit-reset");
+      throw new Error("GitHub rate limit" + (reset ? ", back at " + new Date(reset * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) : ""));
+    }
+    if (!r.ok) throw new Error("GitHub HTTP " + r.status);
+    const body = await r.json();
+    const tag = r.headers.get("etag");
+    if (tag) etags[path] = { etag: tag, body };
+    return body;
+  }
+
+  async function loadGitHub() {
+    if (!repo) return;
+    try {
+      const [runs, issues, pulls] = await Promise.all([
+        ghGet(`/repos/${repo}/actions/runs?per_page=60`),
+        ghGet(`/repos/${repo}/issues?state=open&labels=bloom-agent&per_page=20`),
+        ghGet(`/repos/${repo}/pulls?state=open&per_page=20`),
+      ]);
+      gh.runs = runs.workflow_runs || [];
+      gh.issues = (issues || []).filter((i) => !i.pull_request);
+      gh.pulls = pulls || [];
+      gh.error = null;
+      gh.at = new Date().toISOString();
+    } catch (e) {
+      gh.error = e.message;
+    }
+  }
+
+  const latestRun = (name) => (gh.runs || []).find((r) => r.name === name) || null;
+  const runState = (run) => {
+    if (!run) return "idle";
+    if (run.status !== "completed") return "info";
+    return run.conclusion === "success" ? "ok" : run.conclusion === "skipped" || run.conclusion === "cancelled" ? "idle" : "bad";
+  };
+  const minutesSince = (iso) => (iso ? (Date.now() - new Date(iso).getTime()) / 60000 : Infinity);
+
+  function systems() {
+    const s = snap || {};
+    const f = s.features || {};
+    const out = [];
+    const pub = latestRun("Publish");
+    let pubState = runState(pub);
+    let pubLine = "Posts approved posts on time";
+    if (pub && pubState === "ok" && minutesSince(pub.created_at) > 75) { pubState = "warn"; pubLine = "GitHub is running it late"; }
+    if (pubState === "bad") pubLine = "The last publish run failed";
+    out.push({ name: "Publishing", state: gh.runs ? pubState : "idle", line: pubLine, sub: pub ? "last run " + ago(pub.created_at) : "no runs seen yet", href: pub && pub.html_url });
+
+    const site = s.site || {};
+    const health = latestRun("Website health");
+    let siteState = site.checked ? (site.ok ? "ok" : "bad") : runState(health);
+    const pages = (site.pages || []).filter((p) => p.ms != null).map((p) => p.ms + " ms").join(" · ");
+    out.push({ name: "Website", state: siteState, line: site.checked ? (site.ok ? "Up and answering" : "Problem: " + ((site.pages || []).find((p) => !p.ok) || {}).note) : "Not checked yet", sub: (pages ? pages + " · " : "") + "checked " + ago(site.checked_at), href: site.base_url });
+
+    const ig = s.instagram || {};
+    const tok = ig.token || {};
+    let igState = !ig.configured ? "bad" : ig.live_error ? "warn" : "ok";
+    if (tok.days_left != null && tok.days_left <= 14) igState = tok.days_left <= 3 ? "bad" : "warn";
+    out.push({ name: "Instagram", state: igState, line: ig.live ? "@" + ig.live.username + " · " + fmtNum(ig.live.followers) + " followers" : ig.configured ? "Connected" : "Not connected", sub: tok.days_left != null ? "token renews automatically · " + tok.days_left + " days left" : "token renews every Monday" });
+
+    const seo = s.seo || {};
+    out.push({ name: "Google", state: f.search_console ? "ok" : "warn", line: f.search_console ? "Search Console connected" : "Search Console not connected", sub: seo.created ? "SEO report " + ago(seo.created) : "" });
+
+    const plan = latestRun("Weekly marketing plan");
+    out.push({ name: "Weekly plan", state: runState(plan) === "bad" ? "bad" : "ok", line: f.claude ? "Claude plans every Friday" : "Library posts every Friday (no Claude key)", sub: plan ? "last plan " + ago(plan.created_at) : "first plan on Friday", href: plan && plan.html_url });
+
+    const bot = latestRun("Telegram bot");
+    let botState = !f.telegram ? "idle" : runState(bot);
+    if (f.telegram && bot && minutesSince(bot.created_at) > 45) botState = "warn";
+    out.push({ name: "Telegram bot", state: botState, line: f.telegram ? (f.claude ? "Answers commands and questions" : "Answers commands") : "Not connected yet", sub: bot ? "checked messages " + ago(bot.created_at) : "", href: bot && bot.html_url });
+    return out;
+  }
+
+  function needs() {
+    const items = [];
+    for (const i of gh.issues || []) items.push({ level: "critical", text: i.title.replace(/^Bloom agent:\s*/, ""), href: i.html_url });
+    for (const p of gh.pulls || []) items.push({ level: "review", text: "Review: " + p.title, href: p.html_url });
+    for (const a of (snap && snap.attention) || []) items.push(a);
+    const order = { critical: 0, review: 1, warning: 2, info: 3 };
+    return items.sort((a, b) => (order[a.level] ?? 9) - (order[b.level] ?? 9));
+  }
+
+  function render() {
+    if (!snap) return;
+    if (repo) $("repo-label").textContent = repo;
+    const sys = systems();
+    const list = needs();
+    const urgent = list.filter((i) => i.level === "critical");
+    const toDo = list.filter((i) => i.level === "review" || i.level === "warning");
+    const bad = sys.filter((x) => x.state === "bad");
+    const pulse = $("pulse");
+    if (urgent.length || bad.length) {
+      pulse.className = "pulse bad";
+      $("headline").textContent = (urgent.length || bad.length) === 1 ? "One thing is broken and needs you" : `${Math.max(urgent.length, bad.length)} things are broken and need you`;
+    } else if (toDo.length) {
+      pulse.className = "pulse warn";
+      $("headline").textContent = `Everything is running · ${toDo.length} thing${toDo.length > 1 ? "s" : ""} to review`;
+    } else {
+      pulse.className = "pulse ok";
+      $("headline").textContent = "Everything is running";
+    }
+    const nxt = snap.queue && snap.queue.next;
+    $("subline").textContent = nxt ? `Next post ${when(nxt.when)} · ${nxt.id}` : "No approved post coming up yet.";
+
+    const needsBox = clear($("needs"));
+    if (!list.length) needsBox.append(el("div", { class: "calm", text: "Nothing needs you right now." }));
+    else {
+      const ul = el("ul", { class: "needs" });
+      const label = { critical: "Fix", review: "Review", warning: "Soon", info: "To do" };
+      for (const i of list.slice(0, 14)) {
+        const href = safeUrl(i.href);
+        ul.append(el("li", {}, el("span", { class: "tag " + i.level, text: label[i.level] || i.level }), el("div", {}, href ? el("a", { href, target: "_blank", rel: "noopener", text: i.text }) : i.text)));
+      }
+      needsBox.append(ul);
+    }
+
+    const sysBox = clear($("systems"));
+    for (const x of sys) {
+      const href = safeUrl(x.href);
+      sysBox.append(el("div", { class: "tile" },
+        el("div", { class: "name" }, el("span", { class: "dot " + x.state }), href ? el("a", { href, target: "_blank", rel: "noopener", text: x.name, style: "color:inherit;text-decoration:none" }) : x.name),
+        el("div", { class: "line", text: x.line }), el("div", { class: "sub", text: x.sub || "" })));
+    }
+    $("systems-note").textContent = gh.error ? "· " + gh.error : gh.at ? "· live" : "";
+
+    const q = snap.queue || {};
+    const qBox = clear($("queue"));
+    const cards = (q.upcoming || []).concat((q.recent || []).slice(0, 3));
+    if (!cards.length) qBox.append(el("p", { class: "empty", text: "Nothing scheduled for the next two weeks." }));
+    for (const c of cards) {
+      const img = el("div", { class: "img", role: "img", "aria-label": c.caption || c.id });
+      const src = safeUrl(c.image);
+      if (src) img.style.backgroundImage = `url("${src.replace(/"/g, "%22")}")`;
+      const link = safeUrl(c.permalink);
+      const card = el("article", { class: "post", title: c.caption || "" }, img,
+        el("div", { class: "meta" }, el("div", { class: "when", text: when(c.when) }), el("div", { class: "id", text: c.id }),
+          el("span", { class: "chip " + c.status, text: c.status }), link ? el("div", {}, el("a", { href: link, target: "_blank", rel: "noopener", class: "small", text: "Open on Instagram" })) : null,
+          c.error ? el("div", { class: "small", text: c.error }) : null));
+      qBox.append(card);
+    }
+
+    const ig = snap.instagram || {};
+    const week = ig.week || {};
+    const acc = week.account || {};
+    const igBox = clear($("ig"));
+    const stat = (v, k) => el("div", { class: "stat" }, el("div", { class: "v", text: typeof v === "string" ? v : fmtNum(v) }), el("div", { class: "k", text: k }));
+    igBox.append(stat(ig.live ? ig.live.followers : week.followers, "followers"), stat(acc["Reach"], "reach, 7 days"), stat(acc["Profile views"], "profile views"), stat(acc["Link clicks"], "link clicks"));
+    $("ig-note").textContent = week.generated_at ? `Weekly report ${ago(week.generated_at)}` + (week.best ? ` · best post: ${week.best}` : "") : "The first weekly Instagram report arrives Monday morning.";
+
+    const seo = snap.seo || {};
+    const sc = seo.search || {};
+    const gBox = clear($("google"));
+    gBox.append(stat(sc.impressions, "impressions"), stat(sc.clicks, "clicks"), stat(sc.impressions ? (Number(sc.ctr || 0) * 100).toFixed(1) + "%" : null, "click rate"), stat(sc.position ? Number(sc.position).toFixed(1) : null, "avg. position"));
+    const gc = clear($("google-chart"));
+    const hist = (seo.history || []).filter((h) => h.impressions != null);
+    if (hist.length >= 2 && Math.max(...hist.map((h) => h.impressions)) > 0) gc.append(spark(hist.map((h) => h.impressions)));
+    $("google-note").textContent = !snap.features?.search_console ? "Connect Search Console to see this." : sc.impressions ? "" : "New sites take a few weeks before Google shows them.";
+
+    const scores = seo.scores || {};
+    const sBox = clear($("scores"));
+    for (const [k, v] of Object.entries(scores)) {
+      const cls = v >= 90 ? "" : v >= 70 ? " warn" : " bad";
+      const fill = el("div", { class: "fill" + cls }); fill.style.width = Math.max(2, Math.min(100, v)) + "%";
+      sBox.append(el("div", { class: "bar" }, el("span", { text: k }), el("div", { class: "track" }, fill), el("span", { class: "n", text: v })));
+    }
+    if (!Object.keys(scores).length) sBox.append(el("p", { class: "empty", text: "No SEO report yet." }));
+    const counts = seo.counts || {};
+    $("seo-note").textContent = seo.created ? `${counts.critical || 0} critical · ${counts.warning || 0} warnings · ${counts.info || 0} suggestions · ${ago(seo.created)}` : "";
+
+    const m = snap.marketing || {};
+    $("plan-week").textContent = m.week ? m.week + (m.mode === "claude" ? " · by Claude" : " · rule-based") : "";
+    const plan = clear($("plan"));
+    plan.append(el("h3", { text: "Summary" }));
+    plan.append(el("p", { text: m.summary || "The first plan is written on Friday morning." }));
+    if (m.bottleneck && m.bottleneck !== "unknown") plan.append(el("p", {}, el("b", { text: "Bottleneck: " + m.bottleneck }), " ", m.bottleneck_reason || ""));
+    if ((m.decisions || []).length) { plan.append(el("h3", { text: "Decisions for you" })); plan.append(el("ul", { class: "plain" }, ...m.decisions.map((d) => el("li", { text: d })))); }
+    const links = el("div", { class: "links" });
+    if (safeUrl(m.posts_pr)) links.append(el("a", { href: m.posts_pr, target: "_blank", rel: "noopener", text: "Next week's posts →" }));
+    if (safeUrl(m.site_pr)) links.append(el("a", { href: m.site_pr, target: "_blank", rel: "noopener", text: "Website improvements →" }));
+    if (m.brief && repo) links.append(el("a", { href: `https://github.com/${repo}/blob/main/${m.brief}`, target: "_blank", rel: "noopener", text: "Full brief →" }));
+    if (links.childNodes.length) plan.append(links);
+
+    const content = clear($("content"));
+    content.append(el("h3", { text: "To film this week" }));
+    if (!(m.reels || []).length) content.append(el("p", { class: "empty", text: "No Reels planned." }));
+    for (const r of m.reels || []) {
+      content.append(el("div", { class: "reel" }, el("b", { text: "🎬 " + (r.title || "") }), r.hook ? el("div", { class: "small", text: "Hook: " + r.hook }) : null,
+        (r.shots || []).length ? el("ul", { class: "plain" }, ...r.shots.map((x) => el("li", { text: x }))) : null,
+        r.caption_idea ? el("div", { class: "small", text: "Caption: " + r.caption_idea }) : null));
+    }
+    if ((m.stories || []).length) { content.append(el("h3", { text: "Stories", style: "margin-top:14px" })); content.append(el("ul", { class: "plain" }, ...m.stories.map((x) => el("li", { text: x })))); }
+
+    const feed = clear($("feed"));
+    const runs = (gh.runs || []).filter((r) => r.name !== "Telegram bot" && r.name !== "Dashboard").slice(0, 14);
+    if (!runs.length) feed.append(el("li", { class: "empty", text: gh.error ? "Couldn't reach GitHub: " + gh.error : "No activity yet." }));
+    const icon = { ok: "✅", bad: "❌", info: "⏳", idle: "⏭" };
+    for (const r of runs) {
+      feed.append(el("li", {}, el("span", { text: icon[runState(r)] }), el("a", { href: r.html_url, target: "_blank", rel: "noopener", text: r.name + (r.display_title && r.display_title !== r.name ? " · " + r.display_title : "") }), el("span", { class: "t", text: ago(r.created_at) })));
+    }
+
+    const lk = clear($("links"));
+    const add = (href, text) => href && lk.append(el("a", { href, target: "_blank", rel: "noopener", text }));
+    const site = snap.site || {};
+    add(site.base_url, "Website");
+    add(ig.live && ig.live.username ? "https://www.instagram.com/" + encodeURIComponent(ig.live.username) + "/" : null, "Instagram");
+    if (repo) { add(`https://github.com/${repo}`, "GitHub repository"); add(`https://github.com/${repo}/actions`, "All workflow runs"); add(`https://github.com/${repo}/tree/main/posts`, "Posts folder"); }
+    add("https://search.google.com/search-console", "Search Console");
+    add("https://app.netlify.com/", "Netlify");
+    add("https://formspree.io/forms", "Applications (Formspree)");
+    $("footer").textContent = `Agent data from ${when(snap.generated_at)} (refreshed every 30 minutes). Workflow runs, alerts and pull requests are live.`;
+    $("fresh").textContent = "Updated " + ago(gh.at || snap.generated_at);
+  }
+
+  function spark(values) {
+    const w = 300, h = 56, pad = 4, max = Math.max(...values, 1);
+    const step = (w - pad * 2) / (values.length - 1);
+    const pts = values.map((v, i) => [pad + i * step, h - pad - (v / max) * (h - pad * 2)]);
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`); svg.setAttribute("class", "spark"); svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Weekly Google impressions, latest " + values[values.length - 1]);
+    const path = document.createElementNS(ns, "polyline");
+    path.setAttribute("points", pts.map((p) => p.join(",")).join(" "));
+    path.setAttribute("fill", "none"); path.setAttribute("stroke", "var(--rose)"); path.setAttribute("stroke-width", "2"); path.setAttribute("stroke-linejoin", "round");
+    svg.append(path);
+    return svg;
+  }
+
+  async function refresh() {
+    try { await loadSnapshot(); } catch (e) { if (!snap) { $("headline").textContent = "The dashboard data isn't there yet"; $("subline").textContent = "Run the Dashboard workflow once on GitHub (" + e.message + ")."; } }
+    await loadGitHub();
+    render();
+  }
+
+  $("refresh").addEventListener("click", refresh);
+  refresh();
+  let timer = setInterval(() => { if (!document.hidden) loadGitHub().then(render); }, 90000);
+  setInterval(() => { if (!document.hidden) loadSnapshot().then(render).catch(() => {}); }, 300000);
+  setInterval(() => { if (snap) $("fresh").textContent = "Updated " + ago(gh.at || snap.generated_at); }, 30000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(); });
+})();
+</script>
+</body>
+</html>
